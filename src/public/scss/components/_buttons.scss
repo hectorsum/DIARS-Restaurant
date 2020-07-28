@@ -1,0 +1,15 @@
+@import '../abstracts/variables';
+//Buttons from Website
+#btnSolicitarDelivery{
+  font-size: $fontsize_button;
+  border-radius: $radius_button;
+  border: none;
+  background: $website_backgroundButton;
+  color: $website_colorButton;
+  padding: $padding_horButton $padding_verButton;
+}
+#btnSolicitarDelivery:focus,#btnSolicitarDelivery:hover{
+  border: none;
+  outline: none;
+  background: $website_hoverButton;
+}

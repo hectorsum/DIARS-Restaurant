@@ -1,0 +1,47 @@
+@import '../abstracts/variables';
+
+//* Website Navigation
+.header-nav-bar{
+  background-color: $navbar-backgroundColor;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+  & nav ul, & nav{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    & a{
+      display: block;
+      position: relative;
+      margin: 0px 15px;
+      text-decoration: none;
+      color: black;
+      font-size: 20px;   
+      transition: 250ms ease;
+    }
+    & a:hover{
+      padding-bottom: 32px;
+      color: transparent;
+    }
+    & a:hover::after{
+      color: #000;
+      font-weight: bold;
+      transform: translateY(-50px);
+      opacity: 1;
+    }
+    & a::after{
+      content: attr(data-link-text);
+      position: absolute;
+      left: 0;
+      bottom: -120%;
+      width: 108%;
+      height: 100%;
+      transition: 150ms ease;
+      opacity: 0;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.login-wrapper{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 70vh;
+  & img{
+    width: 50vw;
+    height: 100%;
+  }
+  & .login-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & .login-inputs{
+      background-color: #cdcdcd;
+      display: flex;
+      flex-direction: column;
+      & input{
+        margin: 5px;
+      }
+    }
+  }
+}
