@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"nodemon src/",
+    "start":"node src/",
+    "scss":"node-sass --watch src/public/scss -o src/public/css"
   },
   "repository": {
     "type": "git",
@@ -18,7 +21,14 @@
   },
   "homepage": "https://github.com/Team-diars/DIARS-Restaurant#readme",
   "dependencies": {
-    "mysql": "^2.18.1"
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.6.0",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "node-sass": "^4.14.1",
