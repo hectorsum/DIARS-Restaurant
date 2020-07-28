@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="448.809" height="499.635" viewBox="0 0 448.809 499.635">
+  <defs>
+    <filter id="Union_12" x="0" y="0" width="401.594" height="499.635" filterUnits="userSpaceOnUse">
+      <feOffset dx="15" dy="15" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Union_3" x="44.607" y="47.949" width="404.201" height="443.502" filterUnits="userSpaceOnUse">
+      <feOffset dx="15" dy="15" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Ellipse_1" x="88.596" y="136.141" width="285.373" height="285.374" filterUnits="userSpaceOnUse">
+      <feOffset dx="15" dy="15" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-3"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1" data-name="Group 1" transform="translate(21020.914 6855.956)">
+    <g transform="matrix(1, 0, 0, 1, -21020.91, -6855.96)" filter="url(#Union_12)">
+      <path id="Union_12-2" data-name="Union 12" d="M286.771,440.618,158.064,249.528l-.212.229-5.671-8.964-.858-1.274.031-.033L0,.247a66.63,66.63,0,0,1,37.578,7.7c-.035-.1-.053-.145-.053-.145s.327.209.953.62A97.96,97.96,0,0,1,56.123,20.7c37.306,27.1,120.44,93.915,152.565,171.984,0,.125-7.454,9.352-14.836,18.567L332.206,408.22c1.841,2.567.632,4.682-2.1,7.1-1.916,1.7-4.583,3.54-7.471,5.794l-22.942,18.07c-2.816,2.522-5.732,4.066-8.255,4.066A5.427,5.427,0,0,1,286.771,440.618Z" transform="matrix(0.99, -0.1, 0.1, 0.99, 0, 34.82)"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -21020.91, -6855.96)" filter="url(#Union_3)">
+      <path id="Union_3-2" data-name="Union 3" d="M47.072,443.25a14.5,14.5,0,0,1-14.5-14.5V119.765H30.143a24.469,24.469,0,0,1-20.037-10.4A34.892,34.892,0,0,1,0,84.764V14.5A14.5,14.5,0,0,1,14.5,0h8.187a14.5,14.5,0,0,1,14.5,14.5V59.265h6.67V14.5A14.5,14.5,0,0,1,58.357,0h8.187a14.5,14.5,0,0,1,14.5,14.5V59.265H87.2V14.834C87.2,6.642,94.1,0,102.6,0h6.375c8.509,0,15.406,6.642,15.406,14.834V83.958a35.2,35.2,0,0,1-13.11,27.289,24.447,24.447,0,0,1-18.57,8.518H91.559V428.75a14.5,14.5,0,0,1-14.5,14.5Z" transform="translate(329.52 47.95) rotate(40)"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -21020.91, -6855.96)" filter="url(#Ellipse_1)">
+      <circle id="Ellipse_1-2" data-name="Ellipse 1" cx="130.687" cy="130.687" r="130.687" transform="translate(88.6 136.14)" fill="#faa700"/>
+    </g>
+    <text id="MANOS_NORTEÑAS" data-name="MANOS 
+NORTEÑAS" transform="translate(-20898 -6653.024)" font-size="50" font-family="BernardMT-Condensed, Bernard MT"><tspan x="36.063" y="48">MANOS </tspan><tspan x="3.519" y="107">NORTEÑAS</tspan></text>
+  </g>
+</svg>
