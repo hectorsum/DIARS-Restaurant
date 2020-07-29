@@ -6,6 +6,51 @@ body {
   background-color: black;
   color: white; }
 
+.login-inputs {
+  background-color: white;
+  width: 450px;
+  padding: 30px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); }
+  .login-inputs .input-data {
+    height: 40px;
+    width: 100%;
+    position: relative;
+    margin-bottom: 20px; }
+    .login-inputs .input-data input {
+      height: 100%;
+      width: 100%;
+      border: none;
+      outline: none;
+      border-bottom: 2px solid silver; }
+    .login-inputs .input-data input:focus ~ label,
+    .login-inputs .input-data input:valid ~ label {
+      transform: translateY(-20px);
+      font-size: 15px;
+      color: silver; }
+    .login-inputs .input-data label {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      color: grey;
+      pointer-events: none;
+      transition: all 0.3s ease; }
+    .login-inputs .input-data .underline {
+      position: absolute;
+      bottom: -3.5px;
+      height: 2px;
+      width: 101%; }
+    .login-inputs .input-data .underline::before {
+      position: absolute;
+      content: "";
+      height: 2px;
+      width: 100%;
+      background-color: black;
+      transform: scaleX(0);
+      transition: transform 0.3s ease; }
+    .login-inputs .input-data input:focus ~ .underline:before,
+    .login-inputs .input-data input:valid ~ .underline:before {
+      transform: scaleX(1); }
+
 #btnSolicitarDelivery {
   font-size: 16px;
   border-radius: 8px;
@@ -77,9 +122,3 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center; }
-    .login-wrapper .login-section .login-inputs {
-      background-color: #cdcdcd;
-      display: flex;
-      flex-direction: column; }
-      .login-wrapper .login-section .login-inputs input {
-        margin: 5px; }
