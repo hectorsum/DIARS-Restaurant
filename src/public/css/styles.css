@@ -8,14 +8,15 @@ body {
 
 .login-inputs {
   background-color: white;
+  border-radius: 0px 0px 6px 6px;
   width: 450px;
   padding: 30px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); }
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); }
   .login-inputs .input-data {
     height: 40px;
     width: 100%;
     position: relative;
-    margin-bottom: 20px; }
+    margin-bottom: 25px; }
     .login-inputs .input-data input {
       height: 100%;
       width: 100%;
@@ -26,19 +27,20 @@ body {
     .login-inputs .input-data input:valid ~ label {
       transform: translateY(-20px);
       font-size: 15px;
-      color: silver; }
+      font-weight: bold;
+      color: grey; }
     .login-inputs .input-data label {
       position: absolute;
       bottom: 10px;
       left: 0;
-      color: grey;
+      color: silver;
       pointer-events: none;
       transition: all 0.3s ease; }
     .login-inputs .input-data .underline {
       position: absolute;
-      bottom: -3.5px;
+      bottom: 0px;
       height: 2px;
-      width: 101%; }
+      width: 100%; }
     .login-inputs .input-data .underline::before {
       position: absolute;
       content: "";
@@ -65,7 +67,7 @@ body {
   background: #8f6f33e8; }
 
 .header-nav-bar {
-  background-color: #FFC63D;
+  background-color: #ffc400;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -97,28 +99,72 @@ body {
       content: attr(data-link-text);
       position: absolute;
       left: 0;
-      bottom: -120%;
+      bottom: -105%;
       width: 108%;
       height: 100%;
       transition: 150ms ease;
       opacity: 0; }
 
 footer {
-  background-color: #FFC63D;
+  background-color: #ffc400;
   color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 15vh; }
+  height: 10vh; }
 
 .login-wrapper {
+  background-color: #EBEBEB;
   display: grid;
   grid-template-columns: 50% 50%;
-  height: 70vh; }
-  .login-wrapper img {
-    width: 50vw;
-    height: 100%; }
+  height: 75vh; }
   .login-wrapper .login-section {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column; }
+  .login-wrapper .title {
+    position: relative;
+    color: #EBEBEB;
+    background-color: rgba(0, 0, 0, 0.781);
+    box-shadow: 0px 0px 25px 1px rgba(0, 0, 0, 0.6);
+    border-radius: 6px 6px 0px 0px;
+    width: 450px;
+    height: 50px;
+    font-size: 26px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1.5px solid rgba(0, 0, 0, 0.404); }
+
+.text-olvido {
+  text-align: center;
+  margin-top: 10px; }
+
+.text-registro {
+  color: grey;
+  text-align: center;
+  margin-top: 20px; }
+
+.image-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75vh; }
+  .image-section img {
+    position: absolute;
+    width: 50vw;
+    height: 75vh; }
+  .image-section .parrafos {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.6);
+    margin: 0px;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center; }
+    .image-section .parrafos p {
+      text-align: center;
+      margin: 0; }
