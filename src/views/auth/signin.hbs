@@ -1,7 +1,15 @@
 <div class="login-wrapper">
-    <img src="img/party.jpg" alt="">    
-  
+  <div class="image-section">
+    <img src="img/party.jpg" alt="">
+    <div class="parrafos">
+      <h3>¿Necesitas Delivery?</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, corporis ratione! Vero cupiditate quasi at consequuntur velit sint. Culpa ducimus explicabo quo repudiandae obcaecati cum iusto amet? Placeat, asperiores dolore.</p>
+    </div>    
+  </div>
   <div class="login-section">
+    <div class="title">
+      LOG IN
+    </div>
     <form action="/signin" method="POST"></form>
       <div class="login-inputs">
         <div class="input-data">
@@ -12,7 +20,14 @@
         <div class="input-data">
           <input type="password" required>
           <div class="underline"></div>
-          <label>Contrasena</label>
+          <label>Contraseña</label>
+        </div>
+        <button class="btn btn-success btn-block">Ingresar</button>
+        <div class="text-olvido">
+          <a href="/recuperar">¿Olvidaste tu contraseña?</a>
+        </div>
+        <div class="text-registro">
+          ¿No estas registrado? <a href="/registro">¡Registrate!</a>
         </div>
       </div>
     </form>
