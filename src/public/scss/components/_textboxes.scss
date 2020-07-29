@@ -1,14 +1,15 @@
 //*TextBoxes
 .login-inputs{
   background-color: white;
+  border-radius: 0px 0px 6px 6px;
   width: 450px;
   padding: 30px;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
   & .input-data{
     height: 40px;
     width: 100%;
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     & input{
       height: 100%;
       width: 100%;
@@ -21,21 +22,22 @@
     & input:valid ~ label{
       transform: translateY(-20px);
       font-size: 15px;
-      color: silver;
+      font-weight: bold;
+      color: grey;
     }
     & label{
       position: absolute;
       bottom: 10px;
       left: 0;
-      color: grey;
+      color: silver;
       pointer-events: none;
       transition: all 0.3s ease;
     }
     &  .underline{
       position: absolute;
-      bottom: -3.5px;
+      bottom: 0px;
       height: 2px;
-      width: 101%;
+      width: 100%;
       // background-color: red;
     }
     & .underline::before{
