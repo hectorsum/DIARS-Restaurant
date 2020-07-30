@@ -1,3 +1,4 @@
+{{>navbar}}
 <div class="login-wrapper">
   <div class="image-section">
     <img src="img/party.jpg" alt="">
@@ -10,15 +11,15 @@
     <div class="title">
       LOG IN
     </div>
-    <form action="/signin" method="POST"></form>
+    <form action="/signin" method="POST">
       <div class="login-inputs">
         <div class="input-data">
-          <input type="text" required>
+          <input type="text" name="usuario" required>
           <div class="underline"></div>
           <label>Usuario</label>
         </div>
         <div class="input-data">
-          <input type="password" required>
+          <input type="password" name="password" required>
           <div class="underline"></div>
           <label>Contraseña</label>
         </div>
@@ -33,3 +34,4 @@
     </form>
   </div>
 </div>
+{{>footer}}
