@@ -1,2 +1,14 @@
 @import '../layout/header';
 
+.content{
+  display: grid;
+  display: flex;
+  flex-direction: row;
+  color: black;
+  grid-column: 2;
+  justify-content: center;
+  align-items: center;
+  & img{
+    margin: 20px;
+  }
+}
