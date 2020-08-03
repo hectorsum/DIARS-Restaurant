@@ -6,7 +6,9 @@ body {
   color: white; }
 
 .main-container {
-  display: flex; }
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 35vh 65vh; }
 
 .login-inputs {
   background-color: white;
@@ -53,6 +55,53 @@ body {
       transition: transform 0.3s ease; }
     .login-inputs .input-data input:focus ~ .underline:before,
     .login-inputs .input-data input:valid ~ .underline:before {
+      transform: scaleX(1); }
+
+.wrapper-input {
+  background-color: white;
+  border-radius: 0px 0px 6px 6px;
+  width: 450px;
+  padding: 30px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); }
+  .wrapper-input-data {
+    height: 40px;
+    width: 100%;
+    position: relative;
+    margin-bottom: 25px; }
+    .wrapper-input-data input {
+      height: 100%;
+      width: 100%;
+      border: none;
+      outline: none;
+      border-bottom: 2px solid silver; }
+    .wrapper-input-data input:focus ~ label,
+    .wrapper-input-data input:valid ~ label {
+      transform: translateY(-20px);
+      font-size: 15px;
+      font-weight: bold;
+      color: grey; }
+    .wrapper-input-data label {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      color: silver;
+      pointer-events: none;
+      transition: all 0.3s ease; }
+    .wrapper-input-data .underline {
+      position: absolute;
+      bottom: 0px;
+      height: 2px;
+      width: 100%; }
+    .wrapper-input-data .underline::before {
+      position: absolute;
+      content: "";
+      height: 2px;
+      width: 100%;
+      background-color: black;
+      transform: scaleX(0);
+      transition: transform 0.3s ease; }
+    .wrapper-input-data input:focus ~ .underline:before,
+    .wrapper-input-data input:valid ~ .underline:before {
       transform: scaleX(1); }
 
 #btnSolicitarDelivery {
@@ -126,8 +175,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
-  width: 20vw; }
+  height: 100vh; }
   .sidebar nav ul {
     padding: 0px; }
   .sidebar ul {
@@ -241,3 +289,45 @@ footer {
     color: grey; }
   .profile-header img {
     border-radius: 360px; }
+
+.content {
+  display: grid;
+  display: flex;
+  flex-direction: row;
+  color: black;
+  grid-column: 2;
+  justify-content: center;
+  align-items: center; }
+  .content img {
+    margin: 20px; }
+
+.wrapper-total {
+  height: 100vh;
+  width: 80vw;
+  background-color: #cdcdcd;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .wrapper-total table {
+    width: 80%; }
+  .wrapper-total .wrapper-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 80%; }
+    .wrapper-total .wrapper-content .wrapper-input1 {
+      width: 100%; }
+      .wrapper-total .wrapper-content .wrapper-input1 .input-wrapper {
+        display: flex; }
+        .wrapper-total .wrapper-content .wrapper-input1 .input-wrapper * {
+          margin: 10px 4px 10px 0px; }
+    .wrapper-total .wrapper-content .wrapper-input2 {
+      display: flex;
+      flex-direction: column;
+      width: 100%; }
+      .wrapper-total .wrapper-content .wrapper-input2 * {
+        margin: 10px 0px; }
+  .wrapper-total .btnRegistrar {
+    width: 80%; }
