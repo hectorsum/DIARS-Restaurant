@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
-router.get('/home',(req,res)=>{
+const {islogedin,isnotlogedin} = require('../lib/out');
+router.get('/home',isnotlogedin,(req,res)=>{
   res.render('home/home')
 })
 

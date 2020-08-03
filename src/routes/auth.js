@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const {islogedin,isnotlogedin} = require('../lib/out');
 
-router.get('/signin', async(req,res)=>{
+router.get('/signin',islogedin, async(req,res)=>{
   res.render('auth/signin',{title: 'index page',layout: 'index'})
 });
 
