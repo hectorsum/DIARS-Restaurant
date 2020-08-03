@@ -40,3 +40,35 @@ ALTER TABLE rol
 ADD PRIMARY KEY (`cod_rol`)
 MODIFY `cod_rol` INT(11) NOT NULL
 AUTO_INCREMENT, AUTO_INCREMENT=1
+
+
+CREATE TABLE producto(
+  cod_prod INT,
+  nombre VARCHAR(40),
+  categoria VARCHAR(45),
+  precio DOUBLE,
+  stock INT
+)
+
+ALTER TABLE producto 
+ADD PRIMARY KEY(`cod_prod`)
+MODIFY `cod_prod` INT(11) NOT NULL
+AUTO_INCREMENT,AUTO_INCREMENT=1
+
+CREATE TABLE cliente(
+  cod_cli INT,
+  nombre VARCHAR(50),
+  apellidos VARCHAR(60),
+  dni VARCHAR(7),
+  telf VARCHAR(9),
+  email VARCHAR(40)
+)
+
+CREATE TABLE VENTA(
+  cod_factura INT,
+  valor_venta DOUBLE,
+  tipo_pago VARCHAR(20),
+  estado_pago VARCHAR(20),
+  cod_prod INT
+)
+
