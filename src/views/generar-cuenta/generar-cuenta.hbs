@@ -47,22 +47,23 @@
   <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Menu</th>
-        <th scope="col">Cant.Menu</th>
-        <th scope="col">Producto</th>
-        <th scope="col">Cant.Prod</th>
+        <th scope="col">#</th>  
+        <th scope="col">Tipo Pago</th>
+        <th scope="col">Estado Pago</th>
         <th scope="col">Valor</th>
         <th scope="col">Monto Total</th>
       </tr>
     </thead>
     <tbody>
+      {{#each venta}}
       <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <th scope="row">{{cod_ven}}</th>
+        <td>{{tipo_pago}}</td>
+        <td>{{estado_pago}}</td>
+        <td>{{valor}}</td>
+        <td>{{monto_total}}</td>
       </tr>
+      {{/each}}
     </tbody>
   </table>
 
