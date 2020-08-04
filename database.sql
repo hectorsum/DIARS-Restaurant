@@ -41,6 +41,22 @@ ADD PRIMARY KEY (`cod_rol`)
 MODIFY `cod_rol` INT(11) NOT NULL
 AUTO_INCREMENT, AUTO_INCREMENT=1
 
+CREATE TABLE menu(
+  cod_menu INT,
+  nombre_entrada VARCHAR(40),
+  nombre_segundo VARCHAR(40),
+  parte_pollo VARCHAR(20),
+  precio DOUBLE,
+  stock INT
+)
+
+INSERT INTO menu(nombre_entrada,nombre_segundo,parte_pollo,precio,stock) VALUES('Caldo de Gallina','Arroz con Pollo','Pierna',5.50,40),
+              ('Ensalada','Aji de Gallina',NULL,5.50,40)
+
+ALTER TABLE menu
+ADD PRIMARY KEY (`cod_menu`)
+MODIFY `cod_menu` INT(11) NOT NULL
+AUTO_INCREMENT, AUTO_INCREMENT=1
 
 CREATE TABLE producto(
   cod_prod INT,
@@ -49,6 +65,9 @@ CREATE TABLE producto(
   precio DOUBLE,
   stock INT
 )
+
+INSERT INTO producto(nombre,categoria,precio,stock)
+VALUES ('Gaseosa Inka Kola 500ml','Bebidas',2.50,50)
 
 ALTER TABLE producto 
 ADD PRIMARY KEY(`cod_prod`)
@@ -61,14 +80,50 @@ CREATE TABLE cliente(
   apellidos VARCHAR(60),
   dni VARCHAR(7),
   telf VARCHAR(9),
-  email VARCHAR(40)
+  email VARCHAR(40),
+  cod_dir INT
 )
 
-CREATE TABLE VENTA(
-  cod_factura INT,
-  valor_venta DOUBLE,
+
+
+ALTER TABLE cliente
+ADD PRIMARY KEY (`cod_cli`)
+ADD CONSTRAINT `fk_cod_cli` FOREIGN KEY (`cod_dir`) REFERENCES `direccion` (`cod_dir`)
+MODIFY `cod_cli` INT(11) NOT NULL
+AUTO_INCREMENT, AUTO_INCREMENT=1
+
+CREATE TABLE direccion(
+  cod_dir INT,
+  distrito VARCHAR(30),
+  dato_direccion VARCHAR(50)
+)
+INSERT INTO direccion(distrito,dato_direccion) 
+VALUES ('Comas','Mz T Lote 12 Coop. Los Pinos')
+
+ALTER TABLE direccion
+ADD PRIMARY KEY (`cod_dir`)
+MODIFY `cod_dir` INT(11) NOT NULL,
+AUTO_INCREMENT, AUTO_INCREMENT=1
+
+CREATE TABLE venta(
+  cod_ven INT,
   tipo_pago VARCHAR(20),
   estado_pago VARCHAR(20),
-  cod_prod INT
+  valor DOUBLE,
+  monto_total DOUBLE,
+  cod_prod INT,
+  cod_menu INT,
+  cod_cli INT,
 )
 
+INSERT INTO venta(valor_venta,tipo_pago,estado_pago,cod_prod,cod_menu,cod_cli) VALUES (200.5,'Efectivo','Cancelado',1,1,NULL)
+
+
+ALTER TABLE venta
+ADD PRIMARY KEY (`cod_ven`)
+ADD CONSTRAINT `fk_cod_prod` FOREIGN KEY (`cod_prod`) REFERENCES `producto`(`cod_prod`)
+ADD CONSTRAINT `fk_cod_cli` FOREIGN KEY (`cod_cli`) REFERENCES `cliente`(`cod_cli`)
+ADD CONSTRAINT `fk_cod_menu` FOREIGN KEY (`cod_menu`) REFERENCES 
+`menu`(`cod_menu`)
+MODIFY `cod_ven` INT(11) NOT NULL
+AUTO_INCREMENT, AUTO_INCREMENT=1
