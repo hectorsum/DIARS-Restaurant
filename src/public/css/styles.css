@@ -7,6 +7,7 @@ body {
 
 .main-container {
   display: grid;
+  font-family: 'Roboto', sans-serif;
   grid-template-columns: 20% 80%;
   grid-template-rows: 35vh 65vh; }
 
@@ -188,7 +189,6 @@ body {
 nav ul li a .nav-op {
   width: 100%;
   text-align: center;
-  background: #fdc819;
   color: black; }
   nav ul li a .nav-op * {
     margin: 10px 2.5px;
@@ -211,6 +211,13 @@ nav ul li a .nav-op:hover {
 .btnSalir:hover {
   background-color: #C82333;
   transition: all 0.5s ease; }
+
+.active-sidebar {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-right: 12px solid #000;
+  transition: all 0.5s ease; }
+  .active-sidebar * {
+    color: white; }
 
 footer {
   background-color: #ffc400;
