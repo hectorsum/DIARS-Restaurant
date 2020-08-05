@@ -111,6 +111,7 @@ CREATE TABLE venta(
   estado_pago VARCHAR(20),
   valor DOUBLE,
   monto_total DOUBLE,
+  fecha_venta DATE,
   cod_prod INT,
   cod_menu INT,
   cod_cli INT,
