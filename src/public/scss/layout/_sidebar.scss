@@ -23,7 +23,7 @@
 nav ul li a .nav-op{
   width: 100%;
   text-align: center;
-  background: #fdc819;
+  // background: #fdc819;
   color: black;
   & * {
     margin: 10px 2.5px;
@@ -49,4 +49,13 @@ nav ul li a .nav-op:hover{
   background-color: #C82333;
   // background-color: #000;
   transition: all 0.5s ease;
+}
+
+.active-sidebar{
+  background-color: rgba(0,0,0,0.7);
+  border-right: 12px solid #000;
+  transition: all 0.5s ease;
+  & *{
+    color: white;
+  }
 }
