@@ -7,6 +7,7 @@ body{
 }
 .main-container{
   display: grid;
+  font-family: 'Roboto', sans-serif;
   grid-template-columns: 20% 80%;
   grid-template-rows: 35vh 65vh;
 }
