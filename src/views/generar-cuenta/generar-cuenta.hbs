@@ -48,6 +48,7 @@
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>  
+        <th scope="col">Fecha</th>
         <th scope="col">Tipo Pago</th>
         <th scope="col">Estado Pago</th>
         <th scope="col">Valor</th>
@@ -58,10 +59,11 @@
       {{#each venta}}
       <tr>
         <th scope="row">{{cod_ven}}</th>
+        <th>{{formatdaytime fecha_venta}}</th>
         <td>{{tipo_pago}}</td>
         <td>{{estado_pago}}</td>
-        <td>{{valor}}</td>
-        <td>{{monto_total}}</td>
+        <td>{{money valor}}</td>
+        <td>{{money monto_total}}</td>
       </tr>
       {{/each}}
     </tbody>
