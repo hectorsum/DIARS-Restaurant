@@ -1,53 +1,62 @@
 <div class="wrapper-total">
-  <div class="wrapper-content">
-    <div class="wrapper-input1">
-      <div class="input-wrapper">
-        <select class="custom-select">
-          <option selected>Seleccione Menu...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-        <input class="form-control" placeholder="Cantidad" type="number" min="1" max="10">
+  <form class="form-body" action="/generar-cuenta" method="POST">
+    <div class="wrapper-content">
+      <div class="wrapper-input1">
+        <div class="input-wrapper">
+          <select name="nombre_segundo" class="custom-select">
+            <option selected>Seleccione Segundo...</option>
+            {{#each segundo}}
+            <option value="{{cod_segundo}}">{{nombre_segundo}}</option>
+            {{/each}}
+          </select>
+          <input name="cant_segundo" class="form-control" placeholder="Cantidad" type="number" min="1" max="10">
+        </div>
+        <div class="input-wrapper">
+          <select name="nombre_entrada" class="custom-select">
+            <option selected>Seleccione Entrada...</option>
+            {{#each entrada}}
+            <option value="{{cod_entrada}}">{{nombre_entrada}}</option>
+            {{/each}}
+          </select>
+          <input name="cant_entrada" class="form-control" placeholder="Cantidad" type="number" min="1" max="10">
+        </div>
+        <div class="input-wrapper">
+          <select name="nombre_producto" class="custom-select">
+            <option selected>Seleccione Producto...</option>
+            {{#each producto}}
+            <option value="{{cod_prod}}">{{nombre_producto}}</option>
+            {{/each}}
+          </select>
+          <input name="cant_producto" class="form-control" placeholder="Cantidad" type="number" min="1" max="10">
+        </div>
       </div>
-      <div class="input-wrapper">
+
+      <div class="wrapper-input2">
         <select class="custom-select">
-          <option selected>Seleccione Producto...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          <option selected>Seleccione Cajera</option>
+          {{#each empleado}}
+          <option value="{{cod_emp}}">{{apellidos}} {{nombres}}</option>
+          {{/each}}
         </select>
-        <input class="form-control" placeholder="Cantidad" type="number" min="1" max="10">
-      </div>
-      <div class="input-wrapper">
-        <input class="form-control" type="text" readonly>
+
+        <select name="cod_tipo_pago" class="custom-select">
+          <option selected>Tipo de Pago...</option>
+          {{#each tipo_pago}}
+          <option value={{cod_tipo_pago}}>{{nombre}}</option>
+          {{/each}}
+        </select>
+
+        <input type="text" placeholder="06/06/20" class="form-control" readonly>
       </div>
     </div>
-
-    <div class="wrapper-input2">
-      <select class="custom-select">
-        <option selected>Seleccione Cajera</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
-
-      <select class="custom-select">
-        <option selected>Tipo de Pago...</option>
-        <option value="1">Contado</option>
-        <option value="2">VISA</option>
-      </select>
-      
-      <input type="text" placeholder="06/06/20" class="form-control" readonly>
+    <div class="form-group btnRegistrar">
+      <input type="submit" class="btn btn-success btn-block" value="Accept">
     </div>
-  </div>
-  <div class="form-group btnRegistrar">
-    <button class="btn btn-success btn-block">Registrar Boleta</button>
-  </div>
+  </form>
   <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">#</th>  
+        <th scope="col">#</th>
         <th scope="col">Fecha</th>
         <th scope="col">Tipo Pago</th>
         <th scope="col">Estado Pago</th>
@@ -58,9 +67,9 @@
     <tbody>
       {{#each venta}}
       <tr>
-        <th scope="row">{{cod_ven}}</th>
+        <th scope="row">{{index @index}}</th>
         <th>{{formatdaytime fecha_venta}}</th>
-        <td>{{tipo_pago}}</td>
+        <td>{{nombre}}</td>
         <td>{{estado_pago}}</td>
         <td>{{money valor}}</td>
         <td>{{money monto_total}}</td>
