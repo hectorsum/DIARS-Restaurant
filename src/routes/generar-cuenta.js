@@ -5,13 +5,16 @@ const router = express.Router();
 const {islogedin,isnotlogedin} = require('../lib/out');
 
 router.get('/generar-cuenta',isnotlogedin,async(req,res)=>{
+  
+  //*Querying tables
   const venta = await pool.query("SELECT `venta`.*, `tipo_pago`.`nombre` FROM `venta` LEFT JOIN `tipo_pago` ON `venta`.`cod_tipo_pago` = `tipo_pago`.`cod_tipo_pago`")
   const entrada = await pool.query('SELECT * FROM entrada')
   const segundo = await pool.query('SELECT * FROM segundo')
   const producto = await pool.query('SELECT * FROM producto')
   const empleado = await pool.query('SELECT nombres,apellidos FROM empleado WHERE cod_rol=2')
   const tipo_pago = await pool.query('SELECT * FROM tipo_pago')
-  res.render('generar-cuenta/generar-cuenta',{venta,entrada,segundo,producto,empleado,tipo_pago})
+  const usuario_emp = await pool.query("SELECT `usuario_emp`.`cod_emp`, `empleado`.`nombres`, `empleado`.`apellidos` FROM `usuario_emp` LEFT JOIN `empleado` ON `usuario_emp`.`cod_emp` = `empleado`.`cod_emp`")
+  res.render('generar-cuenta/generar-cuenta',{venta,entrada,segundo,producto,empleado,tipo_pago,usuario_emp})
 })
 
 router.post('/generar-cuenta', async(req,res)=>{
@@ -20,18 +23,14 @@ router.post('/generar-cuenta', async(req,res)=>{
   console.log(nombre_segundo)
   //*Getting timestamp
   const current_timestamp = await pool.query('SELECT CURRENT_TIMESTAMP');
-  console.log(current_timestamp)
   const fecha_venta = current_timestamp[0].CURRENT_TIMESTAMP
 
+  //*Getting payment state
   const estado_pago = (cod_tipo_pago===2) ? 'Cancelado':'Pendiente';
-  console.log('estado: ',estado_pago)
   //*Getting prices
   const entrada_precio = await pool.query(`SELECT precio FROM entrada WHERE cod_entrada LIKE '${nombre_entrada}'`)
-  console.log(entrada_precio)
   const segundo_precio = await pool.query(`SELECT precio FROM segundo WHERE cod_segundo LIKE '${nombre_segundo}'`)
-  console.log(segundo_precio)
   const producto_precio = await pool.query(`SELECT precio FROM producto WHERE cod_prod LIKE '${nombre_producto}'`)
-  console.log(producto_precio)
 
   const valor = (cant_entrada*entrada_precio[0].precio)+(cant_segundo*segundo_precio[0].precio)+
   (cant_producto*producto_precio[0].precio);
