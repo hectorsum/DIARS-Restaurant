@@ -118,6 +118,19 @@ body {
   outline: none;
   background: #8f6f33e8; }
 
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 3;
+  position: absolute;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0; }
+
 .profile-header {
   background-color: #cdcdcd;
   color: black;
