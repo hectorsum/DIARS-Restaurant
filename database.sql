@@ -164,6 +164,7 @@ ADD CONSTRAINT `fk_cod_segundo` FOREIGN KEY (`cod_segundo`) REFERENCES
 `segundo`(`cod_segundo`)
 ADD CONSTRAINT `fk_parte_pollo_entrada` FOREIGN KEY(`parte_pollo_entrada`) REFERENCES `stock`(`cod_stock`)
 ADD CONSTRAINT `fk_parte_pollo_segundo` FOREIGN KEY(`parte_pollo_segundo`) REFERENCES `stock`(`cod_stock`)
+ADD CONSTRAINT `fk_cod_tipo_pago` FOREIGN KEY(`cod_tipo_pago`) REFERENCES `tipo_pago`(`nombre`)
 MODIFY `cod_ven` INT(11) NOT NULL
 AUTO_INCREMENT, AUTO_INCREMENT=1
 
