@@ -20,3 +20,12 @@ for(let i = 0; i < div_tag.length; i++){
 $(function() {
   $('.nav-main ul li a[href^="/' + location.pathname.split("/")[1] + '"] div').addClass('active-sidebar');
 });
+
+//todo: Removing overlay message effect
+try {
+  const close = document.getElementById('close-1');
+  close.addEventListener('click', () => {
+      document.getElementById("overlay").remove();
+  })
+} catch (error) {
+}
