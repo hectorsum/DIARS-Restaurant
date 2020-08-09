@@ -32,12 +32,7 @@
       </div>
 
       <div class="wrapper-input2">
-        <select class="custom-select">
-          <option selected>Seleccione Cajera</option>
-          {{#each empleado}}
-          <option value="{{cod_emp}}">{{apellidos}} {{nombres}}</option>
-          {{/each}}
-        </select>
+        <input class="form-control" type="text" value="{{user.nombres}} {{user.apellidos}}" readonly>
 
         <select name="cod_tipo_pago" class="custom-select">
           <option selected>Tipo de Pago...</option>
