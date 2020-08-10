@@ -27,5 +27,20 @@ try {
   close.addEventListener('click', () => {
       document.getElementById("overlay").remove();
   })
-} catch (error) {
+} catch (e) {
+  
+}
+
+//todo: Setting time and date
+// window.onload() = setInterval(clock,1000);
+window.addEventListener('load',setInterval(clock,1000));
+function clock(){
+  var date = new Date();
+  var day = date.getDate();
+  var month = date.getMonth();
+  var year = date.getFullYear();
+  var hour = date.getHours();
+  var min = date.getMinutes();
+  var sec = date.getSeconds();
+  document.getElementById('date').placeholder = `${day}/${month+1}/${year} ${hour}:${min}:${sec}`
 }
