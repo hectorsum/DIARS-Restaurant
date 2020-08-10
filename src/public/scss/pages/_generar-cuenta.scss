@@ -7,8 +7,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  & table{
-    width: 80%;
+  text-align: center;
+  & .dato_user, & .fecha_actual{
+    text-align: center;
+    font-weight: bold;
+  }
+  & form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   & .wrapper-content {
     display: flex;
