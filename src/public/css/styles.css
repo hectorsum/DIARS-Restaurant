@@ -387,5 +387,11 @@ footer {
       width: 100%; }
       .wrapper-total .wrapper-content .wrapper-input2 * {
         margin: 10px 0px; }
-  .wrapper-total .btnRegistrar {
+  .wrapper-total .button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     width: 80%; }
+    .wrapper-total .button-wrapper * {
+      width: 100%;
+      margin: 2px 0px 0px 0px; }
