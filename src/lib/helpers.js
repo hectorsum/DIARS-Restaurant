@@ -2,6 +2,7 @@ const moment = require('moment');
 const numeral = require('numeral');
 const bcrypt = require('bcryptjs');
 const helpers = {};
+const Handlebars = require('handlebars');
 
 helpers.index = (index) =>{
   index++
@@ -18,9 +19,14 @@ helpers.formatdaytime = (time)=>{
   return moment(time).format('DD/MM/YYYY HH:mm:ss')
 }
 
+helpers.ifEquals = Handlebars.registerHelper('ifEquals', function(arg1,arg2, options) {
+  console.log(options.inverse(this))
+  return (arg1==arg2) ? options.fn(this) : options.inverse(this);
+});
+
 helpers.money= (number) =>{
   var number = numeral(number);
-  const money ='S/'+number.format('0,0.00')
+  const money ='S/ '+number.format('0,0.00')
   return money;
 }
 
