@@ -1,0 +1,235 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Boleta Num.{{venta.cod_ven}}</title>
+
+  <style>
+    .invoice-box {
+      max-width: 800px;
+      margin: auto;
+      padding: 30px;
+      border: 1px solid #eee;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.479);
+      font-size: 16px;
+      line-height: 24px;
+      font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+      color: #555;
+    }
+
+    .invoice-box table {
+      width: 100%;
+      line-height: inherit;
+      text-align: left;
+    }
+
+    .invoice-box table td {
+      padding: 5px;
+      vertical-align: top;
+    }
+
+    .invoice-box table tr td:nth-child(2) {
+      text-align: right;
+    }
+
+    .invoice-box table tr.top table td {
+      padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.top table td.title {
+      font-size: 20px;
+      line-height: 30px;
+      color: #333;
+    }
+
+    .invoice-box table tr.information table td {
+      padding-bottom: 40px;
+    }
+
+    .invoice-box table tr.heading td {
+      background: #eee;
+      border-bottom: 1px solid #ddd;
+      font-weight: bold;
+    }
+
+    .invoice-box table tr.details td {
+      padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.item td {
+      border-bottom: 1px solid #eee;
+    }
+
+    .invoice-box table tr.item.last td {
+      border-bottom: none;
+    }
+
+    .invoice-box table tr.total td:nth-child(2) {
+      border-top: 2px solid #eee;
+      font-weight: bold;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .invoice-box table tr.top table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+      }
+
+      .invoice-box table tr.information table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+      }
+    }
+
+    /** RTL **/
+    .rtl {
+      direction: rtl;
+      font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    }
+
+    .rtl table {
+      text-align: right;
+    }
+
+    .rtl table tr td:nth-child(2) {
+      text-align: left;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div class="invoice-box">
+    <table cellpadding="0" cellspacing="0">
+      <tr class="top">
+        <td colspan="2">
+          <table>
+            <tr>
+              
+              <td class="title">
+                Num.Ticket #: {{venta.cod_ven}}<br>
+                Fecha Venta: {{venta.fecha_venta}}<br>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr class="information">
+        <td colspan="2">
+          <table>
+            <tr>
+              <td>
+                <strong>Manos Nortenas Inc</strong><br>
+                Av.Villaverde N° 278<br>
+                San Martin de Porres
+              </td>
+
+              <td>
+                Restaurant Cevicheria Manos Nortenas<br>
+                manosnorteñas@gmail.com<br>
+                <strong>Cajera: </strong>{{venta.caja}}<br>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr class="heading">
+        <td>
+          Metodo de Pago
+        </td>
+
+        <td>
+          #
+        </td>
+      </tr>
+
+      <tr class="details">
+        <td>
+          {{tipo_pago.nombre}}
+        </td>
+      </tr>
+
+      <tr class="heading">
+        <td>
+          Productos
+        </td>
+
+        <td>
+          Precio
+        </td>
+      </tr>
+      {{#ifEquals venta.cod_entrada 0}}
+        <tr class="item">
+            
+        </tr>
+      {{else}}
+        <tr class="item">
+          <td>
+            {{entrada.nombre_entrada}} ({{venta.cant_entrada}})
+          </td>
+
+          <td>
+            {{entrada.precio}}
+          </td>
+        </tr>
+      {{/ifEquals}}
+      {{#ifEquals venta.cod_segundo 0}}
+          <tr class="item">
+            
+          </tr>
+      {{!-- In case you're using if statement from some help, is not necessary to use # --}}
+      {{else}} 
+          <tr class="item">
+            <td>
+              {{segundo.nombre_segundo}} ({{venta.cant_segundo}})
+            </td>
+            <td>
+              {{segundo.precio}}
+            </td>
+          </tr>
+      {{/ifEquals}}
+      {{#ifEquals producto.nombre_producto 0}}
+        <tr class="item last">
+          
+        </tr>
+      {{else}}
+        <tr class="item last">
+          <td>
+            {{producto.nombre_producto}} ({{venta.cant_producto}})
+          </td>
+
+          <td>
+            {{producto.precio}}
+          </td>
+        </tr>
+      {{/ifEquals}}
+    
+      <tr class="total">
+        <td>
+          
+        </td>
+
+        <td>
+          Subtotal: {{venta.valor}}
+        </td>
+      </tr>
+      
+      <tr class="total">
+        <td>
+          
+        </td>
+
+        <td>
+          Total: {{venta.monto_total}}
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+
+</html>
