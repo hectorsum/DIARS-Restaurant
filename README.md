@@ -1,6 +1,10 @@
 # **DIARS-Restaurant** :curry: :rocket:
 This is a project from Manos Nortenas Restaurant
 
+### Install all packages first before running the project
+```
+npm install
+```
 ### For starting project in development mode
 ```
 npm run dev
