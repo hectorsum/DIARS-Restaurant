@@ -63,7 +63,7 @@ function changedSegundo(){
   switch(opc_nombre_segundo){
     case '0':
       cant_segundo.setAttribute('readonly',true);
-      cant_segundo.setAttribute('value','');
+      cant_segundo.setAttribute('value','0');
       break;
     default:
       cant_segundo.removeAttribute('readonly');
@@ -81,7 +81,7 @@ function changedEntrada(){
   switch(opc_nombre_entrada){
     case '0':
       cant_entrada.setAttribute('readonly',true);
-      cant_entrada.setAttribute('value','');
+      cant_entrada.setAttribute('value','0');
       break;
     default:
       cant_entrada.removeAttribute('readonly');
@@ -99,7 +99,7 @@ function changedProducto(){
   switch(opc_nombre_producto){
     case '0':
       cant_producto.setAttribute('readonly',true);
-      cant_producto.setAttribute('value','');
+      cant_producto.setAttribute('value','0');
       break;
     default:
       cant_producto.removeAttribute('readonly');
