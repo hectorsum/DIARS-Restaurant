@@ -3,6 +3,7 @@ const pool = require('../database');
 const helpers = require('../lib/helpers');
 const router = express.Router();
 const {islogedin,isnotlogedin} = require('../lib/out');
+const pdf = require('../lib/puppeteer');
 
 router.get('/',isnotlogedin,async(req,res)=>{
   
@@ -17,7 +18,7 @@ router.get('/',isnotlogedin,async(req,res)=>{
 })
 
 router.post('/', isnotlogedin,async(req,res)=>{
-  const {nombre_segundo,nombre_entrada,nombre_producto,cod_tipo_pago,cant_entrada,cant_segundo,cant_producto} = req.body;
+  const {nombre_segundo,nombre_entrada,nombre_producto,cod_tipo_pago,cant_entrada,cant_segundo,cant_producto,caja} = req.body;
 
   const nombre_producto_string = await pool.query(`SELECT nombre_producto FROM producto WHERE cod_prod=?`,[nombre_producto])
   const nombre_entrada_string = await pool.query(`SELECT nombre_entrada FROM entrada WHERE cod_entrada=?`,[nombre_entrada])
@@ -39,14 +40,13 @@ router.post('/', isnotlogedin,async(req,res)=>{
   const igv = 0.18;
   const descuento = valor*igv;
   const monto_total = valor-descuento;
-  await pool.query('call insert_venta_local(?,?,?,?,?,?,?,?,?,?)',[nombre_segundo_extracted,nombre_entrada_extracted,nombre_producto_extracted,valor,monto_total,fecha_venta,cant_entrada,cant_segundo,cant_producto,cod_tipo_pago],async(err,resp,fields)=>{
+  await pool.query('call insert_venta_local(?,?,?,?,?,?,?,?,?,?,?)',[nombre_segundo_extracted,nombre_entrada_extracted,nombre_producto_extracted,valor,monto_total,fecha_venta,cant_entrada,cant_segundo,cant_producto,cod_tipo_pago,caja],async(err,resp,fields)=>{
     if (err) {
-      console.log(err)
-      req.flash('failure', "Couldn't register" + err);
+      req.flash('failure', "No se pudo registrar la cuenta" + err);
       res.redirect('/generar-cuenta');
     }
     else {
-        req.flash('success', 'Successfully registered');
+        req.flash('success', 'Registrado Satisfactoriamente');
         console.log('finished inserting')
         res.redirect('/generar-cuenta');
     }
@@ -63,7 +63,7 @@ router.get('/edit/:cod_ven',isnotlogedin,async(req,res)=>{
   const segundo = await pool.query('SELECT * FROM segundo')
   const producto = await pool.query('SELECT * FROM producto')
   const tipo_pago = await pool.query('SELECT * FROM tipo_pago')
-  res.render('generar-cuenta/edit',{venta:venta[0],entrada,segundo,producto,tipo_pago})
+  res.render('generar-cuenta/edit',{venta:venta[0],tipo_pago,entrada,segundo,producto})
 })
 router.post('/edit/:cod_ven',isnotlogedin,async(req,res)=>{
   const {cod_ven} = req.params;
@@ -90,7 +90,7 @@ router.post('/edit/:cod_ven',isnotlogedin,async(req,res)=>{
   const monto_total = valor-descuento;
 
   let estado_pago;
-  if (cod_tipo_pago==2){
+  if (cod_tipo_pago===`2`){
     estado_pago = 'Cancelado';
   }
   else{
@@ -126,5 +126,18 @@ router.post('/edit/:cod_ven',isnotlogedin,async(req,res)=>{
   });
 })
 
+//pdf
+router.get('/print/:cod_ven', isnotlogedin, async (req, res) => {
+  try{
+    const { cod_ven } = req.params;
+    var npdf = await pdf.boleta(cod_ven);
+    console.log('ERROR HERE: ',npdf)
+    res.contentType("application/pdf");
+    res.send(npdf);
+  }catch(e){
+    console.log(e);
+  }
+  
+});
 
 module.exports = router;
