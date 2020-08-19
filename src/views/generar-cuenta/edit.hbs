@@ -4,38 +4,36 @@
       <div class="wrapper-content">
         <div class="wrapper-input1">
           <div class="input-wrapper">
-            <select name="nombre_segundo" class="custom-select">
+            <select name="nombre_segundo" class="custom-select" id="nombre_segundo" onchange="changedSegundo()">
               {{#select venta.cod_segundo}}
               {{#each segundo}}
               <option value="{{cod_segundo}}">{{nombre_segundo}}</option>
               {{/each}}
               {{/select}}
             </select>
-            <input name="cant_segundo" class="form-control" placeholder="Cantidad" type="number" min="0" max="10"
+            <input name="cant_segundo" id="cant_segundo" class="form-control" placeholder="Cantidad" type="number" min="0" max="10"
               value="{{venta.cant_segundo}}">
           </div>
           <div class="input-wrapper">
-            <select required name="nombre_entrada" class="custom-select">
+            <select required name="nombre_entrada" class="custom-select" id="nombre_entrada" onchange="changedEntrada()">
               {{#select venta.cod_entrada}}
               {{#each entrada}}
               <option value="{{cod_entrada}}">{{nombre_entrada}}</option>
               {{/each}}
               {{/select}}
             </select>
-            <input name="cant_entrada" class="form-control" placeholder="Cantidad" type="number" min="0" max="10"
+            <input name="cant_entrada" id="cant_entrada" class="form-control" placeholder="Cantidad" type="number" min="0" max="10"
               value="{{venta.cant_entrada}}">
           </div>
           <div class="input-wrapper">
-            <select name="nombre_producto" class="custom-select" required>
+            <select name="nombre_producto" class="custom-select" id="nombre_producto" onchange="changedProducto()">
               {{#select venta.cod_prod}}
-              <option value="" selected>Seleccione Producto...</option>
               {{#each producto}}
               <option value="{{cod_prod}}">{{nombre_producto}}</option>
               {{/each}}
               {{/select}}
             </select>
-            <input name="cant_producto" class="form-control" placeholder="Cantidad" type="number" min="0" max="10"
-              value="{{venta.cant_producto}}">
+            <input name="cant_producto" id="cant_producto" class="form-control" placeholder="Cantidad" type="number" min="0" max="10" value="{{venta.cant_producto}}">
           </div>
         </div>
 
@@ -65,25 +63,3 @@
   </div>
   </form>
 </div>
-{{!-- <script>
-  $(function () {
-  $('#check-in').datepicker({
-    numberOfMonths: 1,
-    dateFormat: 'DD,d MM,yy',
-    onSelect: function (selectdate) {
-      var dt = new Date(selectdate);
-      dt.setDate(dt.getDate() + 1)
-      $('#check-out').datepicker("option", "minDate", dt);
-    }
-  });
-  $('#check-out').datepicker({
-    numberOfMonths: 1,
-    dateFormat: 'DD,d MM,yy',
-    onSelect: function (selectdate) {
-      var dt = new Date(selectdate);
-      dt.setDate(dt.getDate() - 1)
-      $('#check-in').datepicker("option", "maxDate", dt);
-    }
-  });
-});
-</script> --}}
