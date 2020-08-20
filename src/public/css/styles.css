@@ -8,8 +8,7 @@ body {
 .main-container {
   display: grid;
   font-family: 'Roboto', sans-serif;
-  grid-template-columns: 20% 80%;
-  grid-template-rows: 35vh 65vh; }
+  grid-template-columns: 20% 80%; }
 
 .login-inputs {
   background-color: white;
@@ -343,7 +342,9 @@ footer {
     border-radius: 360px; }
 
 .home {
-  height: 100vh; }
+  height: 100vh;
+  display: flex;
+  flex-direction: column; }
   .home .content {
     display: flex;
     flex-direction: row;
