@@ -342,14 +342,15 @@ footer {
   .profile-header img {
     border-radius: 360px; }
 
-.content {
-  display: grid;
-  display: flex;
-  flex-direction: row;
-  color: black;
-  grid-column: 2;
-  justify-content: center;
-  align-items: center; }
+.home {
+  height: 100vh; }
+  .home .content {
+    display: flex;
+    flex-direction: row;
+    color: black;
+    grid-column: 2;
+    justify-content: center;
+    align-items: center; }
 
 .wrapper-total {
   height: 100vh;
@@ -395,3 +396,6 @@ footer {
     .wrapper-total .button-wrapper * {
       width: 100%;
       margin: 2px 0px 0px 0px; }
+
+.title {
+  color: black; }
