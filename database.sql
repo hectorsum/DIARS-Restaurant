@@ -91,6 +91,8 @@ ALTER TABLE producto
 ADD PRIMARY KEY(`cod_prod`)
 MODIFY `cod_prod` INT(11) NOT NULL
 AUTO_INCREMENT,AUTO_INCREMENT=1
+ADD CONSTRAINT `fk_cod_stock_producto` FOREIGN KEY(`cod_stock`) REFERENCES `stock`(`cod_stock`)
+
 
 CREATE TABLE cliente(
   cod_cli INT,
