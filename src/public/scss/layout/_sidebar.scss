@@ -1,5 +1,5 @@
 .sidebar{
-  background: #fdc819;
+  background: $sidebar-background;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -27,33 +27,33 @@ nav ul li a .nav-op{
   color: black;
   & * {
     margin: 10px 2.5px;
-    font-size: 22px;
+    font-size: $sidebar-fontsize;
   }
 }
 nav ul li a .nav-op:hover{
   background: rgba(0,0,0,0.7);
   color: white;
-  border-right: 12px solid #000;
+  border-right: 6px solid #000;
   transition: all 0.5s ease;
 }
 
 .btnSalir{
   text-align: center;
   padding: 10px;
-  font-size: 22px;
-  background-color: #dc3545;
+  font-size: $sidebar-fontsize;
+  background-color: #C82333;
   color: white;
   width: 100%;
 }
 .btnSalir:hover{
-  background-color: #C82333;
-  // background-color: #000;
+  background-color: #a81a28;
   transition: all 0.5s ease;
 }
 
 .active-sidebar{
   background-color: rgba(0,0,0,0.7);
-  border-right: 12px solid #000;
+  border-right: 12px solid $system-background;
+  font-weight: 500;
   transition: all 0.5s ease;
   & *{
     color: white;
