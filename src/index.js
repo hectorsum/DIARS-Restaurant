@@ -15,7 +15,7 @@ const app = express();
 require('./lib/passport');
 
 //Settings 
-app.set('port',process.env.PORT || 4000);
+app.set('port',process.env.PORT || 5000);
 app.set('view engine','.hbs');
 app.set('views',path.join(__dirname,'views'));
 app.engine('.hbs',exphbs({
@@ -54,6 +54,7 @@ app.use((req,res,next)=>{
 //Routes
 //*Specifying route bc we're using edit,delete in there
 app.use('/generar-cuenta',require('./routes/generar-cuenta'));
+app.use('/mantener-producto',require('./routes/mantener-producto'));
 app.use(require('./routes/mantener-producto'));
 app.use(require('./routes/index'));
 app.use(require('./routes/auth'));
