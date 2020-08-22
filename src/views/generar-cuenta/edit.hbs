@@ -1,65 +1,63 @@
-<div>
-  <div class="wrapper-total">
-    <form class="form-body" action="/generar-cuenta/edit/{{venta.cod_ven}}" method="POST">
-      <div class="wrapper-content">
-        <div class="wrapper-input1">
-          <div class="input-wrapper">
-            <select name="nombre_segundo" class="custom-select" id="nombre_segundo" onchange="changedSegundo()">
-              {{#select venta.cod_segundo}}
-              {{#each segundo}}
-              <option value="{{cod_segundo}}">{{nombre_segundo}}</option>
-              {{/each}}
-              {{/select}}
-            </select>
-            <input name="cant_segundo" id="cant_segundo" class="form-control" placeholder="Cantidad" type="number" min="0" max="10"
-              value="{{venta.cant_segundo}}">
-          </div>
-          <div class="input-wrapper">
-            <select required name="nombre_entrada" class="custom-select" id="nombre_entrada" onchange="changedEntrada()">
-              {{#select venta.cod_entrada}}
-              {{#each entrada}}
-              <option value="{{cod_entrada}}">{{nombre_entrada}}</option>
-              {{/each}}
-              {{/select}}
-            </select>
-            <input name="cant_entrada" id="cant_entrada" class="form-control" placeholder="Cantidad" type="number" min="0" max="10"
-              value="{{venta.cant_entrada}}">
-          </div>
-          <div class="input-wrapper">
-            <select name="nombre_producto" class="custom-select" id="nombre_producto" onchange="changedProducto()">
-              {{#select venta.cod_prod}}
-              {{#each producto}}
-              <option value="{{cod_prod}}">{{nombre_producto}}</option>
-              {{/each}}
-              {{/select}}
-            </select>
-            <input name="cant_producto" id="cant_producto" class="form-control" placeholder="Cantidad" type="number" min="0" max="10" value="{{venta.cant_producto}}">
-          </div>
-        </div>
-
-        <div class="wrapper-input2">
-          <input class="dato_user form-control" type="text" value="{{user.nombres}} {{user.apellidos}}" readonly>
-
-          <select required name="cod_tipo_pago" class="custom-select">
-            {{#select venta.cod_tipo_pago}}
-            {{#each tipo_pago}}
-            <option value={{cod_tipo_pago}}>{{nombre}}</option>
+<div class="wrapper-total">
+  <form class="form-body" action="/generar-cuenta/edit/{{venta.cod_ven}}" method="POST">
+    <div class="wrapper-content">
+      <div class="wrapper-input1">
+        <div class="input-wrapper">
+          <select name="nombre_segundo" class="custom-select" id="nombre_segundo" onchange="changedSegundo()">
+            {{#select venta.cod_segundo}}
+            {{#each segundo}}
+            <option value="{{cod_segundo}}">{{nombre_segundo}}</option>
             {{/each}}
             {{/select}}
           </select>
+          <input name="cant_segundo" id="cant_segundo" class="form-control" placeholder="Cantidad" type="number" min="0"
+            max="10" value="{{venta.cant_segundo}}">
+        </div>
+        <div class="input-wrapper">
+          <select required name="nombre_entrada" class="custom-select" id="nombre_entrada" onchange="changedEntrada()">
+            {{#select venta.cod_entrada}}
+            {{#each entrada}}
+            <option value="{{cod_entrada}}">{{nombre_entrada}}</option>
+            {{/each}}
+            {{/select}}
+          </select>
+          <input name="cant_entrada" id="cant_entrada" class="form-control" placeholder="Cantidad" type="number" min="0"
+            max="10" value="{{venta.cant_entrada}}">
+        </div>
+        <div class="input-wrapper">
+          <select name="nombre_producto" class="custom-select" id="nombre_producto" onchange="changedProducto()">
+            {{#select venta.cod_prod}}
+            {{#each producto}}
+            <option value="{{cod_prod}}">{{nombre_producto}}</option>
+            {{/each}}
+            {{/select}}
+          </select>
+          <input name="cant_producto" id="cant_producto" class="form-control" placeholder="Cantidad" type="number"
+            min="0" max="10" value="{{venta.cant_producto}}">
+        </div>
+      </div>
 
-          <input type="text" class="fecha_actual form-control" readonly
-            placeholder="{{formatdaytime venta.fecha_venta}}">
-        </div>
+      <div class="wrapper-input2">
+        <input class="dato_user form-control" type="text" value="{{user.nombres}} {{user.apellidos}}" readonly>
+
+        <select required name="cod_tipo_pago" class="custom-select">
+          {{#select venta.cod_tipo_pago}}
+          {{#each tipo_pago}}
+          <option value={{cod_tipo_pago}}>{{nombre}}</option>
+          {{/each}}
+          {{/select}}
+        </select>
+
+        <input type="text" class="fecha_actual form-control" readonly placeholder="{{formatdaytime venta.fecha_venta}}">
       </div>
-      <div class="button-wrapper">
-        <div class="form-group btnCancelar">
-          <a class="btn btn-danger btn-block" href="/generar-cuenta">Cancelar</a>
-        </div>
-        <div class="form-group btnRegistrar">
-          <button class="btn btn-success btn-block" type="submit">Modificar Venta</button>
-        </div>
+    </div>
+    <div class="button-wrapper">
+      <div class="form-group btnCancelar">
+        <a class="btn btn-danger btn-block" href="/generar-cuenta">Cancelar</a>
       </div>
-  </div>
+      <div class="form-group btnRegistrar">
+        <button class="btn btn-success btn-block" type="submit">Modificar Venta</button>
+      </div>
+    </div>
   </form>
 </div>
