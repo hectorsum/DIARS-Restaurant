@@ -1,0 +1,24 @@
+<div class="mantener-productos">
+  <div class="popup-edit-producto">
+    <div class="wrapper-total content-mantener-producto">
+      <form class="form-body" action="/mantener-producto/edit/{{producto.cod_prod}}" method="POST">
+        <h1 class="mantener-heading">Editar Producto</h1>
+        <div class="wrapper-content">
+          <div class="inputs">
+            <input autocomplete="off" name="nombre_producto" class="form-control" placeholder="Nombre Producto" type="text" value="{{producto.nombre_producto}}" required>
+            <input autocomplete="off" step="0.01" type="number" class="form-control" placeholder="Precio" value="{{producto.precio}}" name="precio" required>
+            <input autocomplete="off" name="stock" class="form-control" placeholder="Stock" type="number" value="{{producto.cod_stock}}" required>
+          </div>
+        </div>
+        <div class="button-wrapper">
+          <div class="form-group mt-2 mr-1 btnCancelar">
+            <a class="btn btn-danger close-popup-mantener-producto" href="/mantener-producto">Cancelar</a>
+          </div>
+          <div class="form-group mt-2 btnRegistrar">
+            <button class="btn btn-success" type="submit">Modificar Producto</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
