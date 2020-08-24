@@ -31,9 +31,10 @@ try {
   
 }
 
-//todo: Setting time and date
-// window.onload() = setInterval(clock,1000);
-window.addEventListener('load',setInterval(clock,1000));
+//todo: Setting time and date to input from Generar-Cuenta
+const date_input = document.getElementById('date');
+
+date_input.addEventListener('load',setInterval(clock,1000));
 
 function clock(){
   var date = new Date();
@@ -111,3 +112,15 @@ function changedProducto(){
 window.addEventListener('change',changedSegundo);
 window.addEventListener('change',changedEntrada);
 window.addEventListener('change',changedProducto);
+
+function popup_add_producto(){
+  document.querySelector('.mantener-productos .popup-add-producto').style.display = 'flex';
+}
+function popup_close_producto(){
+  document.querySelector('.mantener-productos .popup-add-producto').style.display = 'none';
+}
+const button_add_mantener_producto = document.getElementById('add-mantener-producto-btn')
+button_add_mantener_producto.addEventListener('click',popup_add_producto);
+
+const button_close_add_mantener_producto = document.getElementsByClassName('close-popup-mantener-producto')
+button_close_add_mantener_producto.addEventListener('click',popup_close_producto)
