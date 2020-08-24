@@ -46,12 +46,12 @@
   
   & .button-wrapper{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: stretch;
     width: 80%;
+    justify-content: center;
     & *{
       width: 100%;
-      margin: 2px 0px 0px 0px;
     }
   }
 }
