@@ -1,6 +1,6 @@
 .wrapper-total {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: $width-body-system;
   background-color: $system-background;
   color: black;
   display: flex;
