@@ -18,7 +18,11 @@ for(let i = 0; i < div_tag.length; i++){
 
 //todo: Keep in active in sidebar by changing url hash
 $(function() {
-  $('.nav-main ul li a[href^="/' + location.pathname.split("/")[1] + '"] div').addClass('active-sidebar');
+  $('.nav-op[href^="/' + location.pathname.split("/")[1] + '"]').addClass('active-sidebar');
+});
+
+$(function() {
+  $('.dropdown-container ul li a[href^="/' + location.pathname.split("/")[1] + '"]').addClass('active-child-dropdown');
 });
 
 //todo: Removing overlay message effect
