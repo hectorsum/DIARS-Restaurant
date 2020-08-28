@@ -1,10 +1,57 @@
+#btn-opensidebar{
+  // display: block;
+  position: absolute;
+  z-index: 2; //Put above anything
+  font-size: 40px;
+  margin: 20px 40px;
+  color: #000;
+  text-decoration: none;
+}
+
+#btn-closesidebar{
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  margin: 20px 30px;
+  font-size: 40px;
+  color: #000;
+  text-decoration: none;
+}
+
+
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  flex-direction: column;
+  text-align: center;
+  & ul li a i{
+    margin-right: 8px;
+  }
+  & ul li a{
+    display: block;
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    line-height: 35px;
+  }
+}
+.fa-caret-down {
+  float: right;
+  padding-right: 5px;
+}
+
 .sidebar{
   background: $sidebar-background;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
-  // width: 20vw;
+  width: $width-sidebar;
+  & .logo{
+    display: flex;
+    align-self: center;
+  }
   & nav{
     & ul {
       padding: 0px;
@@ -13,28 +60,35 @@
   & ul{
     list-style: none;
   }
-  & .logo{
-    margin: 15px;
-    display: flex;
-    // justify-content: center;
-    align-self: center;
-  }
 }
-nav ul li a .nav-op{
+
+nav ul li .nav-op{
+  display: block;
   width: 100%;
-  text-align: center;
-  // background: #fdc819;
+  height: 100%;
+  // text-align: center;
+  padding-left: 40px;
   color: black;
-  & * {
-    margin: 10px 2.5px;
-    font-size: $sidebar-fontsize;
+  // margin: 10px 2.5px;
+  box-sizing: border-box;
+  // font-size: $sidebar-fontsize;
+  font-size: 20px;
+  line-height: 45px;
+  text-decoration: none;
+  border-bottom: 1px solid #000;
+  & i{
+    margin-right: 5px;
+  }
+  & *{
+    margin: 0px;
   }
 }
-nav ul li a .nav-op:hover{
-  background: rgba(0,0,0,0.7);
+nav ul li:hover .nav-op{
+  background: rgba(0,0,0,0.4);
   color: white;
   border-right: 6px solid #000;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
+  padding-left: 50px;
 }
 
 .btnSalir{
@@ -51,11 +105,30 @@ nav ul li a .nav-op:hover{
 }
 
 .active-sidebar{
+  background-color: rgba(0,0,0,0.8);
+  border-right: 12px solid $system-background;
+  font-weight: 500;
+  transition: all 0.5s ease;
+  color: white;
+  & *{
+    color: white;
+    margin: 0px;
+  }
+}
+
+.active-dropdown{
   background-color: rgba(0,0,0,0.7);
   border-right: 12px solid $system-background;
   font-weight: 500;
   transition: all 0.5s ease;
+  color: white;
   & *{
     color: white;
+    margin: 0px;
   }
+}
+
+.active-child-dropdown{
+  background-color: black;
+  color: white;
 }
