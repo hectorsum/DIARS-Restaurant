@@ -1,70 +1,74 @@
-<div class="sidebar">
-  <a class="logo" href="/home">
-    <img src="/img/logo.svg" alt="Logo Empresa" width="150" height="150">
-  </a>
+<div class="sidebar animate__animated">
+    <a class="logo" href="/home">
+      <img src="/img/logo.svg" alt="Logo Empresa" width="120" height="120">
+    </a>
+    <a href="javascript:void(0)" id="btn-closesidebar" onclick="closeSidebar()"><i class="fas fa-bars"></i></a>
   <nav class="nav-main">
     <ul class="nav-nav">
-      <li><a href="/home">
-        <div class="nav-op">
+      <li> <a href="#" class="dropdown-btn nav-op">
+          <i class="fas fa-house-user"></i>
+          <i class="fa fa-caret-down"></i>
+          <label>Mantenimiento</label>
+        </a>
+        <div class="dropdown-container">
+          <ul>
+            <li>
+              <a href="/mantener-producto">
+                <i class="fas fa-hamburger"></i>Mantener producto
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-house-user"></i>Mantener entrada
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-house-user"></i>Mantener segundo
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-house-user"></i>Mantener Usuario
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li><a href="/home" class="nav-op">
           <i class="fas fa-house-user"></i>
           <label>Perfil</label>
-        </div>
         </a>
       </li>
-      <li><a href="/generar-cuenta">
-        <div class="nav-op">
+      <li><a href="/generar-cuenta" class="nav-op">
           <i class="fas fa-cash-register"></i>
           <label>Generar Cuenta</label>
-        </div>
         </a>
       </li>
-      <li><a href="#">
-        <div class="nav-op">
+      <li><a href="#" class="nav-op">
           <i class="fas fa-chart-line"></i>
           <label>Consultar Venta</label>
-        </div>
         </a>
       </li>
-      <li><a href="#">
-        <div class="nav-op">
+      <li><a href="#" class="nav-op">
           <i class="fas fa-user-friends"></i>
           <label>Consultar Cliente</label>
-        </div>
         </a>
       </li>
-      <li><a href="#">
-        <div class="nav-op">
+      <li><a href="#" class="nav-op">
           <i class="fas fa-file-alt"></i>
           <label>Generar Reporte Cliente</label>
-        </div>
         </a>
       </li>
-      <li><a href="#">
-        <div class="nav-op">
+      <li><a href="#" class="nav-op">
           <i class="fas fa-file-signature"></i>
           <label>Generar Reporte Venta</label>
-        </div>
         </a>
       </li>
-      <li><a href="/mantener-producto" href="#">
-        <div class="nav-op">
-          <i class="fas fa-hamburger"></i>
-          <label>Mantener Productos</label>
-        </div>
-        </a>
-      </li>
-      <li><a href="#">
-        <div class="nav-op">
-          <i class="fas fa-users-cog"></i>
-          <label>Mantener Usuarios</label>
-        </div>
-        </a>
-      </li>
-      <li><a href="#">
-        <div class="nav-op">
+      <li><a href="#" class="nav-op">
           <i class="fas fa-truck"></i>
           <label>Consultar Pedidos</label>
-        </div>
         </a>
       </li>
     </ul>
@@ -77,3 +81,19 @@
     </div>
   </a>
 </div>
+
+<script>
+  var dropdown = document.getElementsByClassName("dropdown-btn");
+
+  for (let i = 0; i < dropdown.length; i++) {
+    dropdown[i].addEventListener("click", function () {
+      this.classList.toggle("active-dropdown");
+      var dropdownContent = this.nextElementSibling;
+      if (dropdownContent.style.display === "flex") {
+        dropdownContent.style.display = "none";
+      } else {
+        dropdownContent.style.display = "flex";
+      }
+    });
+  }
+</script>
