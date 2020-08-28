@@ -128,3 +128,17 @@ button_add_mantener_producto.addEventListener('click',popup_add_producto);
 
 const button_close_add_mantener_producto = document.getElementsByClassName('close-popup-mantener-producto')
 button_close_add_mantener_producto.addEventListener('click',popup_close_producto)
+
+
+function openSidebar() {
+  document.querySelector(".sidebar").style.display = "flex";
+  document.querySelector(".sidebar").classList.add('animate__fadeInLeft')
+  document.getElementById('btn-opensidebar').style.display = 'none';
+}
+
+function closeSidebar() {
+  document.querySelector(".sidebar").style.display = "none";
+  document.getElementById('btn-opensidebar').style.display = 'flex';
+}
+document.getElementById('btn-opensidebar').addEventListener('click', openSidenav);
+document.getElementById('btn-closesidebar').addEventListener('click', closeSidebar);
