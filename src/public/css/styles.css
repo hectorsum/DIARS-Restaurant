@@ -401,7 +401,6 @@ footer {
     border-radius: 360px; }
 
 .home {
-  position: relative;
   height: 100vh;
   width: 100%;
   display: flex;
