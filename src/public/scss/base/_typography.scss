@@ -6,7 +6,6 @@ body{
   color: white;
 }
 .main-container{
-  display: grid;
+  display: flex;
   font-family: 'Roboto', sans-serif;
-  grid-template-columns: 20% 80%;
 }
