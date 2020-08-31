@@ -486,7 +486,7 @@ footer {
       border-radius: 360px; }
   .mantener-productos .popup-add-producto {
     height: 100vh;
-    width: 80%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -509,7 +509,7 @@ footer {
         margin: 0px 5px 0px 0px; }
   .mantener-productos .popup-edit-producto {
     height: 100vh;
-    width: 80%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
