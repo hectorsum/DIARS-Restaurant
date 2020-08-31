@@ -1,0 +1,75 @@
+<div class="mantener-productos animate__animated animate__zoomInDown">
+  <div class="title">
+      <div class="title-label">
+        <i class="fas fa-hamburger"></i>
+        <label>Mantener Entrada</label>
+      </div>
+      <a href="#" id="add-mantener-producto-btn" onclick="popup_add_producto()">
+        <button type="button" class="btn btn-success btn-sm">
+          <i class="fas fa-plus"></i>
+        </button>
+      </a>
+    </div>
+  <div class="row mx-auto mt-2 table-fixed table-fixed-2">
+    <table class="table table-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre Producto</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Stock</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="table">
+        {{#each entrada}}
+        <tr>
+          <td scope="row">{{index @index}}</td>
+          <td>{{nombre_entrada}}</td>
+          <td>{{money precio}}</td>
+          <td>{{stock_total}}</td>
+          <td id="action-buttons">
+            <a href="/mantener-entrada/edit/{{cod_entrada}}">
+              <button id="edit_button" type="button" class="btn btn-primary btn-sm">
+                <i class="fas fa-edit"></i>
+              </button>
+            </a>
+            <a href="/mantener-entrada/delete/{{cod_entrada}}">
+              <button type="button" class="btn btn-danger btn-sm">
+                <i class="far fa-trash-alt"></i>
+              </button>
+            </a>
+          </td>
+        </tr>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <div class="popup-add-producto">
+    <div class="wrapper-total content-mantener-producto animate__animated animate__bounceInUp">
+      <form class="form-body" action="/mantener-entrada" method="POST">
+      <h1 class="mantener-heading">Agregar Entrada</h1>
+        <div class="wrapper-content">
+          <div class="inputs">
+            <input autocomplete="off" name="nombre_entrada" class="form-control" placeholder="Nombre Entrada" type="text" required>
+            <input autocomplete="off" step="0.01" type="number" class="form-control" placeholder="Precio" name="precio" required>
+            <input autocomplete="off" name="stock" class="form-control" placeholder="Stock" type="number" required>
+          </div>
+        </div>
+        <div class="button-wrapper">
+          <div class="form-group mt-2 mr-1 btnCancelar">
+            <a class="btn btn-danger close-popup-mantener-producto" href="#"
+              onclick="popup_close_producto()">Cancelar</a>
+          </div>
+          <div class="form-group mt-2 btnRegistrar">
+            <button class="btn btn-success" type="submit">Agregar Entrada</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
