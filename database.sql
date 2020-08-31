@@ -78,7 +78,7 @@ ALTER TABLE segundo
 ADD PRIMARY KEY (`cod_segundo`)
 MODIFY `cod_segundo` INT(11) NOT NULL
 AUTO_INCREMENT, AUTO_INCREMENT=1
-
+ADD CONSTRAINT `fk_cod_stock_segundo` FOREIGN KEY (`cod_stock`) REFERENCES `stock`(`cod_stock`)
 CREATE TABLE producto(
   cod_prod INT,
   nombre VARCHAR(40),
