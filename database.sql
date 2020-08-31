@@ -65,6 +65,8 @@ ALTER TABLE entrada
 ADD PRIMARY KEY (`cod_entrada`)
 MODIFY `cod_entrada` INT(11) NOT NULL
 AUTO_INCREMENT, AUTO_INCREMENT=1
+ADD CONSTRAINT `fk_cod_stock_entrada` FOREIGN KEY(`cod_stock`) REFERENCES `stock`(`cod_stock`)
+
 
 CREATE TABLE segundo(
   cod_segundo INT,
