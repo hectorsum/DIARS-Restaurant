@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Team-diars/DIARS-Restaurant.git"
+    "url": "git+https://github.com/hectorsum/DIARS-Restaurant.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Team-diars/DIARS-Restaurant/issues"
+    "url": "https://github.com/hectorsum/DIARS-Restaurant/issues"
   },
-  "homepage": "https://github.com/Team-diars/DIARS-Restaurant#readme",
+  "homepage": "https://github.com/hectorsum/DIARS-Restaurant#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
