@@ -40,7 +40,7 @@ router.post('/edit/:cod_prod',async(req,res)=>{
       console.log(err)
     }
     else {
-        req.flash('success', 'Registrado Satisfactoriamente');
+        req.flash('success', 'Modificado Satisfactoriamente');
         console.log('finished inserting')
         res.redirect('/mantener-producto');
     }
