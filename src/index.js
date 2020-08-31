@@ -31,7 +31,7 @@ app.set('view options',{layout:'index'})
 
 //Middlewares
 app.use(session({
-  secret:'343ji43j4n3jn4jk3n',
+  secret:'hectorsum',
   resave:false,
   saveUninitialized:false,
   store:new mysqlstore(database)
@@ -56,7 +56,7 @@ app.use((req,res,next)=>{
 app.use('/generar-cuenta',require('./routes/generar-cuenta'));
 app.use('/mantener-producto',require('./routes/mantener-producto'));
 app.use('/mantener-entrada',require('./routes/mantener-entrada'));
-app.use(require('./routes/mantener-producto'));
+app.use('/mantener-segundo',require('./routes/mantener-segundo'));
 app.use(require('./routes/index'));
 app.use(require('./routes/auth'));
 app.use(require('./routes/home'));
