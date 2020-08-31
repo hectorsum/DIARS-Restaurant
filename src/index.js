@@ -55,6 +55,7 @@ app.use((req,res,next)=>{
 //*Specifying route bc we're using edit,delete in there
 app.use('/generar-cuenta',require('./routes/generar-cuenta'));
 app.use('/mantener-producto',require('./routes/mantener-producto'));
+app.use('/mantener-entrada',require('./routes/mantener-entrada'));
 app.use(require('./routes/mantener-producto'));
 app.use(require('./routes/index'));
 app.use(require('./routes/auth'));
