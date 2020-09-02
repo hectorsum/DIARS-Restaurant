@@ -23,6 +23,11 @@ router.post('/',isnotlogedin,async(req,res)=>{
   });
 });
 
+router.get('/add',isnotlogedin,async(req,res)=>{
+  const producto = await pool.query("SELECT `producto`.*, `stock`.`stock_total` FROM `producto` LEFT JOIN `stock` ON `producto`.`cod_stock` = `stock`.`cod_stock` WHERE `producto`.`cod_prod` != 0 && `producto`.`ocultar`=0");
+  res.render('mantener-producto/add',{producto});
+})
+
 router.get('/edit/:cod_prod',isnotlogedin,async(req,res)=>{
   const {cod_prod} = req.params;
   const producto = await pool.query("SELECT `producto`.*, `stock`.`stock_total` FROM `producto` LEFT JOIN `stock` ON `producto`.`cod_stock` = `stock`.`cod_stock` WHERE producto.cod_prod=?",[cod_prod]);
@@ -48,7 +53,7 @@ router.post('/edit/:cod_prod',async(req,res)=>{
 })
 
 
-router.get('/delete/:cod_prod',isnotlogedin,async(req,res)=>{
+router.get('/hide/:cod_prod',isnotlogedin,async(req,res)=>{
   const {cod_prod} = req.params;
   console.log(req.params)
   await pool.query(`UPDATE producto SET ocultar=0 WHERE cod_prod=${cod_prod}`, (err, resp, fields) => {
