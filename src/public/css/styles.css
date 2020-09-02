@@ -141,6 +141,10 @@ body {
   max-height: 300px;
   width: 80%; }
 
+.table-fixed-popup-buscar {
+  max-height: 65%;
+  width: 80%; }
+
 .table-fixed thead th {
   top: -1px;
   z-index: 1;
@@ -485,7 +489,7 @@ footer {
       font-size: 25px;
       border-radius: 360px; }
   .mantener-productos .popup-add-producto {
-    height: 100vh;
+    height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -507,31 +511,59 @@ footer {
           margin: 5px 0px; }
       .mantener-productos .popup-add-producto .content-mantener-producto .inputs-1 {
         margin: 0px 5px 0px 0px; }
-  .mantener-productos .popup-edit-producto {
+  .mantener-productos .popup-mantener {
     height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
     top: 0;
-    background-color: rgba(0, 0, 0, 0.7); }
-    .mantener-productos .popup-edit-producto .content-mantener-producto {
+    background-color: rgba(0, 0, 0, 0.3); }
+    .mantener-productos .popup-mantener .content-mantener-producto {
       height: 40vh;
       width: 40vw;
       border-radius: 15px;
       background-color: #E4DCC7; }
-      .mantener-productos .popup-edit-producto .content-mantener-producto .wrapper-content .inputs {
+      .mantener-productos .popup-mantener .content-mantener-producto .wrapper-content .inputs {
         display: flex;
         flex-direction: column;
         width: 100%; }
-        .mantener-productos .popup-edit-producto .content-mantener-producto .wrapper-content .inputs * {
+        .mantener-productos .popup-mantener .content-mantener-producto .wrapper-content .inputs * {
           margin: 5px 0px; }
 
 .mantener-heading {
   display: flex;
   font-weight: bold;
   align-items: center;
-  position: relative;
-  left: 0px;
-  font-size: 30px; }
+  justify-content: space-between;
+  width: 80%; }
+  .mantener-heading * {
+    font-weight: bold;
+    color: black;
+    font-size: 30px; }
+
+.buscar-popup {
+  width: 35%;
+  height: 45%;
+  background-color: #E4DCC7;
+  border-radius: 8px; }
+  .buscar-popup .form-body {
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .buscar-popup .form-body .mantener-heading-buscar {
+      color: black;
+      font-weight: bold;
+      font-size: 30px;
+      margin: 5px; }
+    .buscar-popup .form-body #input-popup-buscar {
+      width: 80%; }
+  .buscar-popup #close-popup {
+    position: absolute;
+    color: black;
+    font-size: 25px;
+    left: 95.5%;
+    bottom: 90%; }
