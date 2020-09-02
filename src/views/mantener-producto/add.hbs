@@ -5,7 +5,7 @@
         <div class="mantener-heading">
           <h1>Agregar Producto</h1>
           <a href="#" class="search-button" id="search-producto" onclick="popup_add_producto()">
-            <i class="fas fa-search"></i>
+            <i class="fas fa-book"></i>
           </a>
         </div>
         <div class="wrapper-content">
@@ -37,7 +37,18 @@
       <form class="form-body" action="/mantener-entrada" method="POST">
         <h1 class="mantener-heading-buscar">Buscar Producto</h1>
         <a href="#" id="close-popup" onclick="popup_close_producto()"><i class="fas fa-times"></i></a>
-        <input type="text" class="form-control" placeholder="Filtrar por Nombre" id="input-popup-buscar">
+        <div class="input-search-container">
+          <table class="input-search-container-elements">
+            <tr>
+              <td>
+                <input autocomplete="off" type="text" placeholder="Buscar por Nombre" id="search-input">
+              </td>
+              <td>
+                <i class="fas fa-search"></i>
+              </td>
+            </tr>
+          </table>
+        </div>
         <div class="row mx-auto mt-2 table-fixed table-fixed-popup-buscar">
           <table class="table table-sm">
             <thead class="thead-dark">
@@ -72,18 +83,18 @@
   </div>
 </div>
 <script>
-    const searchbar = document.getElementById('input-popup-buscar');
-    searchbar.addEventListener('keyup',()=>{
-        const term = searchbar.value.toLowerCase();
-        const table = document.getElementById('table');
-        const rows = table.getElementsByTagName('tr');
-        Array.from(rows).forEach((rows)=>{
-            const name = rows.children[1].textContent;
-            if(name.toLowerCase().indexOf(term)!=-1){
-                rows.style.display='table-row';
-            }else{
-                rows.style.display='none';
-            }
-        });
-    })
+  const searchbar = document.getElementById('search-input');
+  searchbar.addEventListener('keyup', () => {
+    const term = searchbar.value.toLowerCase();
+    const table = document.getElementById('table');
+    const rows = table.getElementsByTagName('tr');
+    Array.from(rows).forEach((rows) => {
+      const name = rows.children[1].textContent;
+      if (name.toLowerCase().indexOf(term) != -1) {
+        rows.style.display = 'table-row';
+      } else {
+        rows.style.display = 'none';
+      }
+    });
+  })
 </script>
