@@ -8,7 +8,12 @@ router.get('/',isnotlogedin, async(req,res)=>{
   res.render('mantener-segundo/mantener-segundo',{segundo});
 })
 
-router.post('/',isnotlogedin,async(req,res)=>{
+router.get('/add',isnotlogedin, async(req,res)=>{
+  const segundo = await pool.query("SELECT `segundo`.*, `stock`.`stock_total` FROM `segundo` LEFT JOIN `stock` ON `segundo`.`cod_stock` = `stock`.`cod_stock` WHERE `segundo`.`cod_segundo` != 0 && `segundo`.`ocultar`=0");
+  res.render('mantener-segundo/add',{segundo});
+})
+
+router.post('/add',isnotlogedin,async(req,res)=>{
   const {nombre_segundo,precio,stock} = req.body;
   await pool.query('call insert_segundo(?,?,?)',[nombre_segundo,precio,stock],async(err,resp,fields)=>{
     if(err){
@@ -45,17 +50,33 @@ router.post('/edit/:cod_segundo',async(req,res)=>{
   });
 })
 
-router.get('/delete/:cod_segundo',isnotlogedin,async(req,res)=>{
+router.get('/hide/:cod_segundo',isnotlogedin,async(req,res)=>{
   const {cod_segundo} = req.params;
   console.log(req.params)
   await pool.query(`UPDATE segundo SET ocultar=0 WHERE cod_segundo=${cod_segundo}`, (err, resp, fields) => {
     if (err) {
-        req.flash('failure', "No se pudo eliminar el segundo");
+        req.flash('failure', "No se pudo ocultar");
         res.redirect('/mantener-segundo');
         console.log(err)
     }
     else {
-        req.flash('success_delete', 'Segundo Eliminado');
+        req.flash('success_delete', 'Ocultado Satisfactoriamente');
+        res.redirect('/mantener-segundo');
+    }
+  });
+});
+
+router.get('/unhide/:cod_segundo',isnotlogedin,async(req,res)=>{
+  const {cod_segundo} = req.params;
+  console.log(req.params)
+  await pool.query(`UPDATE segundo SET ocultar=1 WHERE cod_segundo=${cod_segundo}`, (err, resp, fields) => {
+    if (err) {
+        req.flash('failure', "No se pudo ocultar");
+        res.redirect('/mantener-segundo');
+        console.log(err)
+    }
+    else {
+        req.flash('success_delete', 'Ocultado Satisfactoriamente');
         res.redirect('/mantener-segundo');
     }
   });
