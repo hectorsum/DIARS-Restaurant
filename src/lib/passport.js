@@ -11,7 +11,6 @@ passport.use('local.signin', new localstrategy({
   const rows = await pool.query("SELECT `usuario_emp`.*, `empleado`.`nombres`, `empleado`.`apellidos` FROM `usuario_emp` LEFT JOIN `empleado` ON `usuario_emp`.`cod_emp` = `empleado`.`cod_emp` WHERE `usuario_emp`.`usuario` = ?",[username]);
   if(rows.length > 0){
     const user = rows[0];
-    console.log(user)
     if(user.password === password){
       return done(null,user,req.flash('success',`Welcome ${user.nombres} ${user.apellidos}`));
     }else{
@@ -28,7 +27,6 @@ passport.serializeUser((user,done)=>{
 })
 //* Allows us to use empleados columns with user.<nombres>
 passport.deserializeUser(async(id,done)=>{
-  const rows = await pool.query("SELECT `usuario_emp`.*, `empleado`.`nombres`, `empleado`.`apellidos` FROM `usuario_emp` LEFT JOIN `empleado` ON `usuario_emp`.`cod_emp` = `empleado`.`cod_emp` WHERE `usuario_emp`.`cod_usuario_emp` = ?",[id]);
-  
+  const rows = await pool.query("SELECT `usuario_emp`.*, `empleado`.*, `rol`.`rol_nombre` FROM `usuario_emp` LEFT JOIN `empleado` ON `usuario_emp`.`cod_emp` = `empleado`.`cod_emp` LEFT JOIN `rol` ON `empleado`.`cod_rol` = `rol`.`cod_rol` WHERE `usuario_emp`.`cod_usuario_emp` = ?",[id]);
   done(null,rows[0]);
 })
