@@ -546,7 +546,8 @@ footer {
     top: 0;
     background-color: rgba(0, 0, 0, 0.3); }
     .mantener-productos .popup-mantener .content-mantener-producto {
-      height: 40vh;
+      height: auto;
+      padding: 20px 0px;
       width: 40vw;
       border-radius: 15px;
       background-color: #E4DCC7; }
