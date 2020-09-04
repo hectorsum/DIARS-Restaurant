@@ -19,6 +19,10 @@ helpers.formatdaytime = (time)=>{
   return moment(time).format('DD/MM/YYYY HH:mm:ss')
 }
 
+helpers.formatdate = (time)=>{
+  return moment(time).format('DD/MM/YYYY')
+}
+
 helpers.ifEquals = Handlebars.registerHelper('ifEquals', function(arg1,arg2, options) {
   console.log(options.inverse(this))
   return (arg1==arg2) ? options.fn(this) : options.inverse(this);
