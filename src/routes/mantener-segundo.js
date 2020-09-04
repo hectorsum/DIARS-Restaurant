@@ -60,7 +60,7 @@ router.get('/hide/:cod_segundo',isnotlogedin,async(req,res)=>{
         console.log(err)
     }
     else {
-        req.flash('success_delete', 'Ocultado Satisfactoriamente');
+        req.flash('success', 'Ocultado Satisfactoriamente');
         res.redirect('/mantener-segundo');
     }
   });
@@ -76,7 +76,7 @@ router.get('/unhide/:cod_segundo',isnotlogedin,async(req,res)=>{
         console.log(err)
     }
     else {
-        req.flash('success_delete', 'Ocultado Satisfactoriamente');
+        req.flash('success', 'Ocultado Satisfactoriamente');
         res.redirect('/mantener-segundo');
     }
   });

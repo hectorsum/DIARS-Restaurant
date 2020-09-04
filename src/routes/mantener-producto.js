@@ -63,7 +63,7 @@ router.get('/hide/:cod_prod',isnotlogedin,async(req,res)=>{
         console.log(err)
     }
     else {
-        req.flash('success_delete', 'Ocultado Satisfactoriamente');
+        req.flash('success', 'Ocultado Satisfactoriamente');
         res.redirect('/mantener-producto');
     }
   });
@@ -79,7 +79,7 @@ router.get('/unhide/:cod_prod',isnotlogedin,async(req,res)=>{
         console.log(err)
     }
     else {
-        req.flash('success_delete', 'Ocultado Satisfactoriamente');
+        req.flash('success', 'Ocultado Satisfactoriamente');
         res.redirect('/mantener-producto');
     }
   });
