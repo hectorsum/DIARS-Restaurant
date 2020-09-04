@@ -1,0 +1,83 @@
+<div class="mantener-productos animate__animated animate__zoomInDown">
+  <div class="title">
+    <div class="title-label">
+      <i class="fas fa-hamburger"></i>
+      <label>Mantener Empleado</label>
+    </div>
+    <a href="/mantener-empleado/add" id="add-mantener-producto-btn">
+      <button type="button" class="btn btn-success btn-sm">
+        <i class="fas fa-plus"></i>
+      </button>
+    </a>
+  </div>
+  <div class="input-search-container">
+          <table class="input-search-container-elements">
+            <tr>
+              <td>
+                <input autocomplete="off" type="text" placeholder="Filtrar por Nombre" id="search-input">
+              </td>
+              <td>
+                <i class="fas fa-search"></i>
+              </td>
+            </tr>
+          </table>
+        </div>
+  <div class="row mx-auto mt-2 table-fixed table-fixed-2">
+    <table class="table table-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombres</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">DNI</th>
+          <th scope="col">Telefono</th>
+          <th scope="col">Email</th>
+          <th scope="col">Puesto</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="table">
+        {{#each empleado}}
+        <tr>
+          <td scope="row">{{index @index}}</td>
+          <td>{{nombres}}</td>
+          <td>{{apellidos}}</td>
+          <td>{{dni}}</td>
+          <td>{{telefono}}</td>
+          <td>{{email}}</td>
+          <td>{{rol_nombre}}</td>
+          <td id="action-buttons">
+            <a href="/mantener-empleado/edit/{{cod_emp}}">
+              <button id="edit_button" type="button" class="btn btn-primary btn-sm">
+                <i class="fas fa-edit"></i>
+              </button>
+            </a>
+            <a href="/mantener-empleado/delete/{{cod_emp}}">
+              <button type="button" class="btn btn-danger btn-sm">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </a>
+          </td>
+        </tr>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  const searchbar = document.getElementById('search-input');
+  searchbar.addEventListener('keyup', () => {
+    const term = searchbar.value.toLowerCase();
+    const table = document.getElementById('table');
+    const rows = table.getElementsByTagName('tr');
+    Array.from(rows).forEach((rows) => {
+      const name = rows.children[1].textContent;
+      if (name.toLowerCase().indexOf(term) != -1) {
+        rows.style.display = 'table-row';
+      } else {
+        rows.style.display = 'none';
+      }
+    });
+  })
+</script>

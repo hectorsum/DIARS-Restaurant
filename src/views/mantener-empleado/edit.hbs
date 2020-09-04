@@ -1,0 +1,39 @@
+<div class="mantener-productos">
+  <div class="popup-mantener">
+    <div class="wrapper-total content-mantener-producto animate__animated animate__bounceInUp">
+      <form class="form-body" action="/mantener-empleado/edit/{{empleado.cod_emp}}" method="POST">
+        <div class="mantener-heading">
+          <h1>Modificar Empleado</h1>
+        </div>
+        <div class="wrapper-content">
+          <div class="inputs">
+            <input autocomplete="off" name="nombres" class="form-control" placeholder="Nombres" type="text" value="{{empleado.nombres}}" required>
+            <input autocomplete="off" name="apellidos" class="form-control" placeholder="Apellidos" type="text" value="{{empleado.apellidos}}" required>
+            <input autocomplete="off" name="dni" class="form-control" placeholder="DNI" type="text" value="{{empleado.dni}}" required>
+            <input autocomplete="off" name="telefono" class="form-control" placeholder="Telefono" type="text" value="{{empleado.telefono}}" required>
+            <input autocomplete="off" name="email" class="form-control" placeholder="Email" type="text" value="{{empleado.email}}" required>
+
+            <select class="form-control" name="cod_rol">
+              <option selected>Seleccionar Rol</option>
+              {{#select empleado.cod_rol}}
+              {{#each rol}}
+              <option value="{{cod_rol}}">{{rol_nombre}}</option>
+              {{/each}}
+              {{/select}}
+            </select>
+
+          </div>
+        </div>
+        <div class="button-wrapper">
+          <div class="form-group mt-2 mr-1 btnCancelar">
+            <a class="btn btn-danger close-popup-mantener-producto" href="/mantener-empleado"
+              onclick="popup_close_producto()">Cancelar</a>
+          </div>
+          <div class="form-group mt-2 btnRegistrar">
+            <button class="btn btn-success" type="submit">Agregar Empleado</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
