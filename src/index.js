@@ -57,6 +57,8 @@ app.use('/generar-cuenta',require('./routes/generar-cuenta'));
 app.use('/mantener-producto',require('./routes/mantener-producto'));
 app.use('/mantener-entrada',require('./routes/mantener-entrada'));
 app.use('/mantener-segundo',require('./routes/mantener-segundo'));
+app.use('/mantener-empleado',require('./routes/mantener-empleado'));
+app.use('/mantener-usuario',require('./routes/mantener-usuario'));
 app.use(require('./routes/index'));
 app.use(require('./routes/auth'));
 app.use(require('./routes/home'));
