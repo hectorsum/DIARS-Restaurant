@@ -9,8 +9,24 @@ router.get('/',isnotlogedin,async(req,res)=>{
 })
 
 router.get('/add',isnotlogedin,async(req,res)=>{
-  const rol = await pool.query('SELECT * FROM rol');
-  res.render('mantener-usuario/add',{rol});
+  const empleado = await pool.query('SELECT `empleado`.*, `rol`.`rol_nombre`, `rol`.`rol_nombre` FROM `empleado` LEFT JOIN `rol` ON `empleado`.`cod_rol` = `rol`.`cod_rol` WHERE estado_cuenta=1');
+  res.render('mantener-usuario/add',{empleado});
+})
+
+router.post('/add',isnotlogedin,async(req,res)=>{
+  const {dni,usuario,password} = req.body;
+  await pool.query('call insert_user(?,?,?)',[dni,usuario,password],async(err,resp,fields)=>{
+    if (err) {
+      req.flash('failure', "No se pudo agregar" + err);
+      console.log(err);
+      res.redirect('/mantener-usuario/add');
+    }
+    else {
+        req.flash('success', 'Registrado Satisfactoriamente');
+        console.log('finished inserting')
+        res.redirect('/mantener-usuario');
+    }
+  });
 })
 
 
