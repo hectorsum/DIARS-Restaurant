@@ -11,17 +11,17 @@
     </a>
   </div>
   <div class="input-search-container">
-          <table class="input-search-container-elements">
-            <tr>
-              <td>
-                <input autocomplete="off" type="text" placeholder="Filtrar por Nombre" id="search-input">
-              </td>
-              <td>
-                <i class="fas fa-search"></i>
-              </td>
-            </tr>
-          </table>
-        </div>
+    <table class="input-search-container-elements">
+      <tr>
+        <td>
+          <input autocomplete="off" type="text" placeholder="Filtrar por DNI" id="search-input">
+        </td>
+        <td>
+          <i class="fas fa-search"></i>
+        </td>
+      </tr>
+    </table>
+  </div>
   <div class="row mx-auto mt-2 table-fixed table-fixed-2">
     <table class="table table-sm">
       <thead class="thead-dark">
@@ -72,7 +72,7 @@
     const table = document.getElementById('table');
     const rows = table.getElementsByTagName('tr');
     Array.from(rows).forEach((rows) => {
-      const name = rows.children[1].textContent;
+      const name = rows.children[3].textContent;
       if (name.toLowerCase().indexOf(term) != -1) {
         rows.style.display = 'table-row';
       } else {
