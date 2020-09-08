@@ -1,15 +1,27 @@
 <div class="mantener-productos animate__animated animate__zoomInDown">
   <div class="title">
-      <div class="title-label">
-        <i class="fas fa-hamburger"></i>
-        <label>Mantener Usuario</label>
-      </div>
-      <a href="/mantener-usuario/add" id="add-mantener-producto-btn">
-        <button type="button" class="btn btn-success btn-sm">
-          <i class="fas fa-plus"></i>
-        </button>
-      </a>
+    <div class="title-label">
+      <i class="fas fa-hamburger"></i>
+      <label>Mantener Usuario</label>
     </div>
+    <a href="/mantener-usuario/add" id="add-mantener-producto-btn">
+      <button type="button" class="btn btn-success btn-sm">
+        <i class="fas fa-plus"></i>
+      </button>
+    </a>
+  </div>
+  <div class="input-search-container">
+    <table class="input-search-container-elements">
+      <tr>
+        <td>
+          <input autocomplete="off" type="text" placeholder="Filtrar por Empleado" id="search-input">
+        </td>
+        <td>
+          <i class="fas fa-search"></i>
+        </td>
+      </tr>
+    </table>
+  </div>
   <div class="row mx-auto mt-2 table-fixed table-fixed-2">
     <table class="table table-sm">
       <thead class="thead-dark">
@@ -27,18 +39,24 @@
         <tr>
           <td scope="row">{{index @index}}</td>
           <td>{{usuario}}</td>
-          <td><input name="viewPass" type="password" value="{{password}}" style="background: transparent; border:none; text-align:center; outline:none;" readonly></td>
+          <td><input name="viewPass" type="password" value="{{password}}"
+              style="background: transparent; border:none; text-align:center; outline:none;" readonly></td>
           <td>{{nombres}} {{apellidos}}</td>
           <td>{{rol_nombre}}</td>
           <td id="action-buttons">
-            <a href="/mantener-producto/edit/{{cod_prod}}">
+            <a href="javascript:void(0)">
+              <button name="dynamic" type="button" class="btn btn-secondary btn-sm">
+                <i class="fas fa-eye" aria-hidden="true"></i>
+              </button>
+            </a>
+            <a href="/mantener-usuario/edit/{{cod_usuario_emp}}">
               <button id="edit_button" type="button" class="btn btn-primary btn-sm">
                 <i class="fas fa-edit"></i>
               </button>
             </a>
-            <a href="javascript:void(0)">
-              <button name="dynamic" type="button" class="btn btn-secondary btn-sm">
-                <i class="fas fa-eye" aria-hidden="true"></i>
+            <a href="/mantener-usuario/delete/{{cod_usuario_emp}}">
+              <button type="button" class="btn btn-danger btn-sm">
+                <i class="fas fa-trash-alt"></i>
               </button>
             </a>
           </td>
@@ -52,20 +70,32 @@
 <script>
   var myButton = document.getElementsByName('dynamic');
   var myInput = document.getElementsByName('viewPass');
-  myButton.forEach(function(element, index){
-    element.onclick = function(){
-      'use strict';
-
-        if (myInput[index].type == 'password') {
-          myInput[index].setAttribute('type', 'text');
-          //element.firstChild.textContent = 'Hide';
-          //element.firstChild.className = "";
-
-        } else {
-          myInput[index].setAttribute('type', 'password');
-          //element.firstChild.textContent = '';
-          //element.firstChild.className = "glyphicon glyphicon-eye-open";
-        }
+  myButton.forEach(function (element, index) {
+    element.onclick = function () {
+      myInput[index]
+      if (myInput[index].type == 'password') {
+        myInput[index].setAttribute('type', 'text');
+        //Testing: returns #text
+        console.log(element.firstChild);
+        element.firstChild.nextSibling.className = "fas fa-eye-slash";
+      } else {
+        myInput[index].setAttribute('type', 'password');
+        element.firstChild.nextSibling.className = "fas fa-eye";
+      }
     }
+  })
+  const searchbar = document.getElementById('search-input');
+  searchbar.addEventListener('keyup', () => {
+    const term = searchbar.value.toLowerCase();
+    const table = document.getElementById('table');
+    const rows = table.getElementsByTagName('tr');
+    Array.from(rows).forEach((rows) => {
+      const name = rows.children[3].textContent;
+      if (name.toLowerCase().indexOf(term) != -1) {
+        rows.style.display = 'table-row';
+      } else {
+        rows.style.display = 'none';
+      }
+    });
   })
 </script>
