@@ -1,3 +1,16 @@
+CREATE TABLE configuracion(
+	cod_config INT,
+    nombre_restaurant VARCHAR(50),
+    direccion VARCHAR(50),
+    email VARCHAR(50),
+    departamento VARCHAR(50),
+    provincia VARCHAR(50),
+    distrito VARCHAR(50)
+)
+
+ALTER TABLE configuracion
+ADD PRIMARY KEY(`cod_config`)
+
 CREATE TABLE usuario_emp(
   cod_usuario_emp INT,
   usuario VARCHAR(20) DEFAULT NULL,
