@@ -1,0 +1,117 @@
+<div class="mantener-productos">
+  <div class="popup-mantener">
+    <div class="wrapper-total content-mantener-producto animate__animated animate__bounceInUp">
+      <form class="form-body" action="/mantener-usuario/edit/{{usuario_emp.cod_usuario_emp}}" method="POST">
+        <div class="mantener-heading">
+          <h1>Editar Usuario</h1>
+        </div>
+        <div class="wrapper-content">
+          <div class="inputs">
+            <input autocomplete="off" class="form-control" placeholder="Empleado" type="text" id="empleado" value="{{usuario_emp.nombres}} {{usuario_emp.apellidos}}" readonly>
+            <input autocomplete="off" name="dni" class="form-control" placeholder="DNI" type="text" id="dni" value="{{usuario_emp.dni}}" readonly>
+            <input autocomplete="off" name="rol" class="form-control" placeholder="Rol" type="text" id="rol" value="{{usuario_emp.rol_nombre}}" readonly>
+            <input autocomplete="off" name="usuario" class="form-control" placeholder="Usuario" type="text" id="usuario" value="{{usuario_emp.usuario}}">
+            <input autocomplete="off" name="password" type="password" class="form-control" placeholder="Password" id="password" value="{{usuario_emp.password}}">
+          </div>
+        </div>
+        <div class="button-wrapper">
+          <div class="form-group mt-2 mr-1 btnCancelar">
+            <a class="btn btn-danger close-popup-mantener-producto" href="/mantener-usuario"
+              onclick="popup_close_producto()">Cancelar</a>
+          </div>
+          <div class="form-group mt-2 btnRegistrar">
+            <button class="btn btn-success" type="submit" id="btnAgregarUsuario">Modificar Usuario</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  {{!-- Buscar Producto --}}
+
+  <div class="popup-add-producto">
+    <div class="buscar-popup animate__animated animate__bounceInUp">
+      <form class="form-body" action="/mantener-entrada" method="POST">
+        <h1 class="mantener-heading-buscar">Buscar Producto</h1>
+        <a href="#" id="close-popup" onclick="popup_close_producto()"><i class="fas fa-times"></i></a>
+        <div class="input-search-container">
+          <table class="input-search-container-elements">
+            <tr>
+              <td>
+                <input autocomplete="off" type="text" placeholder="Filtrar por Nombre" id="search-input">
+              </td>
+              <td>
+                <i class="fas fa-search"></i>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="row mx-auto mt-2 table-fixed table-fixed-popup-buscar">
+          <table class="table table-sm">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Empleado</th>
+                <th scope="col">DNI</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="table">
+              {{#each empleado}}
+              <tr>
+                <td scope="row">{{index @index}}</td>
+                <td>{{nombres}} {{apellidos}}</td>
+                <td>{{dni}}</td>
+                <td>{{rol_nombre}}</td>
+                <td id="action-buttons">
+                  <button type="button" class="btn btn-success btn-sm">
+                    <i class="fas fa-check"></i>
+                  </button>
+                </td>
+              </tr>
+              </tr>
+              {{/each}}
+            </tbody>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  const searchbar = document.getElementById('search-input');
+  searchbar.addEventListener('keyup', () => {
+    const term = searchbar.value.toLowerCase();
+    const table = document.getElementById('table');
+    const rows = table.getElementsByTagName('tr');
+    Array.from(rows).forEach((rows) => {
+      const name = rows.children[1].textContent;
+      if (name.toLowerCase().indexOf(term) != -1) {
+        rows.style.display = 'table-row';
+      } else {
+        rows.style.display = 'none';
+      }
+    });
+  })
+
+
+  //Set worker-add user
+    try {
+      //Looking for button check
+        $(".popup-add-producto .buscar-popup form .table-fixed-popup-buscar table tbody tr td button").click(function () {
+            var row = $(this).closest("tr");
+            document.getElementById('empleado').value = row.find("td:eq(1)").text();
+            document.getElementById('dni').value = row.find("td:eq(2)").text();
+            document.getElementById('rol').value = row.find("td:eq(3)").text();
+            
+            document.getElementById('usuario').removeAttribute('readonly');
+            document.getElementById('usuario').setAttribute('required',true);
+            document.getElementById('password').removeAttribute('readonly');
+            document.getElementById('password').setAttribute('required',true);
+            
+            document.getElementById('btnAgregarUsuario').removeAttribute('disabled');
+
+            document.querySelector(".mantener-productos .popup-add-producto").style.display = "none";
+        });
+    } catch (error) {
+    }
+</script>
