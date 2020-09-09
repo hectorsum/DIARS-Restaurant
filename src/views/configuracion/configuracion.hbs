@@ -1,7 +1,7 @@
 <div class="mantener-productos">
   <div class="popup-mantener">
     <div class="wrapper-total content-mantener-producto animate__animated animate__bounceInUp">
-      <form class="form-body" action="/mantener-usuario/add" method="POST">
+      <form class="form-body" action="/configuracion" method="POST">
         <div class="mantener-heading mb-2">
           <div style="display:flex; align-items:center;">
             <h1 class="m-0 mr-2">Configuración</h1>
@@ -10,17 +10,19 @@
         </div>
         <div class="wrapper-content">
           <div class="inputs">
-            <input autocomplete="off" name="usuario" class="form-control" placeholder="Nombre Restaurant" type="text" id="usuario">
-            <input autocomplete="off" class="form-control" placeholder="Dirección" type="text" id="empleado">
-            <input autocomplete="off" name="dni" class="form-control" placeholder="Distrito" type="text" id="dni">
-            <input autocomplete="off" name="rol" class="form-control" placeholder="Email" type="text" id="rol">
-            <select name="" id="" class="custom-select">
+            <input autocomplete="off" name="nombre_restaurant" class="form-control" placeholder="Nombre Restaurant" type="text">
+            <input autocomplete="off" name="direccion" class="form-control" placeholder="Dirección" type="text">
+            <input autocomplete="off" name="email" class="form-control" placeholder="Email" type="text">
+            <select name="departamento" id="seleccionar-departamento" class="custom-select">
               <option value="" selected>Seleccionar Departamento</option>
+              {{#each ubdepartamento	}}
+                <option value="{{iddist}}">{{distrito}}</option>
+              {{/each}}
             </select>
-            <select name="" id="" class="custom-select">
+            <select name="provincia" id="seleccionar-provincia" class="custom-select">
               <option value="" selected>Seleccionar Provincia</option>
             </select>
-            <select name="" id="" class="custom-select">
+            <select name="distrito" id="seleccionar-distrito" class="custom-select">
               <option value="" selected>Seleccionar Distrito</option>
             </select>
           </div>
@@ -33,92 +35,84 @@
       </form>
     </div>
   </div>
-
-  {{!-- Buscar Producto --}}
-
-  <div class="popup-add-producto">
-    <div class="buscar-popup animate__animated animate__bounceInUp">
-      <form class="form-body" action="/mantener-entrada" method="POST">
-        <h1 class="mantener-heading-buscar">Buscar Producto</h1>
-        <a href="#" id="close-popup" onclick="popup_close_producto()"><i class="fas fa-times"></i></a>
-        <div class="input-search-container">
-          <table class="input-search-container-elements">
-            <tr>
-              <td>
-                <input autocomplete="off" type="text" placeholder="Filtrar por Nombre" id="search-input">
-              </td>
-              <td>
-                <i class="fas fa-search"></i>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="row mx-auto mt-2 table-fixed table-fixed-popup-buscar">
-          <table class="table table-sm">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Empleado</th>
-                <th scope="col">DNI</th>
-                <th scope="col">Rol</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="table">
-              {{#each empleado}}
-              <tr>
-                <td scope="row">{{index @index}}</td>
-                <td>{{nombres}} {{apellidos}}</td>
-                <td>{{dni}}</td>
-                <td>{{rol_nombre}}</td>
-                <td id="action-buttons">
-                  <button type="button" class="btn btn-success btn-sm">
-                    <i class="fas fa-check"></i>
-                  </button>
-                </td>
-              </tr>
-              </tr>
-              {{/each}}
-            </tbody>
-      </form>
-    </div>
-  </div>
 </div>
 <script>
-  const searchbar = document.getElementById('search-input');
-  searchbar.addEventListener('keyup', () => {
-    const term = searchbar.value.toLowerCase();
-    const table = document.getElementById('table');
-    const rows = table.getElementsByTagName('tr');
-    Array.from(rows).forEach((rows) => {
-      const name = rows.children[1].textContent;
-      if (name.toLowerCase().indexOf(term) != -1) {
-        rows.style.display = 'table-row';
-      } else {
-        rows.style.display = 'none';
+
+//Departamentos
+try {
+  window.onload = function () {
+      var values = document.getElementById("seleccionar-departamento").value;
+      const seleccionar_departamento = document.getElementById("seleccionar-departamento");
+      const myRequest = new Request('/json/departamentos.json')
+      //Load json 
+      fetch(myRequest)
+      .then(response => response.json())
+      .then(function(data){
+        //Mostrar lista en select
+        for (index in data) {
+          option = document.createElement('option');
+          option.text = data[index].nombre_ubigeo;
+          option.value = data[index].id_ubigeo;
+          seleccionar_departamento.add(option);
+        }
+      });
+  };
+} catch (error) {
+}
+
+//Provincias
+try {
+  document.getElementById('seleccionar-departamento').addEventListener('input', function () {
+    //* Getting ID value from options
+    const values = document.getElementById("seleccionar-departamento").value;
+    const myRequest = new Request('/json/provincias.json')
+    
+    if(values!==''){
+      const seleccionar_provincia = document.getElementById("seleccionar-provincia");
+      const seleccionar_distrito = document.getElementById("seleccionar-distrito");
+      for (let i = seleccionar_provincia.length; i >= 1; i--) {
+        seleccionar_provincia.remove(i);
+        seleccionar_distrito.remove(i);
       }
-    });
-  })
-
-
-  //Set worker-add user
-    try {
-      //Looking for button check
-        $(".popup-add-producto .buscar-popup form .table-fixed-popup-buscar table tbody tr td button").click(function () {
-            var row = $(this).closest("tr");
-            document.getElementById('empleado').value = row.find("td:eq(1)").text();
-            document.getElementById('dni').value = row.find("td:eq(2)").text();
-            document.getElementById('rol').value = row.find("td:eq(3)").text();
-            
-            document.getElementById('usuario').removeAttribute('readonly');
-            document.getElementById('usuario').setAttribute('required',true);
-            document.getElementById('password').removeAttribute('readonly');
-            document.getElementById('password').setAttribute('required',true);
-            
-            document.getElementById('btnAgregarUsuario').removeAttribute('disabled');
-
-            document.querySelector(".mantener-productos .popup-add-producto").style.display = "none";
-        });
-    } catch (error) {
+      fetch(myRequest)
+      .then(response=>response.json())
+      .then(function (data) {
+        const data_provincia = data[values];
+        for (index in data_provincia) {
+            option = document.createElement('option');
+            option.text = data_provincia[index].nombre_ubigeo;
+            option.value = data_provincia[index].id_ubigeo;
+            seleccionar_provincia.add(option);
+        }
+      });
     }
+  })
+}catch (error) {
+}
+
+//Distritos
+try {
+  document.getElementById('seleccionar-provincia').addEventListener('input', function () {
+    const values = document.getElementById("seleccionar-provincia").value;
+    const myRequest = new Request('/json/distritos.json');
+    if(values!==''){
+      const seleccionar_distrito = document.getElementById("seleccionar-distrito");
+      for (let i = seleccionar_distrito.length; i >= 1; i--) {
+        seleccionar_distrito.remove(i);
+      }
+      fetch(myRequest)
+      .then(response=>response.json())
+      .then(function (data) {
+        const data_distritos = data[values];
+        for (index in data_distritos) {
+          option = document.createElement('option');
+          option.text = data_distritos[index].nombre_ubigeo;
+          option.value = data_distritos[index].id_ubigeo;
+          seleccionar_distrito.add(option);
+        }
+      });
+    }
+  })
+}catch (error) {
+}
 </script>
