@@ -1,7 +1,7 @@
 <div class="mantener-productos">
   <div class="popup-mantener">
     <div class="wrapper-total content-mantener-producto animate__animated animate__bounceInUp">
-      <form class="form-body" action="/configuracion" method="POST">
+      <form class="form-body" action="/configuracion/" method="POST">
         <div class="mantener-heading mb-2">
           <div style="display:flex; align-items:center;">
             <h1 class="m-0 mr-2">Configuración</h1>
@@ -10,20 +10,20 @@
         </div>
         <div class="wrapper-content">
           <div class="inputs">
-            <input autocomplete="off" name="nombre_restaurant" class="form-control" placeholder="Nombre Restaurant" type="text">
-            <input autocomplete="off" name="direccion" class="form-control" placeholder="Dirección" type="text">
-            <input autocomplete="off" name="email" class="form-control" placeholder="Email" type="text">
-            <select name="departamento" id="seleccionar-departamento" class="custom-select">
-              <option value="" selected>Seleccionar Departamento</option>
-              {{#each ubdepartamento	}}
-                <option value="{{iddist}}">{{distrito}}</option>
-              {{/each}}
+            <input autocomplete="off" name="nombre_restaurant" class="form-control" placeholder="Nombre Restaurant" type="text" value="{{configuracion.nombre_restaurant}}">
+            <input autocomplete="off" name="direccion" class="form-control" placeholder="Dirección" type="text" value="{{configuracion.direccion}}">
+            <input autocomplete="off" name="email" class="form-control" placeholder="Email" type="email" value="{{configuracion.email}}">
+            <input name="hidden_departamento" type="text" id="hidden_departamento" hidden>
+            <select name="id_departamento" id="seleccionar-departamento" class="custom-select">
+              <option value="{{configuracion.id_departamento}}" selected>{{configuracion.departamento}}</option>
             </select>
-            <select name="provincia" id="seleccionar-provincia" class="custom-select">
-              <option value="" selected>Seleccionar Provincia</option>
+            <input name="hidden_provincia" type="text" id="hidden_provincia" hidden>
+            <select name="id_provincia" id="seleccionar-provincia" class="custom-select">
+              <option value="{{configuracion.id_provincia}}" selected>{{configuracion.provincia}}</option>
             </select>
-            <select name="distrito" id="seleccionar-distrito" class="custom-select">
-              <option value="" selected>Seleccionar Distrito</option>
+            <input name="hidden_distrito" type="text" id="hidden_distrito" hidden>
+            <select name="id_distrito" id="seleccionar-distrito" class="custom-select">
+              <option value="{{configuracion.id_distrito}}" selected>{{configuracion.distrito}}</option>
             </select>
           </div>
         </div>
@@ -40,9 +40,9 @@
 
 //Departamentos
 try {
-  window.onload = function () {
-      var values = document.getElementById("seleccionar-departamento").value;
+  window.onload = async function () {
       const seleccionar_departamento = document.getElementById("seleccionar-departamento");
+      const seleccionar_provincia = document.getElementById("seleccionar-provincia");
       const myRequest = new Request('/json/departamentos.json')
       //Load json 
       fetch(myRequest)
@@ -66,7 +66,6 @@ try {
     //* Getting ID value from options
     const values = document.getElementById("seleccionar-departamento").value;
     const myRequest = new Request('/json/provincias.json')
-    
     if(values!==''){
       const seleccionar_provincia = document.getElementById("seleccionar-provincia");
       const seleccionar_distrito = document.getElementById("seleccionar-distrito");
@@ -79,10 +78,10 @@ try {
       .then(function (data) {
         const data_provincia = data[values];
         for (index in data_provincia) {
-            option = document.createElement('option');
-            option.text = data_provincia[index].nombre_ubigeo;
-            option.value = data_provincia[index].id_ubigeo;
-            seleccionar_provincia.add(option);
+          option = document.createElement('option');
+          option.text = data_provincia[index].nombre_ubigeo;
+          option.value = data_provincia[index].id_ubigeo;
+          seleccionar_provincia.add(option);
         }
       });
     }
@@ -115,4 +114,25 @@ try {
   })
 }catch (error) {
 }
+
+//This is used when changing value in cbo, its getting true value in input_hidden and not Ucayali(last one)
+
+//Departamento
+const seleccionar_departamento = document.getElementById("seleccionar-departamento");
+const input_hidden_departamento = document.getElementById('hidden_departamento');
+seleccionar_departamento.addEventListener('change',function(){
+  input_hidden_departamento.value = seleccionar_departamento.options[seleccionar_departamento.selectedIndex].text
+});
+//Provincia
+const seleccionar_provincia = document.getElementById("seleccionar-provincia");
+const input_hidden_provincia = document.getElementById('hidden_provincia');
+seleccionar_provincia.addEventListener('change',function(){
+  input_hidden_provincia.value = seleccionar_provincia.options[seleccionar_provincia.selectedIndex].text
+});
+//Distrito
+const seleccionar_distrito = document.getElementById("seleccionar-distrito");
+const input_hidden_distrito = document.getElementById('hidden_distrito');
+seleccionar_distrito.addEventListener('change',function(){
+  input_hidden_distrito.value = seleccionar_distrito.options[seleccionar_distrito.selectedIndex].text
+});
 </script>
