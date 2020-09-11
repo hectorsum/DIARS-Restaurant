@@ -15,3 +15,53 @@
     align-items: center;
   }
 }
+
+.c-main{
+  width: 50vh;
+  height: 30vh;
+  background-color: #cdcdcd;
+  border-radius: 15px 15px 15px 15px;
+  border: none;
+  -webkit-box-shadow: 2px 7px 26px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 2px 7px 26px 0px rgba(0,0,0,0.75);
+  box-shadow: 2px 7px 26px 0px rgba(0,0,0,0.75);
+  & .card-title{
+    background-color: orange;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+    font-size: 35px;
+    border-radius: 15px 15px 0px 0px;
+    border-bottom:4px solid black;
+    padding:25px;
+  }
+  & .c-body {
+    height: 100%;
+    background-color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: inherit;
+    #quantity{
+      font-size: 40px;
+      background-color: transparent;
+      text-align: center;
+      outline: none;
+      width: 30%;
+      border:none;
+    }
+    .description{
+      font-size: 25px;
+    }
+  }
+}
+
+#user_dni{
+  font-size: 25px;
+  background-color: transparent;
+  text-align: center;
+  outline: none;
+  width: 50%;
+  border:none;
+}
