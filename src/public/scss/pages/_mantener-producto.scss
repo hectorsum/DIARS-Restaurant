@@ -94,7 +94,12 @@
   align-items: center;
   justify-content: space-between;
   width: 80%;
+  &--title{
+    display: flex;
+    align-items: center;
+  }
   & *{
+    margin: 0px 5px 5px 0px;
     font-weight: bold;
     color: black;
     font-size: 30px;
