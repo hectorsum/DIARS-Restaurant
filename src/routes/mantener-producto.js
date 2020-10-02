@@ -53,7 +53,7 @@ router.post('/edit/:codigo',async(req,res)=>{
 })
 
 
-router.get('/hide/:codigo',isnotlogedin,async(req,res)=>{
+router.get('/delete/:codigo',isnotlogedin,async(req,res)=>{
   const {codigo} = req.params;
   console.log(req.params)
   await pool.query(`call delete_producto(?)`,[codigo], (err, resp, fields) => {
