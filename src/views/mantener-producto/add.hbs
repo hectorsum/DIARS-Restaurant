@@ -3,7 +3,10 @@
     <div class="wrapper-total content-mantener-producto animate__animated animate__bounceInUp">
       <form class="form-body" action="/mantener-producto/add" method="POST">
         <div class="mantener-heading">
-          <h1>Agregar Producto</h1>
+          <div class="mantener-heading--title">
+            <h1>Agregar Producto</h1>
+            <i class="fas fa-hamburger"></i>
+          </div>
         </div>
         <div class="wrapper-content">
           <div class="inputs">
@@ -27,19 +30,3 @@
     </div>
   </div>
 </div>
-<script>
-  const searchbar = document.getElementById('search-input');
-  searchbar.addEventListener('keyup', () => {
-    const term = searchbar.value.toLowerCase();
-    const table = document.getElementById('table');
-    const rows = table.getElementsByTagName('tr');
-    Array.from(rows).forEach((rows) => {
-      const name = rows.children[1].textContent;
-      if (name.toLowerCase().indexOf(term) != -1) {
-        rows.style.display = 'table-row';
-      } else {
-        rows.style.display = 'none';
-      }
-    });
-  })
-</script>
