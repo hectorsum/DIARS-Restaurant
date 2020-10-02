@@ -4,9 +4,6 @@
       <form class="form-body" action="/mantener-producto/add" method="POST">
         <div class="mantener-heading">
           <h1>Agregar Producto</h1>
-          <a href="javascript:void(0)" class="search-button" id="search-producto" onclick="popup_add_producto()">
-            <i class="fas fa-search"></i>
-          </a>
         </div>
         <div class="wrapper-content">
           <div class="inputs">
@@ -26,58 +23,6 @@
             <button class="btn btn-success" type="submit">Agregar Producto</button>
           </div>
         </div>
-      </form>
-    </div>
-  </div>
-
-  {{!-- Buscar Producto --}}
-
-  <div class="popup-add-producto">
-    <div class="buscar-popup animate__animated animate__bounceInUp">
-      <form class="form-body" action="/mantener-entrada" method="POST">
-        <h1 class="mantener-heading-buscar">Buscar Producto</h1>
-        <a href="#" id="close-popup" onclick="popup_close_producto()"><i class="fas fa-times"></i></a>
-        <div class="input-search-container">
-          <table class="input-search-container-elements">
-            <tr>
-              <td>
-                <input autocomplete="off" type="text" placeholder="Filtrar por Nombre" id="search-input">
-              </td>
-              <td>
-                <i class="fas fa-search"></i>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="row mx-auto mt-2 table-fixed table-fixed-popup-buscar">
-          <table class="table table-sm">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre Producto</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Stock</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="table">
-              {{#each producto}}
-              <tr>
-                <td scope="row">{{index @index}}</td>
-                <td>{{nombre_producto}}</td>
-                <td>{{money precio}}</td>
-                <td>{{stock_total}}</td>
-                <td id="action-buttons">
-                  <a href="/mantener-producto/unhide/{{cod_prod}}">
-                    <button type="button" class="btn btn-info btn-sm">
-                      <i class="fas fa-eye"></i>
-                    </button>
-                  </a>
-                </td>
-              </tr>
-              </tr>
-              {{/each}}
-            </tbody>
       </form>
     </div>
   </div>
