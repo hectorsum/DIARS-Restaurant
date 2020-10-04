@@ -13,8 +13,9 @@ router.get('/',isnotlogedin,async(req,res)=>{
   const segundo = await pool.query('SELECT * FROM segundo')
   const producto = await pool.query('SELECT * FROM producto')
   const tipo_pago = await pool.query('SELECT * FROM tipo_pago')
+  const tipo_comprobante = await pool.query('SELECT * FROM tipo_comprobante')
   const usuario_emp = await pool.query("SELECT `usuario_emp`.`cod_emp`, `empleado`.`nombres`, `empleado`.`apellidos` FROM `usuario_emp` LEFT JOIN `empleado` ON `usuario_emp`.`cod_emp` = `empleado`.`cod_emp`")
-  res.render('generar-cuenta/generar-cuenta',{venta,entrada,segundo,producto,tipo_pago,usuario_emp})
+  res.render('generar-cuenta/generar-cuenta',{venta,entrada,segundo,producto,tipo_pago,usuario_emp,tipo_comprobante})
 })
 
 router.post('/', isnotlogedin,async(req,res)=>{
