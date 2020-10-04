@@ -5,68 +5,86 @@
     <a href="javascript:void(0)" id="btn-closesidebar" onclick="closeSidebar()"><i class="fas fa-bars"></i></a>
   <nav class="nav-main">
     <ul class="nav-nav">
-      <li> <a href="#" class="dropdown-btn nav-op">
-          <i class="fas fa-house-user"></i>
-          <i class="fa fa-caret-down"></i>
-          <label>Mantenimiento</label>
+      <li> <a href="javascript:void(0)" class="dropdown-btn nav-op">
+          <div class="icon-content">
+            <i class="fas fa-hammer"></i>
+            <label>Mantenimiento</label>
+            <i class="fa fa-caret-down" id="arrow"></i>
+          </div>
         </a>
         <div class="dropdown-container">
           <ul>
             <li>
-              <a href="/mantener-producto">
-                <i class="fas fa-hamburger"></i>Mantener producto
+              <a href="/mantener-producto" class="child-dropdown">
+                <i class="fas fa-hamburger"></i>
+                <label>Mantener producto</label>
               </a>
             </li>
             <li>
-              <a href="/mantener-entrada">
-                <i class="fas fa-house-user"></i>Mantener entrada
+              <a href="/mantener-entrada" class="child-dropdown">
+                <i class="fas fa-house-user"></i>
+                <label>Mantener entrada</label>
               </a>
             </li>
             <li>
-              <a href="/mantener-segundo">
-                <i class="fas fa-house-user"></i>Mantener segundo
+              <a href="/mantener-segundo" class="child-dropdown">
+                <i class="fas fa-house-user"></i>
+                <label>Mantener segundo</label>
               </a>
             </li>
             <li>
-              <a href="/mantener-empleado">
-                <i class="fas fa-house-user"></i>Mantener Empleado
+              <a href="/mantener-empleado" class="child-dropdown">
+                <i class="fas fa-house-user"></i>
+                <label>Mantener Empleado</label>
               </a>
             </li>
             <li>
-              <a href="/mantener-usuario">
-                <i class="fas fa-house-user"></i>Mantener Usuario
+              <a href="/mantener-usuario" class="child-dropdown">
+                <i class="fas fa-house-user"></i>
+                <label>Mantener Usuario</label>
               </a>
             </li>
           </ul>
         </div>
       </li>
-
-      <li><a href="/home" class="nav-op">
+      <li>
+        <a href="/registrar-comanda" class="nav-op">
+          <i class="fas fa-scroll"></i>
+          <label>Registrar Comanda</label>
+        </a>
+      </li>
+      <li>
+        <a href="/home" class="nav-op">
           <i class="fas fa-house-user"></i>
           <label>Perfil</label>
         </a>
       </li>
-      <li><a href="/generar-cuenta" class="nav-op">
+      <li>
+        <a href="/generar-cuenta" class="nav-op">
           <i class="fas fa-cash-register"></i>
           <label>Generar Cuenta</label>
         </a>
       </li>
-      <li><a href="#" class="nav-op">
+      <li>
+        <a href="#" class="nav-op">
           <i class="fas fa-chart-line"></i>
           <label>Consultar Venta</label>
         </a>
       </li>
-      <li><a href="#" class="nav-op">
+      <li>
+        <a href="#" class="nav-op">
           <i class="fas fa-user-friends"></i>
           <label>Consultar Cliente</label>
         </a>
       </li>
-      <li><a href="#" class="nav-op">
+      <li>
+        <a href="#" class="nav-op">
           <i class="fas fa-truck"></i>
           <label>Consultar Pedidos</label>
         </a>
       </li>
-      <li><a href="/configuracion" class="nav-op">
+      <li>
+        <a href="/configuracion" class="nav-op">
           <i class="fas fa-cog"></i>
           <label>Configuracion</label>
         </a>
