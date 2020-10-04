@@ -22,7 +22,7 @@ $(function() {
 });
 
 $(function() {
-  $('.dropdown-container ul li a[href^="/' + location.pathname.split("/")[1] + '"]').addClass('active-child-dropdown');
+  $('.dropdown-container ul li .child-dropdown[href^="/' + location.pathname.split("/")[1] + '"]').addClass('active-child-dropdown');
 });
 
 //todo: Removing overlay message effect
