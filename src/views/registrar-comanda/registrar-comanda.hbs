@@ -1,0 +1,96 @@
+<div class="wrapper-total animate__animated animate__zoomInDown">
+  <form class="form-body" action="/generar-cuenta" method="POST">
+    <div class="wrapper-content">
+      <div class="wrapper-input1">
+        <div class="input-wrapper">
+          <select name="nombre_segundo" class="custom-select" id="nombre_segundo" onchange="changedSegundo()">
+            {{#each segundo}}
+              <option value="{{cod_segundo}}">{{nombre_segundo}}</option>
+            {{/each}}
+          </select>
+          <input name="cant_segundo" class="form-control" placeholder="Cantidad" type="number" min="0" max="10" id="cant_segundo" value="0" readonly>
+        </div>
+        <div class="input-wrapper">
+          <select name="nombre_entrada" class="custom-select" id="nombre_entrada" onchange="changedEntrada()">
+            {{#each entrada}}
+              <option value="{{cod_entrada}}">{{nombre_entrada}}</option>
+            {{/each}}
+          </select>
+          <input name="cant_entrada" class="form-control" placeholder="Cantidad" type="number" min="0" max="10" id="cant_entrada" value="0" readonly>
+        </div>
+        <div class="input-wrapper">
+          <select name="nombre_producto" class="custom-select" id="nombre_producto" onchange="changedProducto()">
+            {{#each producto}}
+            <option value="{{cod_prod}}">{{nombre_producto}}</option>
+            {{/each}}
+          </select>
+          <input name="cant_producto" class="form-control" placeholder="Cantidad" type="number" min="0" max="10" id="cant_producto" value="0" readonly>
+        </div>
+      </div>
+
+      <div class="wrapper-input2">
+        <input class="dato_user form-control" type="text" name="caja" value="{{user.nombres}} {{user.apellidos}}" readonly>
+
+        <select name="cod_tipo_pago" class="custom-select">
+          {{#each tipo_pago}}
+          <option value={{cod_tipo_pago}}>{{nombre}}</option>
+          {{/each}}
+        </select>
+        
+        <input id="date" type="text" class="fecha_actual form-control" readonly>
+        
+        <div class="form-row">
+          <label>Tipo Comprobante</label>
+          <select name="cod_tipo_pago" class="custom-select m-0">
+            {{#each tipo_comprobante}}
+            <option value={{cod_tipo_comprobante}}>{{nombre}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group btnRegistrar">
+      <button class="btn btn-success btn-block" type="submit">Registrar Venta</button>
+    </div>
+  </form>
+  <div class="row mx-auto mt-2 table-fixed table-fixed-2">
+    <table class="table table-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Num.Ticket</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Tipo Pago</th>
+          <th scope="col">Estado Pago</th>
+          <th scope="col">Valor</th>
+          <th scope="col">Monto Total</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="table">
+        {{#each venta}}
+        <tr>
+          <td scope="row">{{cod_ven}}</td>
+          <td>{{formatdaytime fecha_venta}}</td>
+          <td>{{nombre}}</td>
+          <td>{{estado_pago}}</td>
+          <td>{{money valor}}</td>
+          <td>{{money monto_total}}</td>
+          <td>
+            <a href="/generar-cuenta/edit/{{cod_ven}}">
+              <button type="button" class="btn btn-primary btn-sm">
+                <i class="fas fa-edit"></i>
+              </button>
+            </a>
+            <a target="_blank" href="/generar-cuenta/print/{{cod_ven}}">
+              <button type="button" class="btn btn-secondary btn-sm">
+                <i class="fas fa-print"></i>
+              </button>
+            </a>
+          </td>
+        </tr>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
