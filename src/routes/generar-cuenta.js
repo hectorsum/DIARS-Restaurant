@@ -41,7 +41,7 @@ router.post('/', isnotlogedin,async(req,res)=>{
   const igv = 0.18;
   const descuento = valor*igv;
   const monto_total = valor-descuento;
-  await pool.query('call insert_venta_local(?,?,?,?,?,?,?,?,?,?,?)',[nombre_segundo_extracted,nombre_entrada_extracted,nombre_producto_extracted,valor,monto_total,fecha_venta,cant_entrada,cant_segundo,cant_producto,cod_tipo_pago,caja],async(err,resp,fields)=>{
+  await pool.query('call insert_venta_local(?,?,?,?,?,?,?,?,?,?,?)',[nombre_segundo_extracted,nombre_entrada_extracted,nombre_producto_extracted,valor,monto_total,fecha_venta,cant_entrada,cant_segundo,cant_producto,cod_tipo_pago[0],caja],async(err,resp,fields)=>{
     if (err) {
       req.flash('failure', "No se pudo registrar la cuenta" + err);
       res.redirect('/generar-cuenta');
