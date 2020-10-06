@@ -1,0 +1,45 @@
+.wrapper-comanda{
+  height: 100vh;
+  width: $width-body-system;
+  background-color: $system-background;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  & .registrar-comanda-form{
+    display: flex;
+    flex-direction: row;
+    
+    width: 80vw;
+    & *{
+      width: 100%;
+    }
+    & .registrar-comanda-inputs{
+      display: flex;
+      flex-direction: column;
+      & .form-row .car-button{
+        background-color: grey;
+      }
+    }
+  }
+}
+#carrito{
+  min-height: 200px;
+  min-width: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: rgba(26, 27, 26, 0.452);
+}
+#carrito::-webkit-scrollbar {
+  width: 6px; //width from scrollbar
+}
+
+#carrito::-webkit-scrollbar-track {
+  background-color: black //background from scrollbar only
+}
+
+#carrito::-webkit-scrollbar-thumb {
+  background-color: orange; //background from scrollbar
+}
