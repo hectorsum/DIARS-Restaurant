@@ -13,3 +13,6 @@
   outline: none;
   background: $website_hoverButton;
 }
+button > * { //When clicking any icon inside of a button, it'll detect the event
+  pointer-events: none;
+}
