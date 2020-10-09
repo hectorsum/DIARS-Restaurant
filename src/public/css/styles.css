@@ -528,7 +528,7 @@ footer {
       .wrapper-comanda .registrar-comanda-form .registrar-comanda-inputs .form-row .car-button {
         background-color: grey; }
 
-#carrito {
+#carrito-comanda {
   max-height: 200px;
   min-height: 200px;
   min-width: 150px;
@@ -538,25 +538,25 @@ footer {
   display: flex;
   align-items: flex-start; }
 
-#carrito::-webkit-scrollbar {
+#carrito-comanda::-webkit-scrollbar {
   width: 5px; }
 
-#carrito::-webkit-scrollbar-track {
+#carrito-comanda::-webkit-scrollbar-track {
   background-color: transparent; }
 
-#carrito::-webkit-scrollbar-thumb {
+#carrito-comanda::-webkit-scrollbar-thumb {
   background-color: rgba(245, 245, 245, 0.762); }
 
-#carrito thead th {
+#carrito-comanda thead th {
   position: sticky;
   top: -1px;
   z-index: 1;
   background-color: #303030; }
 
-#carrito tbody td {
+#carrito-comanda tbody td {
   z-index: 0; }
 
-#carrito tbody {
+#carrito-comanda tbody {
   margin-top: 20px; }
 
 .wrapper-total {
