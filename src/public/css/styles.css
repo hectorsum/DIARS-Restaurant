@@ -142,6 +142,9 @@ body {
   outline: none;
   background: #8f6f33e8; }
 
+button > * {
+  pointer-events: none; }
+
 .overlay {
   width: 100vw;
   height: 100vh;
@@ -526,20 +529,35 @@ footer {
         background-color: grey; }
 
 #carrito {
+  max-height: 200px;
   min-height: 200px;
-  min-width: 300px;
+  min-width: 150px;
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: rgba(26, 27, 26, 0.452); }
+  padding-bottom: -20px;
+  display: flex;
+  align-items: flex-start; }
 
 #carrito::-webkit-scrollbar {
-  width: 6px; }
+  width: 5px; }
 
 #carrito::-webkit-scrollbar-track {
-  background-color: black; }
+  background-color: transparent; }
 
 #carrito::-webkit-scrollbar-thumb {
-  background-color: orange; }
+  background-color: rgba(245, 245, 245, 0.762); }
+
+#carrito thead th {
+  position: sticky;
+  top: -1px;
+  z-index: 1;
+  background-color: #303030; }
+
+#carrito tbody td {
+  z-index: 0; }
+
+#carrito tbody {
+  margin-top: 20px; }
 
 .wrapper-total {
   height: 100vh;
