@@ -25,21 +25,37 @@
     }
   }
 }
-#carrito{
+#carrito-comanda{
+  max-height: 200px;
   min-height: 200px;
-  min-width: 300px;
+  min-width: 150px;
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: rgba(26, 27, 26, 0.452);
+  padding-bottom: -20px;
+  display: flex;
+  align-items: flex-start;
 }
-#carrito::-webkit-scrollbar {
-  width: 6px; //width from scrollbar
-}
-
-#carrito::-webkit-scrollbar-track {
-  background-color: black //background from scrollbar only
+#carrito-comanda::-webkit-scrollbar {
+  width: 5px; //width from scrollbar
 }
 
-#carrito::-webkit-scrollbar-thumb {
-  background-color: orange; //background from scrollbar
+#carrito-comanda::-webkit-scrollbar-track {
+  background-color: transparent //background from scrollbar only
+}
+
+#carrito-comanda::-webkit-scrollbar-thumb {
+  background-color: rgba(245, 245, 245, 0.762); //background from scrollbar
+}
+
+#carrito-comanda thead th{
+  position: sticky;
+  top: -1px;
+  z-index: 1;
+  background-color: #303030;
+}
+#carrito-comanda tbody td{
+  z-index: 0;
+}
+#carrito-comanda tbody{
+  margin-top: 20px;
 }
