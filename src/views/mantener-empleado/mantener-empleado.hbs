@@ -1,26 +1,28 @@
 <div class="mantener-productos animate__animated animate__zoomInDown">
-  <div class="title">
-    <div class="title-label">
-      <i class="fas fa-hamburger"></i>
-      <label>Mantener Empleado</label>
+  <div class="mantener-header form-inline">
+    <div class="title m-0 form-inline">
+      <div class="title-label form-inline">
+        <i class="fas fa-hamburger mr-2"></i>
+        <label>Mantener Empleado</label>
+      </div>
+      <a href="/mantener-empleado/add" id="add-mantener-producto-btn">
+        <button type="button" class="btn btn-success btn-sm">
+          <i class="fas fa-plus"></i>
+        </button>
+      </a>
     </div>
-    <a href="/mantener-empleado/add" id="add-mantener-producto-btn">
-      <button type="button" class="btn btn-success btn-sm">
-        <i class="fas fa-plus"></i>
-      </button>
-    </a>
-  </div>
-  <div class="input-search-container">
-    <table class="input-search-container-elements">
-      <tr>
-        <td>
-          <input autocomplete="off" type="text" placeholder="Filtrar por DNI" id="search-input">
-        </td>
-        <td>
-          <i class="fas fa-search"></i>
-        </td>
-      </tr>
-    </table>
+    <div class="input-search-container">
+      <table class="input-search-container-elements">
+        <tr>
+          <td>
+            <input autocomplete="off" type="text" placeholder="Filtrar por DNI" id="search-input">
+          </td>
+          <td>
+            <i class="fas fa-search"></i>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
   <div class="row mx-auto mt-2 table-fixed table-fixed-2">
     <table class="table table-sm">
