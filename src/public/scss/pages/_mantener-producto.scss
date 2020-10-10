@@ -7,7 +7,15 @@
   background-color: $system-background;
   height: 100vh;
   text-align: center;
-  
+  & .mantener-header{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    justify-content: space-between;
+    & *{
+      align-self: flex-end;
+    }
+  }
   & .title {
     color: black;
     font-size: 30px;
@@ -16,8 +24,14 @@
     display: flex;
     align-items: center;
     position: relative;
-    &-label label {
-      margin: 0px;
+    &-label{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      & i{
+        align-self: center;
+      }
     }
 
     & a button {
