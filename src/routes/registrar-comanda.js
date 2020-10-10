@@ -13,5 +13,7 @@ router.get('/',isnotlogedin,async(req,res)=>{
   const usuario_emp = await pool.query("SELECT `usuario_emp`.`cod_emp`, `empleado`.`nombres`, `empleado`.`apellidos` FROM `usuario_emp` LEFT JOIN `empleado` ON `usuario_emp`.`cod_emp` = `empleado`.`cod_emp`")
   res.render('registrar-comanda/registrar-comanda',{venta,entrada,segundo,producto,tipo_pago,usuario_emp});
 })
-
+router.post('/',isnotlogedin,async(req,res)=>{
+  console.log(req.body);
+})
 module.exports = router;
