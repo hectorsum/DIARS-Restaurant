@@ -16,3 +16,10 @@
 button > * { //When clicking any icon inside of a button, it'll detect the event
   pointer-events: none;
 }
+button{
+  outline: none !important;
+}
+#date{
+  text-align: center;
+  font-weight: bold;
+}
