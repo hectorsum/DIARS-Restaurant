@@ -15,5 +15,13 @@ router.get('/',isnotlogedin,async(req,res)=>{
 })
 router.post('/',isnotlogedin,async(req,res)=>{
   console.log(req.body);
+  const {num_mesa,nombre_segundo,cant_segundo,nombre_entrada,cant_entrada,nombre_producto,cant_producto} = req.body;
+  let segundo_object = [];
+  for(let i=0;i<nombre_segundo.length;i++){
+    console.log(nombre_segundo[i])
+    for (let j=i;j<cant_segundo.length;j++){
+      console.log(cant_segundo[j])
+    }
+  }
 })
 module.exports = router;
