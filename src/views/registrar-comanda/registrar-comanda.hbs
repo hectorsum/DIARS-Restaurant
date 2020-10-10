@@ -1,10 +1,21 @@
 <div class="wrapper-comanda animate__animated animate__zoomInDown form-inline">
-  <form class="registrar-comanda-form form-inline" action="/generar-cuenta" method="POST">
+  <form class="registrar-comanda-form form-inline" action="/registrar-comanda" method="POST">
     <div class="registrar-comanda-inputs col-md-6" id="lista-comanda">
       <div class="form-row">
         <div class="col-md-5 mb-3">
+          <label>Num.Mesa</label>
+          <input name="num_mesa" type="number" class="form-control" maxlength="2" min="1" required>
+        </div>
+        <div class="col-md-5 mb-3">
+          <label>Fecha</label>
+          <input type="number" class="form-control" maxlength="2" min="1" id="date" readonly>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-5 mb-3">
           <label>Menu - Segundo</label>
-          <select name="nombre_segundo" class="custom-select" id="nombre_segundo" onchange="changedSegundo()">
+          <select class="custom-select" id="nombre_segundo">
+            <option value="0" selected>--</option>
             {{#each segundo}}
               <option value="{{cod_segundo}}">{{nombre_segundo}}</option>
             {{/each}}
@@ -12,10 +23,10 @@
         </div>
         <div class="col-md-5 mb-3">
           <label>Cant.Segundo</label>
-          <input name="cant_segundo" class="form-control" placeholder="Cantidad" type="number" min="0" max="10" id="cant_segundo" value="0" readonly>
+          <input class="form-control" placeholder="Cantidad" type="number" id="cant_segundo" value="0" min="1" maxlength="2" readonly>
         </div>
         <div class="col-md-2 m-0 d-flex align-items-strecht mb-3">
-          <button class="btn btn-outline-primary agregar-segundo">
+          <button class="btn btn-outline-primary agregar-segundo" disabled>
             <i class="fas fa-cart-plus fa-lg"></i>
           </button>
         </div>
@@ -23,7 +34,8 @@
       <div class="form-row">
         <div class="col-md-5 mb-3">
           <label>Menu - Entrada</label>
-          <select name="nombre_entrada" class="custom-select" id="nombre_entrada" onchange="changedEntrada()">
+          <select class="custom-select" id="nombre_entrada">
+            <option value="0" selected>--</option>
           {{#each entrada}}
             <option value="{{cod_entrada}}">{{nombre_entrada}}</option>
           {{/each}}
@@ -31,10 +43,10 @@
         </div>
         <div class="col-md-5 mb-3">
           <label>Cant.Entrada</label>
-          <input name="cant_entrada" class="form-control" placeholder="Cantidad" type="number" min="0" max="10" id="cant_entrada" value="0" readonly>
+          <input class="form-control" placeholder="Cantidad" type="number" id="cant_entrada" value="0" min="1" maxlength="2" readonly>
         </div>
         <div class="col-md-2 m-0 d-flex align-items-strecht mb-3">
-          <button class="btn btn-outline-primary agregar-entrada">
+          <button class="btn btn-outline-primary agregar-entrada" disabled>
             <i class="fas fa-cart-plus fa-lg"></i>
           </button>
         </div>
@@ -43,7 +55,8 @@
       <div class="form-row">
         <div class="col-md-5 mb-3">
           <label for="nombre_producto">Producto</label>
-          <select name="nombre_producto" class="custom-select" onchange="changedProducto()" id="nombre_producto">
+          <select class="custom-select" id="nombre_producto">
+            <option value="0" selected>--</option>
             {{#each producto}}
             <option value="{{cod_prod}}">{{nombre_producto}}</option>
             {{/each}}
@@ -51,10 +64,10 @@
         </div>
         <div class="col-md-5 mb-3">
           <label>Cant.Producto</label>
-          <input name="cant_producto" class="form-control" placeholder="Cantidad" type="number" min="0" max="10" id="cant_producto" value="0" readonly>
+          <input class="form-control" placeholder="Cantidad" type="number" id="cant_producto" value="0" min="1" maxlength="2" readonly>
         </div>
         <div class="col-md-2 m-0 d-flex align-items-strecht mb-3">
-          <button class="btn btn-outline-primary agregar-producto">
+          <button class="btn btn-outline-primary agregar-producto" disabled>
             <i class="fas fa-cart-plus fa-lg"></i>
           </button>
         </div>
@@ -84,7 +97,7 @@
         </table>
       </div>
       <div class="form-group btnRegistrar">
-        <button class="btn btn-success btn-block" type="submit">Registrar Comanda</button>
+        <button type="submit" class="btn btn-success btn-block" type="submit">Registrar Comanda</button>
       </div>
     </div>
   </form>
@@ -134,24 +147,97 @@
   const contenedorCarritoComanda = document.querySelector('#lista-carrito-comanda tbody');
   const listaComanda = document.querySelector('#lista-comanda');
   let articulosComanda = []
-  function addEventListener(){
-    // Cuando agregas un curso presionando "Agregar al Carrito"
+  cargarEventListeners();
+  function cargarEventListeners(){
+    // Events
     listaComanda.addEventListener('click',agregarEntrada);
-    // Elimina cursos del carrito
-    //listaComanda.addEventListener('click', eliminarEntrada);
+    listaComanda.addEventListener('change',onChange);
+    listaComanda.addEventListener('keypress',onTyping);
+    listaComanda.addEventListener('input',onInput);
+    carrito_comanda.addEventListener('click', eliminarFila);
+    // Show LocalStorage items
+    document.addEventListener('DOMContentLoaded',()=>{
+      //if there's nothing in localstorage, we add an empty array
+      articulosComanda = JSON.parse(localStorage.getItem('carrito-comanda')) || []; 
+      carrito_comanda_HTML();
+    })
+  }
+  function onInput(e){
+    const row_inputs = e.target.parentElement.parentElement;
+    const input = row_inputs.querySelector('input');
+    if (input.value.length > input.maxLength){
+      input.value = input.value.slice(0, input.maxLength); //limit from 0 to max.length
+    }
+    if (input.value>20){
+      console.log('greater than 20')
+      input.value = 1
+      e.preventDefault();
+    }
+  }
+  function onTyping(e){
+      const row_inputs = e.target.parentElement.parentElement;
+      const regex_allowed = /[1-9\/]+/;
+      const input = row_inputs.querySelector('input');
+      console.log(e)
+      if (!regex_allowed.test(e.key)){
+        console.log('applying regex')
+        e.preventDefault();
+      }
+  }
+  function onChange(e){
+    if(e.target.classList.contains('custom-select')){
+      const row_inputs = e.target.parentElement.parentElement;
+      disablingBoxes(row_inputs);
+    }
+  }
+  function disablingBoxes(row){
+    const select_tag = row.querySelector('select');
+    const value_from_select = select_tag.options[select_tag.selectedIndex].value;
+    const cantidad = row.querySelector('input');
+    const button = row.querySelector('button');
+    switch(value_from_select){
+      case '0': //option value == 0
+        console.log('disabled')
+        disableAll(row)
+        break;
+      default:
+        cantidad.removeAttribute('readonly');
+        cantidad.value = 1;
+        button.removeAttribute('disabled');
+        break;
+      }
+  }
+  function disableAll(row){
+    const select_tag = row.querySelector('select');
+    const value_from_select = select_tag.options[select_tag.selectedIndex].value;
+    const cantidad = row.querySelector('input');
+    const button = row.querySelector('button');
+    select_tag.selectedIndex = '0';
+    cantidad.value = 0;
+    cantidad.setAttribute('readonly',true);
+    button.setAttribute('disabled',true);
   }
   function agregarEntrada(e){
     e.preventDefault();
-    if (e.target.classList.contains('agregar-entrada')){
+    if (e.target.classList.contains('btn')){ //Detect if there's any btn (bootstrap button)
       const row_combo_box = e.target.parentElement.parentElement;
       leerDatosComboBoxes(row_combo_box);
+      disableAll(row_combo_box);
+    }
+  }
+  function eliminarFila(e){
+    if(e.target.classList.contains('borrar_fila')){
+      const row_nombre = e.target.getAttribute('data-id');
+      articulosComanda = articulosComanda.filter(row => row.nombre !== row_nombre); //Prints everything excepts the one that is being clicked for deleting
+      console.log(articulosComanda);
+      carrito_comanda_HTML();
     }
   }
   function leerDatosComboBoxes(row_combo_box){
-    const nombre_entrada = row_combo_box.querySelector('#nombre_entrada');
+    const nombre_entrada = row_combo_box.querySelector('select');
     //Getting string values
     const nombre = nombre_entrada.options[nombre_entrada.selectedIndex].text;
-    const cantidad = row_combo_box.querySelector('#cant_entrada').value;
+    const cantidad = row_combo_box.querySelector('input').value;
 
     const get_data_boxes = {
       nombre,
@@ -164,7 +250,7 @@
       //Update quantity
       const entrada = articulosComanda.map(entrada => {
         if(entrada.nombre === get_data_boxes.nombre){
-          entrada.cantidad = entrada.cantidad+get_data_boxes.cantidad;
+          entrada.cantidad = parseInt(entrada.cantidad)+parseInt(get_data_boxes.cantidad);
           return entrada;
         }else{
           return entrada;
@@ -181,17 +267,23 @@
     articulosComanda.forEach(entrada => {
       const {nombre,cantidad} = entrada;
       const row = document.createElement('tr');
+      row.setAttribute('name','row-data');
       row.innerHTML = `
         <td>${nombre}</td>
         <td>${cantidad}</td>
         <td>
-          <button type="button" class="close" aria-label="Close" data-id="${nombre}">
+          <button type="button" class="close borrar_fila" aria-label="Close" data-id="${nombre}">
             <span aria-hidden="true">&times;</span>
           </button>
         </td>
       `;
       contenedorCarritoComanda.appendChild(row);
     });
+    //Agregar al local-storage
+    sicronizarStorage();
+  }
+  function sicronizarStorage(){
+    localStorage.setItem('carrito-comanda',JSON.stringify(articulosComanda));
   }
   function limpiar_carrito_comanda_HTML(){
     while(contenedorCarritoComanda.firstChild){
