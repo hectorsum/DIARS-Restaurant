@@ -145,6 +145,16 @@ body {
 button > * {
   pointer-events: none; }
 
+button {
+  outline: none !important; }
+
+#date {
+  text-align: center;
+  font-weight: bold; }
+
+select {
+  text-align-last: center; }
+
 .overlay {
   width: 100vw;
   height: 100vh;
@@ -569,7 +579,7 @@ footer {
   justify-content: center;
   align-items: center;
   text-align: center; }
-  .wrapper-total .dato_user, .wrapper-total .fecha_actual {
+  .wrapper-total .dato_user {
     text-align: center;
     font-weight: bold; }
   .wrapper-total form {
