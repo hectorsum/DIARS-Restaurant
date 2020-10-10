@@ -34,6 +34,7 @@ function popup_add_producto(){
 function popup_close_producto(){
   document.querySelector('.mantener-productos .popup-add-producto').style.display = 'none';
 }
+//todo: Making sure "button_add_mantener_producto" isn't NULL for not getting console error and same thing with "button_close_add_mantener_producto" --- both "const" should be included in same file that they're being used
 const button_add_mantener_producto = document.getElementById('add-mantener-producto-btn')
 if (button_add_mantener_producto){
   button_add_mantener_producto.addEventListener('click',popup_add_producto,false);
