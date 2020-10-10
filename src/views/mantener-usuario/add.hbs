@@ -19,7 +19,7 @@
         </div>
         <div class="button-wrapper">
           <div class="form-group mt-2 mr-1 btnCancelar">
-            <a class="btn btn-danger close-popup-mantener-producto" href="/mantener-usuario"
+            <a class="btn btn-danger" id="close-popup-mantener-producto" href="/mantener-usuario"
               onclick="popup_close_producto()">Cancelar</a>
           </div>
           <div class="form-group mt-2 btnRegistrar">
@@ -34,8 +34,8 @@
 
   <div class="popup-add-producto">
     <div class="buscar-popup animate__animated animate__bounceInUp">
-      <form class="form-body" action="/mantener-entrada" method="POST">
-        <h1 class="mantener-heading-buscar">Buscar Producto</h1>
+      <div class="form-body">
+        <h1 class="mantener-heading-buscar">Buscar Empleado</h1>
         <a href="#" id="close-popup" onclick="popup_close_producto()"><i class="fas fa-times"></i></a>
         <div class="input-search-container">
           <table class="input-search-container-elements">
@@ -76,7 +76,7 @@
               </tr>
               {{/each}}
             </tbody>
-      </form>
+      </div>
     </div>
   </div>
 </div>
@@ -100,7 +100,7 @@
   //Set worker-add user
     try {
       //Looking for button check
-        $(".popup-add-producto .buscar-popup form .table-fixed-popup-buscar table tbody tr td button").click(function () {
+        $(".popup-add-producto button").click(function () {
             var row = $(this).closest("tr");
             document.getElementById('empleado').value = row.find("td:eq(1)").text();
             document.getElementById('dni').value = row.find("td:eq(2)").text();
