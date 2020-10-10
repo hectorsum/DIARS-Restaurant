@@ -146,6 +146,7 @@
   const carrito_comanda = document.querySelector('#carrito-comanda');
   const contenedorCarritoComanda = document.querySelector('#lista-carrito-comanda tbody');
   const listaComanda = document.querySelector('#lista-comanda');
+  const date_input = document.querySelector('#date');
   let articulosComanda = []
   cargarEventListeners();
   function cargarEventListeners(){
@@ -155,12 +156,33 @@
     listaComanda.addEventListener('keypress',onTyping);
     listaComanda.addEventListener('input',onInput);
     carrito_comanda.addEventListener('click', eliminarFila);
+    window.addEventListener('load',()=>{
+      setInterval(clock,1000);
+    });
     // Show LocalStorage items
     document.addEventListener('DOMContentLoaded',()=>{
       //if there's nothing in localstorage, we add an empty array
       articulosComanda = JSON.parse(localStorage.getItem('carrito-comanda')) || []; 
       carrito_comanda_HTML();
     })
+  }
+  function clock(){
+    var date = new Date();
+    var day = date.getDate();
+    var month = date.getMonth();
+    var year = date.getFullYear();
+    var hour = date.getHours();
+    var min = date.getMinutes();
+    var sec = date.getSeconds();
+    
+    //*Validations date (conditional - ternary operator)
+    var sec = (sec<10) ? `0${sec}` : sec;
+    var min = (min<10) ? `0${min}` : min;
+    var hour = (hour<10) ? `0${hour}`: hour;
+    //var month = (month<=10) ? `0${month+1}` : `${month+1}`; (Not working!!) 
+    var month = (month.length===1) ? `0${month+1}` : `${month+1}`;
+    const time = document.getElementById('date').placeholder = `${day}/${month}/${year} ${hour}:${min}:${sec}`
+    return time;
   }
   function onInput(e){
     const row_inputs = e.target.parentElement.parentElement;
