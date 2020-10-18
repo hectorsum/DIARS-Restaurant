@@ -27,9 +27,9 @@ app.engine('.hbs',exphbs({
 }));
 
 //*Other 'main' layout for index webpage
-app.set('view options',{layout:'index'})
+app.set('layout',{layout:'index'})
 
-//Middlewares
+//Middlewares - Functions that get executed when a client sends any petition to the server
 app.use(session({
   secret:'hectorsum',
   resave:false,
@@ -43,7 +43,7 @@ app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Global variables
+//Global variables - Variables that are needed in the entire app
 app.use((req,res,next)=>{
   app.locals.success = req.flash('success');
   app.locals.failure = req.flash('failure');
