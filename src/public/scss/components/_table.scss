@@ -34,5 +34,10 @@
   background-color: transparent;
 }
 .table-fixed::-webkit-scrollbar-thumb{
-background-color: rgba(245, 245, 245, 0.762);
+  background-color: rgba(34, 31, 31, 0.849);
+}
+
+td img{
+  max-width: 60px; 
+  max-height: 40px;
 }
