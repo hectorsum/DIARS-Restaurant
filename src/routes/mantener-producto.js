@@ -2,10 +2,11 @@ const express = require('express');
 const pool = require('../database');
 const router = express.Router();
 const {isnotlogedin}=require('../lib/out');
-
+const uploadImage = require('../lib/multer');
+const e = require('express');
 router.get('/',isnotlogedin,async(req,res)=>{
-  const producto = await pool.query("SELECT `producto`.*, `stock`.`stock_total` FROM `producto` LEFT JOIN `stock` ON `producto`.`cod_stock` = `stock`.`cod_stock` WHERE `producto`.`cod_prod` != 0 && `producto`.`ocultar`!=0");
-  res.render('mantener-producto/mantener-producto',{producto});
+  const carta = await pool.query("SELECT * FROM carta WHERE categoria LIKE 'producto' and estado=1");
+  res.render('mantener-producto/mantener-producto',{carta});
 });
 
 router.get('/add',isnotlogedin,async(req,res)=>{
@@ -13,18 +14,44 @@ router.get('/add',isnotlogedin,async(req,res)=>{
 })
 
 router.post('/add',isnotlogedin,async(req,res)=>{
-  const {nombre_producto,precio,stock} = req.body;
-  await pool.query('call insert_product(?,?,?)',[nombre_producto,precio,stock],async(err,resp)=>{
-    if (err) {
-      req.flash('failure', "No se pudo agregar el producto" + err);
+  uploadImage(req,res,async(err)=>{
+    if(err){
+      req.flash('failure','No se pudo agregar el producto Error: '+err);
       res.redirect('/mantener-producto');
+    }else{
+      const {nombre,precio,stock} = req.body;
+      const pathname = req.file.filename;
+      console.log(req.file.filename);
+      const producto = {
+        nombre,
+        precio,
+        categoria:'producto',
+        stock,
+        pathname
+      }
+      await pool.query('INSERT INTO carta set ?',[producto],async(err,resp)=>{
+        if (err) {
+          req.flash('failure', "No se pudo agregar el producto" + err);
+          res.redirect('/mantener-producto');
+        }
+        else{
+          req.flash('success', 'Registrado Satisfactoriamente');
+          res.redirect('/mantener-producto')  
+        }
+      });
     }
-    else {
-        req.flash('success', 'Registrado Satisfactoriamente');
-        console.log('finished inserting')
-        res.redirect('/mantener-producto');
-    }
-  });
+  })
+  // await pool.query('call insert_product(?,?,?)',[nombre_producto,precio,stock],async(err,resp)=>{
+  //   if (err) {
+  //     req.flash('failure', "No se pudo agregar el producto" + err);
+  //     res.redirect('/mantener-producto');
+  //   }
+  //   else {
+  //       req.flash('success', 'Registrado Satisfactoriamente');
+  //       console.log('finished inserting')
+  //       res.redirect('/mantener-producto');
+  //   }
+  // });
 });
 
 router.get('/edit/:cod_prod',isnotlogedin,async(req,res)=>{
