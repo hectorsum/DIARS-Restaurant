@@ -15,19 +15,21 @@
       <thead class="thead-dark">
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Nombre Producto</th>
+          <th scope="col">Nombre</th>
           <th scope="col">Precio</th>
           <th scope="col">Stock</th>
+          <th scope="col">Imagen</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody id="table">
-        {{#each producto}}
+        {{#each carta}}
         <tr>
           <td scope="row">{{index @index}}</td>
-          <td>{{nombre_producto}}</td>
+          <td>{{nombre}}</td>
           <td>{{money precio}}</td>
-          <td>{{stock_total}}</td>
+          <td>{{stock}}</td>
+          <td><img src="uploads/{{pathname}}"></td>
           <td id="action-buttons">
             <a href="/mantener-producto/edit/{{cod_prod}}">
               <button id="edit_button" type="button" class="btn btn-primary btn-sm">
