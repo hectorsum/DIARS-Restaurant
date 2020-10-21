@@ -1,7 +1,7 @@
 <div class="mantener-productos">
   <div class="popup-mantener">
     <div class="wrapper-total content-mantener-producto animate__animated animate__bounceInUp">
-      <form class="form-body" action="/mantener-producto/add" method="POST">
+      <form class="form-body" action="/mantener-producto/add" method="POST" enctype="multipart/form-data">
         <div class="mantener-heading">
           <div class="mantener-heading--title">
             <h1>Agregar Producto</h1>
@@ -9,12 +9,18 @@
           </div>
         </div>
         <div class="wrapper-content">
-          <div class="inputs">
-            <input autocomplete="off" name="nombre_producto" class="form-control" placeholder="Nombre Producto"
-              type="text" required>
-            <input autocomplete="off" step="0.01" type="number" class="form-control" placeholder="Precio" name="precio"
-              required>
-            <input autocomplete="off" name="stock" class="form-control" placeholder="Stock" type="number" required>
+          <div class="inputs form-group">
+            <label>Producto</label>
+            <input autocomplete="off" name="nombre" class="form-control" type="text" required>
+            <label>Precio</label>
+            <input autocomplete="off" step="0.01" type="number" class="form-control" name="precio" required>
+            <label>Stock</label>
+            <input autocomplete="off" name="stock" class="form-control" type="number" required>
+            <label>Imagen Producto</label>
+            <div class="custom-file">
+              <input type="file" name="image" class="custom-file-input" accept="image/*" id="image" lang="es" required>
+              <label class="custom-file-label" for="image">Elegir Imagen</label>
+            </div>
           </div>
         </div>
         <div class="button-wrapper">
@@ -30,3 +36,13 @@
     </div>
   </div>
 </div>
+<script>
+  $('#image').on('change',function(){
+    //get the file name
+    var fileName = $(this).val();
+    //removing C:\fakepath\
+    console.log(fileName.split("\\")[2])
+    //replace the "Choose a file" label
+    $(this).next('.custom-file-label').html(fileName.split("\\")[2]);
+  })
+</script>
