@@ -4,20 +4,6 @@ a{
 pre{
   display: none;
 }
-    html{
-      width: 100%;
-      height: 100vh;
-    }
-    *{
-      box-sizing: border-box;
-    }
-    body{
-        font-family: 'Montserrat', sans-serif;
-        margin: 0;
-        width: 100%;
-        height: 100vh;
-    }
-    
     /*------------------Estilo base---------*/
     .main img {
       display: block;
@@ -183,6 +169,10 @@ pre{
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100vh;
+      & img{
+        height: 100vh;
+      }
     }
     .banner h1 {
       color: white;
@@ -206,7 +196,7 @@ pre{
     
     .banner__img{
         width: 100%;
-        height: 500px;
+        // height: 500px;
         object-fit: cover;
     }
     
@@ -229,18 +219,6 @@ pre{
         padding: 10px;
     
     }
-    
-    .btn{
-        display: block;
-        text-align: center;
-        text-decoration: none;
-        /* width: 120px; */
-        
-        color: white;
-        padding: 10px;
-        margin: 10px auto;
-    }
-    
     .group--title{
         font-family: 'Pacifico',cursive;
         text-align: center;
@@ -336,18 +314,6 @@ pre{
         }
         .main-footer .container--flex{
             align-items: flex-start;
-        }
-        .column--50{
-            width: 49%;
-        }
-    
-        .column--50-25{
-            width: 49%;
-    
-        }
-        .column--33{
-            width: 32%;
-    
         }
     
         .main__about__description .column:nth-child(2){
@@ -448,5 +414,36 @@ pre{
             }
             
         }
-    
     }
+.container-welcome{
+  width: 100%;
+  background-color: orange;
+  color: black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.carta-title{
+  width: 100%;
+  background-color: orange;
+  color: black;
+}
+
+.grid-group{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  & .grid-elem{
+    color: black;
+    background-color: pink;
+    width: 100%;
+    height: 100%;
+  }
+}
+@media screen and (max-width:480px){
+  .grid-group{
+    display: flex;
+    flex-direction: column;
+  }
+}
