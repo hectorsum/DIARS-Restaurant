@@ -1,7 +1,7 @@
 <div class="mantener-productos">
   <div class="popup-mantener">
     <div class="wrapper-total content-mantener-producto animate__animated animate__bounceInUp">
-      <form class="form-body" action="/mantener-entrada/add" method="POST">
+      <form class="form-body" action="/mantener-entrada/add" method="POST" enctype="multipart/form-data">
         <div class="mantener-heading">
           <div class="mantener-heading--title">
             <h1>Agregar Entrada</h1>
@@ -9,18 +9,31 @@
           </div>
         </div>
         <div class="wrapper-content">
-          <div class="inputs">
-            <input autocomplete="off" name="nombre_entrada" class="form-control" placeholder="Nombre Entrada"
-              type="text" required>
-            <input autocomplete="off" step="0.01" type="number" class="form-control" placeholder="Precio" name="precio"
-              required>
-            <input autocomplete="off" name="stock" class="form-control" placeholder="Stock" type="number" required>
+          <div class="inputs form-group mb-2">
+            <div class="form-group">
+              <label class="m-0">Entrada</label>
+              <input autocomplete="off" name="nombre" class="form-control" type="text" required>
+            </div>
+            <div class="form-group">
+              <label class="m-0">Precio</label>
+              <input autocomplete="off" step="0.01" type="number" class="form-control" name="precio" required>
+            </div>
+            <div class="form-group">
+              <label class="m-0">Stock</label>
+              <input autocomplete="off" name="stock" class="form-control" type="number" required>
+            </div>
+            <div class="form-group">
+              <label class="m-0">Imagen Entrada</label>
+              <div class="custom-file">
+                <input type="file" name="image" class="custom-file-input" accept="image/*" id="image" lang="es" required>
+                <label class="custom-file-label" for="image">Elegir Imagen</label>
+              </div>
+            </div>
           </div>
         </div>
         <div class="button-wrapper">
           <div class="form-group mt-2 mr-1 btnCancelar">
-            <a class="btn btn-danger close-popup-mantener-producto" href="/mantener-entrada"
-              onclick="popup_close_producto()">Cancelar</a>
+            <a class="btn btn-danger close-popup-mantener-producto" href="/mantener-entrada">Cancelar</a>
           </div>
           <div class="form-group mt-2 btnRegistrar">
             <button class="btn btn-success" type="submit">Agregar Entrada</button>
@@ -30,3 +43,13 @@
     </div>
   </div>
 </div>
+<script>
+  $('#image').on('change',function(){
+    //get the file name
+    var fileName = $(this).val();
+    //removing C:\fakepath\
+    console.log(fileName.split("\\")[2])
+    //replace the "Choose a file" label
+    $(this).next('.custom-file-label').html(fileName.split("\\")[2]);
+  })
+</script>
