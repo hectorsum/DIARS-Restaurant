@@ -24,53 +24,18 @@
     <h1>Especial de Hoy</h1>
   </div>
   <section class="grid-group form-inline">
-    <div class="card grid-elem">
-      <img src="img/plato2.jpg" alt="" class="card-img-top today-special__img">
-      <div class="card-body text-center">
-        <h2 class="card-text">Especial del dia 1</h2>
-        <span class="card-text">S/ 10.00</span>
+    {{#each carta}}
+      <div class="card grid-elem">
+        <img src="uploads/{{pathname}}" alt="Imagen Carta" class="card-img-top today-special__img">
+        <div class="card-body text-center">
+          <h2 class="card-text">Especial del dia 1</h2>
+          <span class="card-text">S/ 10.00</span>
+        </div>
+        <div class="card-body text-center">
+          <button type="button" class="btn btn-warning">Enviar al Carrito
+            <i class="fas fa-cart-plus"></i>
+          </button>
+        </div>
       </div>
-      <div class="card-body text-center">
-        <button type="button" class="btn btn-warning">Enviar al Carrito
-          <i class="fas fa-cart-plus"></i>
-        </button>
-      </div>
-    </div>
-    <div class="card grid-elem">
-      <img src="img/plato2.jpg" alt="" class="card-img-top today-special__img">
-      <div class="card-body text-center">
-        <h2 class="card-text">Especial del dia 1</h2>
-        <span class="card-text">S/ 10.00</span>
-      </div>
-      <div class="card-body text-center">
-        <button type="button" class="btn btn-warning">Enviar al Carrito
-          <i class="fas fa-cart-plus"></i>
-        </button>
-      </div>
-    </div>
-    <div class="card grid-elem">
-      <img src="img/plato2.jpg" alt="" class="card-img-top today-special__img">
-      <div class="card-body text-center">
-        <h2 class="card-text">Especial del dia 1</h2>
-        <span class="card-text">S/ 10.00</span>
-      </div>
-      <div class="card-body text-center">
-        <button type="button" class="btn btn-warning">Enviar al Carrito
-          <i class="fas fa-cart-plus"></i>
-        </button>
-      </div>
-    </div>
-    <div class="card grid-elem">
-      <img src="img/plato2.jpg" alt="" class="card-img-top today-special__img">
-      <div class="card-body text-center">
-        <h2 class="card-text">Especial del dia 1</h2>
-        <span class="card-text">S/ 10.00</span>
-      </div>
-      <div class="card-body text-center">
-        <button type="button" class="btn btn-warning">Enviar al Carrito
-          <i class="fas fa-cart-plus"></i>
-        </button>
-      </div>
-    </div>
-    </div>
+    {{/each}}
   </section>
