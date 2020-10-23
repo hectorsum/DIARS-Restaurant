@@ -1,40 +1,56 @@
 <div class="mantener-productos animate__animated animate__zoomInDown">
-  <div class="title">
-      <div class="title-label">
-        <i class="fas fa-hamburger"></i>
+  <div class="mantener-header form-inline">
+    <div class="title m-0 form-inline">
+      <div class="title-label form-inline">
+        <i class="fas fa-hamburger mr-2"></i>
         <label>Mantener Segundo</label>
       </div>
-      <a href="/mantener-segundo/add" id="add-mantener-producto-btn" onclick="popup_add_producto()">
+      <a href="/mantener-segundo/add" id="add-mantener-producto-btn">
         <button type="button" class="btn btn-success btn-sm">
           <i class="fas fa-plus"></i>
         </button>
       </a>
     </div>
+    <div class="input-search-container">
+      <table class="input-search-container-elements">
+        <tr>
+          <td>
+            <input autocomplete="off" type="text" placeholder="Filtrar por Nombre" id="search-input">
+          </td>
+          <td>
+            <i class="fas fa-search"></i>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
   <div class="row mx-auto mt-2 table-fixed table-fixed-2">
     <table class="table table-sm">
       <thead class="thead-dark">
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Nombre Segundo</th>
+          <th scope="col">Nombre</th>
           <th scope="col">Precio</th>
           <th scope="col">Stock</th>
+          <th scope="col">Imagen</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody id="table">
-        {{#each segundo}}
+        {{#each carta}}
         <tr>
           <td scope="row">{{index @index}}</td>
-          <td>{{nombre_segundo}}</td>
+          <td>{{nombre}}</td>
           <td>{{money precio}}</td>
-          <td>{{stock_total}}</td>
+          <td>{{stock}}</td>
+          <td><img src="uploads/{{pathname}}"></td>
           <td id="action-buttons">
-            <a href="/mantener-segundo/edit/{{cod_segundo}}">
+            <a href="/mantener-segundo/edit/{{cod_carta}}">
               <button id="edit_button" type="button" class="btn btn-primary btn-sm">
                 <i class="fas fa-edit"></i>
               </button>
             </a>
-            <a href="/mantener-segundo/delete/{{cod_segundo}}">
+            <a href="/mantener-segundo/delete/{{cod_carta}}">
               <button type="button" class="btn btn-danger btn-sm">
                 <i class="fas fa-trash-alt"></i>
               </button>
@@ -47,3 +63,19 @@
     </table>
   </div>
 </div>
+<script>
+  const searchbar = document.getElementById('search-input');
+  searchbar.addEventListener('keyup', () => {
+    const term = searchbar.value.toLowerCase();
+    const table = document.getElementById('table');
+    const rows = table.getElementsByTagName('tr');
+    Array.from(rows).forEach((rows) => {
+      const name = rows.children[1].textContent;
+      if (name.toLowerCase().indexOf(term) != -1) {
+        rows.style.display = 'table-row';
+      } else {
+        rows.style.display = 'none';
+      }
+    });
+  })
+</script>
