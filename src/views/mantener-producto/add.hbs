@@ -9,24 +9,31 @@
           </div>
         </div>
         <div class="wrapper-content">
-          <div class="inputs form-group">
-            <label>Producto</label>
-            <input autocomplete="off" name="nombre" class="form-control" type="text" required>
-            <label>Precio</label>
-            <input autocomplete="off" step="0.01" type="number" class="form-control" name="precio" required>
-            <label>Stock</label>
-            <input autocomplete="off" name="stock" class="form-control" type="number" required>
-            <label>Imagen Producto</label>
-            <div class="custom-file">
-              <input type="file" name="image" class="custom-file-input" accept="image/*" id="image" lang="es" required>
-              <label class="custom-file-label" for="image">Elegir Imagen</label>
+          <div class="inputs form-group mb-2">
+            <div class="form-group">
+              <label class="m-0">Producto</label>
+              <input autocomplete="off" name="nombre" class="form-control" type="text" required>
+            </div>
+            <div class="form-group">
+              <label class="m-0">Precio</label>
+              <input autocomplete="off" step="0.01" type="number" class="form-control" name="precio" required>
+            </div>
+            <div class="form-group">
+              <label class="m-0">Stock</label>
+              <input autocomplete="off" name="stock" class="form-control" type="number" required>
+            </div>
+            <div class="form-group">
+              <label class="m-0">Imagen Producto</label>
+              <div class="custom-file">
+                <input type="file" name="image" class="custom-file-input" accept="image/*" id="image" lang="es" required>
+                <label class="custom-file-label" for="image">Elegir Imagen</label>
+              </div>
             </div>
           </div>
         </div>
         <div class="button-wrapper">
           <div class="form-group mt-2 mr-1 btnCancelar">
-            <a class="btn btn-danger close-popup-mantener-producto" href="/mantener-producto"
-              onclick="popup_close_producto()">Cancelar</a>
+            <a class="btn btn-danger close-popup-mantener-producto" href="/mantener-producto">Cancelar</a>
           </div>
           <div class="form-group mt-2 btnRegistrar">
             <button class="btn btn-success" type="submit">Agregar Producto</button>
