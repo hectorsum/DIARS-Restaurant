@@ -17,13 +17,13 @@
           <select class="custom-select" id="nombre_segundo">
             <option value="0" selected>--</option>
             {{#each segundo}}
-              <option value="{{cod_segundo}}">{{nombre_segundo}}</option>
+              <option value="{{cod_carta}}">{{nombre}}</option>
             {{/each}}
           </select>
         </div>
         <div class="col-md-5 mb-3">
           <label>Cant.Segundo</label>
-          <input class="form-control" placeholder="Cantidad" type="number" id="cant_segundo" value="0" min="1" maxlength="2" readonly>
+          <input class="form-control" placeholder="Cantidad" type="number" id="cant_segundo" value="0" min="1" maxlength="2" autocomplete="off" readonly>
         </div>
         <div class="col-md-2 m-0 d-flex align-items-strecht mb-3">
           <button class="btn btn-outline-primary agregar-segundo" disabled>
@@ -37,13 +37,13 @@
           <select class="custom-select" id="nombre_entrada">
             <option value="0" selected>--</option>
           {{#each entrada}}
-            <option value="{{cod_entrada}}">{{nombre_entrada}}</option>
+            <option value="{{cod_carta}}">{{nombre}}</option>
           {{/each}}
         </select>
         </div>
         <div class="col-md-5 mb-3">
           <label>Cant.Entrada</label>
-          <input class="form-control" placeholder="Cantidad" type="number" id="cant_entrada" value="0" min="1" maxlength="2" readonly>
+          <input class="form-control" placeholder="Cantidad" type="number" id="cant_entrada" value="0" min="1" maxlength="2" autocomplete="off" readonly>
         </div>
         <div class="col-md-2 m-0 d-flex align-items-strecht mb-3">
           <button class="btn btn-outline-primary agregar-entrada" disabled>
@@ -58,13 +58,13 @@
           <select class="custom-select" id="nombre_producto">
             <option value="0" selected>--</option>
             {{#each producto}}
-            <option value="{{cod_prod}}">{{nombre_producto}}</option>
+            <option value="{{cod_carta}}">{{nombre}}</option>
             {{/each}}
           </select>
         </div>
         <div class="col-md-5 mb-3">
           <label>Cant.Producto</label>
-          <input class="form-control" placeholder="Cantidad" type="number" id="cant_producto" value="0" min="1" maxlength="2" readonly>
+          <input class="form-control" placeholder="Cantidad" type="number" id="cant_producto" value="0" min="1" maxlength="2" autocomplete="off" readonly>
         </div>
         <div class="col-md-2 m-0 d-flex align-items-strecht mb-3">
           <button class="btn btn-outline-primary agregar-producto" disabled>
@@ -78,15 +78,16 @@
         <table id="lista-carrito-comanda" class="table table-active table-sm table-hover" style="table-layout: fixed;">
             <thead class="thead-dark">
                 <tr>
-                    <th style="width: 50%">Nombre</th>
-                    <th style="width: 40%">Cantidad</th>
-                    <th style="width: 10%"></th>
+                    <th style="width: 50%; text-align: center;">Nombre</th>
+                    <th style="width: 40%; text-align: center;">Cantidad</th>
+                    <th style="width: 10%; text-align: center;"></th>
                 </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Gaseosa Inka Cola 500ml</td>
-                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td>
                     <button type="button" class="close" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
@@ -108,30 +109,24 @@
           <th scope="col">#</th>
           <th scope="col">Fecha</th>
           <th scope="col">Num.Mesa</th>
-          <th scope="col">Menu.Segundo</th>
-          <th scope="col">Menu.Entrada</th>
-          <th scope="col">Productos</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody id="table">
-        {{#each venta}}
+        {{#each comanda}}
         <tr>
           <th scope="row">{{cod_ven}}</th>
           <td>{{formatdaytime fecha_venta}}</td>
-          <td>{{nombre}}</td>
-          <td>{{estado_pago}} <br> Aji de Gallina</td>
-          <td>{{money valor}} <br> Caldo de Pollo</td>
-          <td>{{money monto_total}} <br> Gaseosa Inka Cola</td>
+          <td>{{num_mesa}}</td>
           <td>
-            <a href="/generar-cuenta/edit/{{cod_ven}}">
-              <button type="button" class="btn btn-primary btn-sm">
-                <i class="fas fa-edit"></i>
+            <a href="/registrar-comanda/view/{{cod_ven}}">
+              <button type="button" class="btn btn-success btn-sm">
+                <i class="far fa-list-alt"></i>
               </button>
             </a>
-            <a target="_blank" href="/generar-cuenta/print/{{cod_ven}}">
-              <button type="button" class="btn btn-secondary btn-sm">
-                <i class="fas fa-print"></i>
+            <a href="/registrar-comanda/edit/{{cod_ven}}">
+              <button type="button" class="btn btn-primary btn-sm">
+                <i class="fas fa-edit"></i>
               </button>
             </a>
           </td>
