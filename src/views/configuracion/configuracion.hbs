@@ -1,7 +1,7 @@
 <div class="mantener-productos">
   <div class="popup-mantener">
     <div class="wrapper-total content-mantener-producto animate__animated animate__bounceInUp">
-      <form class="form-body" action="/configuracion/" method="POST">
+      <form class="form-body" action="/configuracion/" method="POST" enctype="multipart/form-data">
         <div class="mantener-heading mb-2">
           <div style="display:flex; align-items:center;">
             <h1 class="m-0 mr-2">Configuración</h1>
@@ -13,6 +13,7 @@
             <input autocomplete="off" name="nombre_restaurant" class="form-control" placeholder="Nombre Restaurant" type="text" value="{{configuracion.nombre_restaurant}}">
             <input autocomplete="off" name="direccion" class="form-control" placeholder="Dirección" type="text" value="{{configuracion.direccion}}">
             <input autocomplete="off" name="email" class="form-control" placeholder="Email" type="email" value="{{configuracion.email}}">
+            <input autocomplete="off" name="igv" class="form-control" placeholder="IGV Monto" type="number" step="0.01" value="{{configuracion.igv}}">
             <input name="hidden_departamento" type="text" id="hidden_departamento" hidden>
             <select name="id_departamento" id="seleccionar-departamento" class="custom-select">
               <option value="{{configuracion.id_departamento}}" selected>{{configuracion.departamento}}</option>
@@ -25,6 +26,16 @@
             <select name="id_distrito" id="seleccionar-distrito" class="custom-select">
               <option value="{{configuracion.id_distrito}}" selected>{{configuracion.distrito}}</option>
             </select>
+            <div class="form-group">
+              <label class="m-0">Logo</label>
+              <div class="custom-file">
+                <input type="file" name="image" class="custom-file-input" accept="image/*" id="image" lang="es" required>
+                <label class="custom-file-label" for="image">{{configuracion.pathname}}</label>
+              </div>
+              <div class="form-group col d-flex justify-content-center">
+                <img class="mb-0" src="../../uploads/{{configuracion.pathname}}" alt="No image" height="100px">
+              </div>
+            </div>
           </div>
         </div>
         <div class="button-wrapper">
