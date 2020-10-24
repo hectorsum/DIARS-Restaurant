@@ -5,23 +5,23 @@ const {isnotlogedin} = require('../lib/out');
 
 router.get('/',isnotlogedin,async(req,res)=>{
   //*Querying tables
-  const venta = await pool.query("SELECT `venta`.*, `tipo_pago`.`nombre` FROM `venta` LEFT JOIN `tipo_pago` ON `venta`.`cod_tipo_pago` = `tipo_pago`.`cod_tipo_pago` ORDER BY `venta`.`cod_ven` DESC")
-  const entrada = await pool.query('SELECT * FROM entrada')
-  const segundo = await pool.query('SELECT * FROM segundo')
-  const producto = await pool.query('SELECT * FROM producto')
-  const tipo_pago = await pool.query('SELECT * FROM tipo_pago')
-  const usuario_emp = await pool.query("SELECT `usuario_emp`.`cod_emp`, `empleado`.`nombres`, `empleado`.`apellidos` FROM `usuario_emp` LEFT JOIN `empleado` ON `usuario_emp`.`cod_emp` = `empleado`.`cod_emp`")
-  res.render('registrar-comanda/registrar-comanda',{venta,entrada,segundo,producto,tipo_pago,usuario_emp});
+  const entrada = await pool.query("SELECT * FROM carta WHERE categoria LIKE 'entrada' and estado=1")
+  const segundo = await pool.query("SELECT * FROM carta WHERE categoria LIKE 'segundo' and estado=1")
+  const producto = await pool.query("SELECT * FROM carta WHERE categoria LIKE 'producto' and estado=1")
+  const comanda = await pool.query("SELECT * FROM venta");
+  res.render('registrar-comanda/registrar-comanda',{entrada,segundo,producto,comanda});
 })
+
 router.post('/',isnotlogedin,async(req,res)=>{
   console.log(req.body);
-  const {num_mesa,nombre_segundo,cant_segundo,nombre_entrada,cant_entrada,nombre_producto,cant_producto} = req.body;
-  let segundo_object = [];
-  for(let i=0;i<nombre_segundo.length;i++){
-    console.log(nombre_segundo[i])
-    for (let j=i;j<cant_segundo.length;j++){
-      console.log(cant_segundo[j])
-    }
-  }
+  const {num_mesa,nombre_segundo,nombre_entrada} = req.body;
+})
+
+router.get('/view/:cod_ven',isnotlogedin,async(req,res)=>{
+  const {cod_ven} = req.params;
+  const comanda = await pool.query("SELECT `venta`.`cod_ven`,`venta`.`num_mesa`,`venta`.`fecha_venta`, `carta`.`nombre`,COUNT(`detalle_carta`.`cod_carta`) AS cantidad, `carta`.`categoria`,`carta`.`pathname` FROM `venta` LEFT JOIN `detalle_carta` ON `detalle_carta`.`cod_ven` = `venta`.`cod_ven` LEFT JOIN `carta` ON `detalle_carta`.`cod_carta` = `carta`.`cod_carta` WHERE `venta`.`cod_ven`=? GROUP BY `carta`.`nombre`",[cod_ven]);
+  const venta = await pool.query("SELECT num_mesa FROM venta WHERE cod_ven=?",[cod_ven])
+  console.log(comanda);
+  res.render('registrar-comanda/view',{comanda,venta:venta[0]});
 })
 module.exports = router;
