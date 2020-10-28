@@ -1,0 +1,253 @@
+<div class="wrapper-comanda animate__animated animate__zoomInDown form-inline">
+  <form class="registrar-comanda-form form-inline" action="/registrar-comanda/edit/{{venta.cod_ven}}" method="POST">
+    <div class="registrar-comanda-inputs col-md-6" id="lista-comanda">
+      <div class="form-row">
+        <div class="col-md-5 mb-3">
+          <label class="m-0">Num.Mesa</label>
+          <input name="num_mesa" type="number" class="form-control" maxlength="2" min="1" value="{{venta.num_mesa}}" style="text-align: center; font-weight: bold;" readonly>
+        </div>
+        <div class="col-md-5 mb-3">
+          <label>Fecha</label>
+          <input type="number" class="form-control" placeholder="{{formatdaytime venta.fecha_venta}}" style="text-align: center; font-weight: bold;" readonly>
+        </div>
+      </div>
+      <div class="form-row segundo">
+        <div class="col-md-5 mb-3">
+          <label>Menu - Segundo</label>
+          <select class="custom-select" id="nombre_segundo">
+            <option value="0" selected>--</option>
+            {{#each segundo}}
+              <option value="{{cod_carta}}">{{nombre}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div class="col-md-5 mb-3">
+          <label>Cant.Segundo</label>
+          <input class="form-control" placeholder="Cantidad" type="number" id="cant_segundo" value="0" min="1" maxlength="2" autocomplete="off" readonly>
+        </div>
+        <div class="col-md-2 m-0 d-flex align-items-strecht mb-3">
+          <button class="btn btn-outline-primary agregar-segundo" disabled>
+            <i class="fas fa-cart-plus fa-lg"></i>
+          </button>
+        </div>
+      </div>
+      <div class="form-row entrada">
+        <div class="col-md-5 mb-3">
+          <label>Menu - Entrada</label>
+          <select class="custom-select" id="nombre_entrada">
+            <option value="0" selected>--</option>
+          {{#each entrada}}
+            <option value="{{cod_carta}}">{{nombre}}</option>
+          {{/each}}
+        </select>
+        </div>
+        <div class="col-md-5 mb-3">
+          <label>Cant.Entrada</label>
+          <input class="form-control" placeholder="Cantidad" type="number" id="cant_entrada" value="0" min="1" maxlength="2" autocomplete="off" readonly>
+        </div>
+        <div class="col-md-2 m-0 d-flex align-items-strecht mb-3">
+          <button class="btn btn-outline-primary agregar-entrada" disabled>
+            <i class="fas fa-cart-plus fa-lg"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-row producto">
+        <div class="col-md-5 mb-3">
+          <label for="nombre_producto">Producto</label>
+          <select class="custom-select" id="nombre_producto">
+            <option value="0" selected>--</option>
+            {{#each producto}}
+            <option value="{{cod_carta}}">{{nombre}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div class="col-md-5 mb-3">
+          <label>Cant.Producto</label>
+          <input class="form-control" placeholder="Cantidad" type="number" id="cant_producto" value="0" min="1" maxlength="2" autocomplete="off" readonly>
+        </div>
+        <div class="col-md-2 m-0 d-flex align-items-strecht mb-3">
+          <button class="btn btn-outline-primary agregar-producto" disabled>
+            <i class="fas fa-cart-plus fa-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-6 m-0">
+      <div class="form-group mb-2 table-responsive table-fixed table-fixed-2" id="carrito-comanda">                              
+        <table id="lista-carrito-comanda" class="table table-active table-sm table-hover" style="table-layout: fixed;">
+            <thead class="thead-dark">
+                <tr>
+                    <th style="width: 50%; text-align: center;">Nombre</th>
+                    <th style="width: 40%; text-align: center;">Cantidad</th>
+                    <th style="width: 10%; text-align: center;"></th>
+                </tr>
+            </thead>
+            <tbody style="text-align: center;">
+              {{#each comanda}}
+                <tr>
+                  <td><input name="nombre" type="text" value="{{nombre}}" readonly></td>
+                  <td><input name="cantidad" type="text" value="{{cantidad}}" readonly></td>
+                  <td>
+                    <button type="button" class="close borrar_fila" aria-label="Close" data-id="{{nombre}}">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+        </table>
+      </div>
+      <div class="form-group btnRegistrar mb-2">
+        <button type="submit" class="btn btn-success btn-block" type="submit">Modificar Comanda</button>
+      </div>
+      <div class="mr-1 form-group btnCancelar">
+        <a class="btn btn-danger btn-block" href="/registrar-comanda">Cancelar</a>
+      </div>
+    </div>
+  </form>
+</div>
+<script>
+  const carrito_comanda = document.querySelector('#carrito-comanda');
+  const contenedorCarritoComanda = document.querySelector('#lista-carrito-comanda tbody');
+  const listaComanda = document.querySelector('#lista-comanda');
+  const date_input = document.querySelector('#date');
+  let articulosComanda = []
+  
+  const tbody_content = document.querySelector('tbody').children;
+  for(let i = 0; i<tbody_content.length;i++){
+    articulosComanda.push({nombre:tbody_content[i].children[0].children[0].value,cantidad:tbody_content[i].children[1].children[0].value})
+  }
+  console.log(articulosComanda);
+  cargarEventListeners();
+  function cargarEventListeners(){
+    // Events
+    listaComanda.addEventListener('click',agregarFila);
+    listaComanda.addEventListener('change',onChange);
+    listaComanda.addEventListener('keypress',onTyping);
+    listaComanda.addEventListener('input',onInput);
+    carrito_comanda.addEventListener('click', eliminarFila);
+  }
+  function onInput(e){
+    const row_inputs = e.target.parentElement.parentElement;
+    const input = row_inputs.querySelector('input');
+    if (input.value.length > input.maxLength){
+      input.value = input.value.slice(0, input.maxLength); //limit from 0 to max.length
+    }
+    if (input.value>20){
+      console.log('greater than 20')
+      input.value = 1
+      e.preventDefault();
+    }
+  }
+  function onTyping(e){
+      const row_inputs = e.target.parentElement.parentElement;
+      const regex_allowed = /[1-9\/]+/;
+      const input = row_inputs.querySelector('input');
+      console.log(e)
+      if (!regex_allowed.test(e.key)){
+        console.log('applying regex')
+        e.preventDefault();
+      }
+  }
+  function onChange(e){
+    if(e.target.classList.contains('custom-select')){
+      const row_inputs = e.target.parentElement.parentElement;
+      disablingBoxes(row_inputs);
+    }
+  }
+  function disablingBoxes(row){
+    const select_tag = row.querySelector('select');
+    const value_from_select = select_tag.options[select_tag.selectedIndex].value;
+    const cantidad = row.querySelector('input');
+    const button = row.querySelector('button');
+    switch(value_from_select){
+      case '0': //option value == 0
+        console.log('disabled')
+        disableAll(row)
+        break;
+      default:
+        cantidad.removeAttribute('readonly');
+        cantidad.value = 1;
+        button.removeAttribute('disabled');
+        break;
+      }
+  }
+  function disableAll(row){
+    const select_tag = row.querySelector('select');
+    const value_from_select = select_tag.options[select_tag.selectedIndex].value;
+    const cantidad = row.querySelector('input');
+    const button = row.querySelector('button');
+    select_tag.selectedIndex = '0';
+    cantidad.value = 0;
+    cantidad.setAttribute('readonly',true);
+    button.setAttribute('disabled',true);
+  }
+  function agregarFila(e){
+    e.preventDefault();
+    if (e.target.classList.contains('btn')){ //Detect if there's any btn (bootstrap button)
+      const row_combo_box = e.target.parentElement.parentElement;
+      leerDatosComboBoxes(row_combo_box);
+      disableAll(row_combo_box);
+    }
+  }
+  function eliminarFila(e){
+    if(e.target.classList.contains('borrar_fila')){
+      const row_nombre = e.target.getAttribute('data-id');
+      articulosComanda = articulosComanda.filter(row => row.nombre !== row_nombre); //Prints everything excepts the one that is being clicked for deleting
+      console.log(articulosComanda);
+      carrito_comanda_HTML();
+    }
+  }
+  function leerDatosComboBoxes(row_combo_box){
+    const nombre_combo_box = row_combo_box.querySelector('select');
+    //Getting string values
+    const nombre = nombre_combo_box.options[nombre_combo_box.selectedIndex].text;
+    const cantidad = row_combo_box.querySelector('input').value;
+    const get_data_boxes = {
+      nombre,
+      cantidad
+    }
+    console.log(get_data_boxes);
+    //Check if any elements already exists
+    const existe = articulosComanda.some(row => row.nombre === get_data_boxes.nombre);
+    if (existe){
+      //Update quantity
+      const row = articulosComanda.map(row => {
+        if(row.nombre === get_data_boxes.nombre){
+          row.cantidad = parseInt(row.cantidad)+parseInt(get_data_boxes.cantidad);
+          return row;
+        }else{
+          return row;
+        }
+      });
+      articulosComanda = [...row];
+    }else{
+      articulosComanda = [...articulosComanda,get_data_boxes]
+    }
+    carrito_comanda_HTML();
+  }
+  function carrito_comanda_HTML(){
+    limpiar_carrito_comanda_HTML();
+    articulosComanda.forEach(row => {
+      const {nombre,cantidad} = row;
+      const row_data = document.createElement('tr');
+      row_data.setAttribute('name','row-data');
+      row_data.innerHTML = `
+        <td><input name="nombre" type="text" value="${nombre}" readonly/></td>
+        <td><input name="cantidad" type="text" value="${cantidad}" readonly/></td>
+        <td>
+          <button type="button" class="close borrar_fila" aria-label="Close" data-id="${nombre}">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </td>
+      `;
+      contenedorCarritoComanda.appendChild(row_data);
+    });
+  }
+  function limpiar_carrito_comanda_HTML(){
+    while(contenedorCarritoComanda.firstChild){
+      contenedorCarritoComanda.removeChild(contenedorCarritoComanda.firstChild);
+    }
+  }
+</script>
