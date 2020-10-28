@@ -18,7 +18,9 @@ helpers.select = ('select', function(selected, options) {
 helpers.formatdaytime = (time)=>{
   return moment(time).format('DD/MM/YYYY HH:mm:ss')
 }
-
+helpers.formatdatetodb = (time)=>{
+  return moment(time).format('YYYY-MM-DD HH:mm:ss')
+}
 helpers.formatdate = (time)=>{
   return moment(time).format('DD/MM/YYYY')
 }
