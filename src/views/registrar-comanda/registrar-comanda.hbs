@@ -8,7 +8,7 @@
         </div>
         <div class="col-md-5 mb-3">
           <label>Fecha</label>
-          <input type="number" class="form-control" maxlength="2" min="1" id="date" readonly>
+          <input name="fecha" type="number" class="form-control" maxlength="2" min="1" id="date" readonly>
         </div>
       </div>
       <div class="form-row segundo">
@@ -127,6 +127,11 @@
             <a href="/registrar-comanda/edit/{{cod_ven}}">
               <button type="button" class="btn btn-primary btn-sm">
                 <i class="fas fa-edit"></i>
+              </button>
+            </a>
+            <a href="/registrar-comanda/delete/{{cod_ven}}" onclick="return confirm('¿Esta seguro que desea eliminar este elemento?');">
+              <button type="button" class="btn btn-danger btn-sm">
+                <i class="fas fa-trash-alt"></i>
               </button>
             </a>
           </td>
@@ -251,25 +256,11 @@
     }
   }
   function leerDatosComboBoxes(row_combo_box){
-    const validating = row_combo_box.classList.contains('entrada');
-    let row_type = "";
-    if (row_combo_box.classList.contains('entrada')){
-      row_type="entrada";
-    }
-    if (row_combo_box.classList.contains('segundo')){
-      row_type="segundo";
-    }
-    if (row_combo_box.classList.contains('producto')){
-      row_type="producto";
-    }
-    console.log(row_type);
     const nombre_combo_box = row_combo_box.querySelector('select');
     //Getting string values
     const nombre = nombre_combo_box.options[nombre_combo_box.selectedIndex].text;
     const cantidad = row_combo_box.querySelector('input').value;
-
     const get_data_boxes = {
-      row_type,
       nombre,
       cantidad
     }
@@ -295,12 +286,12 @@
   function carrito_comanda_HTML(){
     limpiar_carrito_comanda_HTML();
     articulosComanda.forEach(row => {
-      const {row_type,nombre,cantidad} = row;
+      const {nombre,cantidad} = row;
       const row_data = document.createElement('tr');
       row_data.setAttribute('name','row-data');
       row_data.innerHTML = `
-        <td><input name="nombre_${row_type}" type="text" value="${nombre}" readonly/></td>
-        <td><input name="cant_${row_type}" type="text" value="${cantidad}" readonly/></td>
+        <td><input name="nombre" type="text" value="${nombre}" readonly/></td>
+        <td><input name="cantidad" type="text" value="${cantidad}" readonly/></td>
         <td>
           <button type="button" class="close borrar_fila" aria-label="Close" data-id="${nombre}">
             <span aria-hidden="true">&times;</span>
@@ -310,7 +301,7 @@
       contenedorCarritoComanda.appendChild(row_data);
     });
     //Agregar al local-storage
-    sicronizarStorage();
+    //sicronizarStorage();
   }
   function sicronizarStorage(){
     localStorage.setItem('carrito-comanda',JSON.stringify(articulosComanda));
