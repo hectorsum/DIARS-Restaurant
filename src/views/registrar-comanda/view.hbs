@@ -4,8 +4,8 @@
         <div class="form-body">
           <h1 class="mantener-heading-buscar">Mesa Num.{{venta.num_mesa}}</h1>
           <a href="/registrar-comanda" id="close-popup" onclick="popup_close_producto()"><i class="fas fa-times"></i></a>
-          <div class="form-group col-md-6 m-0">
-            <div class="form-group mb-2 table-responsive" id="carrito-comanda">                              
+          <div class="form-group col-md-10 m-0">
+            <div class="form-group mb-2 table-responsive table-fixed table-fixed-2" id="carrito-comanda" style="width: 100%;">                              
               <table id="lista-carrito-comanda" class="table table-active table-sm table-hover" style="table-layout: fixed;">
                   <thead class="thead-dark">
                       <tr>
@@ -18,7 +18,7 @@
                     {{#each comanda}}
                       <tr>
                         <td>{{nombre}}</td>
-                        <td><img src="../../public/uploads/{{pathname}}"></td>
+                        <td><img src="/uploads/{{pathname}}" alt="No Image"></td>
                         <td>{{cantidad}}</td>
                       </tr>
                     {{/each}}
