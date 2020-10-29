@@ -5,6 +5,18 @@ const router = express.Router();
 const {islogedin,isnotlogedin} = require('../lib/out');
 const pdf = require('../lib/puppeteer');
 
+
+/*
+input > num_mesa 
+input > cajero
+input > fecha
+btn > elegir comanda
+input > subtotal, total
+cbo > seleccionar tipo pago
+cbo > tipo_comprobante
+input > razon social, direccion, num ruc
+*/
+
 router.get('/',isnotlogedin,async(req,res)=>{
   
   //*Querying tables

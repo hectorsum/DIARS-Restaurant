@@ -54,17 +54,25 @@ router.post('/',isnotlogedin,async(req,res)=>{
     res.redirect('/registrar-comanda')
   }
   const last_cod_ven = await pool.query("SELECT max(cod_ven) FROM venta;");
-  console.log('codigo: ',last_cod_ven);
-  array_nombres[0].forEach(async(val,index)=>{
-    console.log('begin inserting')
-    await pool.query("call insert_carrito_system(?,?)",[last_cod_ven[0]['max(cod_ven)'],val],(err,resp)=>{
-      if (err){
-        console.log(err);
-      }else{
-        console.log(resp);
-      }
+  const prices = [];
+  try{
+    array_nombres[0].forEach(async(val,index)=>{
+      const price = await pool.query("SELECT precio FROM carta WHERE nombre=?",[val]);
+      console.log(price);
+      prices.push(price[0]);
+      await pool.query("call insert_carrito_system(?,?)",[last_cod_ven[0]['max(cod_ven)'],val],(err,resp)=>{
+        if (err){
+          console.log(err);
+        }else{
+          console.log(resp);
+        }
+      });
     });
-  });
+  }catch(e){
+    req.flash('failure', 'Ingrese datos');
+    res.redirect('/registrar-comanda')
+  }
+  console.log('prices',prices);
   req.flash('success', 'Registrado Satisfactoriamente');
   res.redirect('/registrar-comanda')
 })
