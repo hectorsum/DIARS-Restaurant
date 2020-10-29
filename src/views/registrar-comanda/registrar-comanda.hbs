@@ -1,87 +1,91 @@
-<div class="wrapper-comanda animate__animated animate__zoomInDown form-inline">
-  <form class="registrar-comanda-form form-inline" action="/registrar-comanda" method="POST">
-    <div class="registrar-comanda-inputs col-md-6" id="lista-comanda">
-      <div class="form-row">
-        <div class="col-md-5 mb-3">
-          <label>Num.Mesa</label>
-          <input name="num_mesa" type="number" class="form-control" maxlength="2" min="1" required>
+<div class="wrapper-total animate__animated animate__zoomInDown">
+  <form class="form-body" action="/registrar-comanda" method="POST">
+    <div class="container d-flex">
+      <div class="col-6 p-0" id="lista-comanda">
+        <div class="form-row">
+          <div class="col-md-5 mb-3">
+            <label>Fecha</label>
+            <input name="fecha" type="number" class="form-control" maxlength="2" min="1" id="date" readonly>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label>Num.Mesa</label>
+            <input name="num_mesa" type="number" class="form-control" maxlength="2" min="1" required>
+          </div>
         </div>
-        <div class="col-md-5 mb-3">
-          <label>Fecha</label>
-          <input name="fecha" type="number" class="form-control" maxlength="2" min="1" id="date" readonly>
-        </div>
-      </div>
-      <div class="form-row segundo">
-        <div class="col-md-5 mb-3">
-          <label>Menu - Segundo</label>
-          <select class="custom-select" id="nombre_segundo">
-            <option value="0" selected>--</option>
-            {{#each segundo}}
+        <div class="form-row">
+          <div class="col-md-5 mb-3">
+            <label>Menu - Segundo</label>
+            <select class="custom-select" id="nombre_segundo">
+              <option value="0" selected>--</option>
+              {{#each segundo}}
               <option value="{{cod_carta}}">{{nombre}}</option>
-            {{/each}}
-          </select>
+              {{/each}}
+            </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label>Cant.Segundo</label>
+            <input class="form-control" placeholder="Cantidad" type="number" id="cant_segundo" value="0" min="1"
+              maxlength="2" autocomplete="off" readonly>
+          </div>
+          <div class="col-md-2 m-0 d-flex align-items-strecht mb-3">
+            <button class="btn btn-outline-primary agregar-segundo" style="width: 100%;" disabled>
+              <i class="fas fa-cart-plus fa-lg"></i>
+            </button>
+          </div>
         </div>
-        <div class="col-md-5 mb-3">
-          <label>Cant.Segundo</label>
-          <input class="form-control" placeholder="Cantidad" type="number" id="cant_segundo" value="0" min="1" maxlength="2" autocomplete="off" readonly>
+        <div class="form-row">
+          <div class="col-md-5 mb-3">
+            <label>Menu - Entrada</label>
+            <select class="custom-select" id="nombre_entrada">
+              <option value="0" selected>--</option>
+              {{#each entrada}}
+              <option value="{{cod_carta}}">{{nombre}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label>Cant.Entrada</label>
+            <input class="form-control" placeholder="Cantidad" type="number" id="cant_entrada" value="0" min="1"
+              maxlength="2" autocomplete="off" readonly>
+          </div>
+          <div class="col-md-2 m-0 d-flex align-items-strecht mb-3">
+            <button class="btn btn-outline-primary agregar-entrada" style="width: 100%;" disabled>
+              <i class="fas fa-cart-plus fa-lg"></i>
+            </button>
+          </div>
         </div>
-        <div class="col-md-2 m-0 d-flex align-items-strecht mb-3">
-          <button class="btn btn-outline-primary agregar-segundo" disabled>
-            <i class="fas fa-cart-plus fa-lg"></i>
-          </button>
-        </div>
-      </div>
-      <div class="form-row entrada">
-        <div class="col-md-5 mb-3">
-          <label>Menu - Entrada</label>
-          <select class="custom-select" id="nombre_entrada">
-            <option value="0" selected>--</option>
-          {{#each entrada}}
-            <option value="{{cod_carta}}">{{nombre}}</option>
-          {{/each}}
-        </select>
-        </div>
-        <div class="col-md-5 mb-3">
-          <label>Cant.Entrada</label>
-          <input class="form-control" placeholder="Cantidad" type="number" id="cant_entrada" value="0" min="1" maxlength="2" autocomplete="off" readonly>
-        </div>
-        <div class="col-md-2 m-0 d-flex align-items-strecht mb-3">
-          <button class="btn btn-outline-primary agregar-entrada" disabled>
-            <i class="fas fa-cart-plus fa-lg"></i>
-          </button>
-        </div>
-      </div>
 
-      <div class="form-row producto">
-        <div class="col-md-5 mb-3">
-          <label for="nombre_producto">Producto</label>
-          <select class="custom-select" id="nombre_producto">
-            <option value="0" selected>--</option>
-            {{#each producto}}
-            <option value="{{cod_carta}}">{{nombre}}</option>
-            {{/each}}
-          </select>
-        </div>
-        <div class="col-md-5 mb-3">
-          <label>Cant.Producto</label>
-          <input class="form-control" placeholder="Cantidad" type="number" id="cant_producto" value="0" min="1" maxlength="2" autocomplete="off" readonly>
-        </div>
-        <div class="col-md-2 m-0 d-flex align-items-strecht mb-3">
-          <button class="btn btn-outline-primary agregar-producto" disabled>
-            <i class="fas fa-cart-plus fa-lg"></i>
-          </button>
+        <div class="form-row producto">
+          <div class="col-md-5 mb-3">
+            <label for="nombre_producto">Producto</label>
+            <select class="custom-select" id="nombre_producto">
+              <option value="0" selected>--</option>
+              {{#each producto}}
+              <option value="{{cod_carta}}">{{nombre}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label>Cant.Producto</label>
+            <input class="form-control" placeholder="Cantidad" type="number" id="cant_producto" value="0" min="1"
+              maxlength="2" autocomplete="off" readonly>
+          </div>
+          <div class="col-md-2 m-0 d-flex align-items-strecht mb-3">
+            <button class="btn btn-outline-primary agregar-producto" style="width: 100%;" disabled>
+              <i class="fas fa-cart-plus fa-lg"></i>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="form-group col-md-6 m-0">
-      <div class="form-group mb-2 table-responsive" id="carrito-comanda">                              
-        <table id="lista-carrito-comanda" class="table table-active table-sm table-hover" style="table-layout: fixed;">
-            <thead class="thead-dark">
-                <tr>
-                    <th style="width: 50%; text-align: center;">Nombre</th>
-                    <th style="width: 40%; text-align: center;">Cantidad</th>
-                    <th style="width: 10%; text-align: center;"></th>
-                </tr>
+      <div class="col-6 p-0">
+        <div class="form-group mb-2" id="carrito-comanda">
+          <table id="lista-carrito-comanda" class="table-active table-sm table-hover" style="table-layout: fixed; width: 100%;" id="myTable">
+            <thead class="thead-dark" style="color:white;">
+              <tr>
+                <th style="width: 50%; text-align: center;">Nombre</th>
+                <th style="width: 40%; text-align: center;">Cantidad</th>
+                <th style="width: 10%; text-align: center;"></th>
+              </tr>
             </thead>
             <tbody>
               <tr>
@@ -89,58 +93,60 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <button type="button" class="close" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+                  <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                 </td>
               </tr>
             </tbody>
-        </table>
-      </div>
-      <div class="form-group btnRegistrar">
+          </table>
+        </div>
+
         <button type="submit" class="btn btn-success btn-block" type="submit">Registrar Comanda</button>
+
       </div>
-    </div>
   </form>
-  <div class="row mx-auto mt-2 table-fixed table-fixed-2">
-    <table class="table table-sm table-active">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Fecha</th>
-          <th scope="col">Num.Mesa</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody id="table">
-        {{#each comanda}}
-        <tr>
-          <th scope="row">{{cod_ven}}</th>
-          <td>{{formatdaytime fecha_venta}}</td>
-          <td>{{num_mesa}}</td>
-          <td>
-            <a href="/registrar-comanda/view/{{cod_ven}}">
-              <button type="button" class="btn btn-success btn-sm">
-                <i class="far fa-list-alt"></i>
-              </button>
-            </a>
-            <a href="/registrar-comanda/edit/{{cod_ven}}">
-              <button type="button" class="btn btn-primary btn-sm">
-                <i class="fas fa-edit"></i>
-              </button>
-            </a>
-            <a href="/registrar-comanda/delete/{{cod_ven}}" onclick="return confirm('¿Esta seguro que desea eliminar este elemento?');">
-              <button type="button" class="btn btn-danger btn-sm">
-                <i class="fas fa-trash-alt"></i>
-              </button>
-            </a>
-          </td>
-        </tr>
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
+</div>
+<div class="container">
+  <table class="display compact" id="myTable">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Num.Mesa</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each comanda}}
+      <tr>
+        <th scope="row">{{cod_ven}}</th>
+        <td>{{formatdaytime fecha_venta}}</td>
+        <td>{{num_mesa}}</td>
+        <td>
+          <a href="/registrar-comanda/view/{{cod_ven}}">
+            <button type="button" class="btn btn-success btn-sm">
+              <i class="far fa-list-alt"></i>
+            </button>
+          </a>
+          <a href="/registrar-comanda/edit/{{cod_ven}}">
+            <button type="button" class="btn btn-primary btn-sm">
+              <i class="fas fa-edit"></i>
+            </button>
+          </a>
+          <a href="/registrar-comanda/delete/{{cod_ven}}"
+            onclick="return confirm('¿Esta seguro que desea eliminar este elemento?');">
+            <button type="button" class="btn btn-danger btn-sm">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </a>
+        </td>
+      </tr>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
 </div>
 <script>
   const carrito_comanda = document.querySelector('#carrito-comanda');
@@ -149,24 +155,26 @@
   const date_input = document.querySelector('#date');
   let articulosComanda = []
   cargarEventListeners();
-  function cargarEventListeners(){
+
+  function cargarEventListeners() {
     // Events
-    listaComanda.addEventListener('click',agregarFila);
-    listaComanda.addEventListener('change',onChange);
-    listaComanda.addEventListener('keypress',onTyping);
-    listaComanda.addEventListener('input',onInput);
+    listaComanda.addEventListener('click', agregarFila);
+    listaComanda.addEventListener('change', onChange);
+    listaComanda.addEventListener('keypress', onTyping);
+    listaComanda.addEventListener('input', onInput);
     carrito_comanda.addEventListener('click', eliminarFila);
-    window.addEventListener('load',()=>{
-      setInterval(clock,1000);
+    window.addEventListener('load', () => {
+      setInterval(clock, 1000);
     });
     // Show LocalStorage items
-    document.addEventListener('DOMContentLoaded',()=>{
+    document.addEventListener('DOMContentLoaded', () => {
       //if there's nothing in localstorage, we add an empty array
-      articulosComanda = JSON.parse(localStorage.getItem('carrito-comanda')) || []; 
+      articulosComanda = JSON.parse(localStorage.getItem('carrito-comanda')) || [];
       carrito_comanda_HTML();
     })
   }
-  function clock(){
+
+  function clock() {
     var date = new Date();
     var day = date.getDate();
     var month = date.getMonth();
@@ -174,50 +182,54 @@
     var hour = date.getHours();
     var min = date.getMinutes();
     var sec = date.getSeconds();
-    
+
     //*Validations date (conditional - ternary operator)
-    var sec = (sec<10) ? `0${sec}` : sec;
-    var min = (min<10) ? `0${min}` : min;
-    var hour = (hour<10) ? `0${hour}`: hour;
+    var sec = (sec < 10) ? `0${sec}` : sec;
+    var min = (min < 10) ? `0${min}` : min;
+    var hour = (hour < 10) ? `0${hour}` : hour;
     //var month = (month<=10) ? `0${month+1}` : `${month+1}`; (Not working!!) 
-    var month = (month.length===1) ? `0${month+1}` : `${month+1}`;
+    var month = (month.length === 1) ? `0${month+1}` : `${month+1}`;
     const time = document.getElementById('date').placeholder = `${day}/${month}/${year} ${hour}:${min}:${sec}`
     return time;
   }
-  function onInput(e){
+
+  function onInput(e) {
     const row_inputs = e.target.parentElement.parentElement;
     const input = row_inputs.querySelector('input');
-    if (input.value.length > input.maxLength){
+    if (input.value.length > input.maxLength) {
       input.value = input.value.slice(0, input.maxLength); //limit from 0 to max.length
     }
-    if (input.value>20){
+    if (input.value > 20) {
       console.log('greater than 20')
       input.value = 1
       e.preventDefault();
     }
   }
-  function onTyping(e){
-      const row_inputs = e.target.parentElement.parentElement;
-      const regex_allowed = /[1-9\/]+/;
-      const input = row_inputs.querySelector('input');
-      console.log(e)
-      if (!regex_allowed.test(e.key)){
-        console.log('applying regex')
-        e.preventDefault();
-      }
+
+  function onTyping(e) {
+    const row_inputs = e.target.parentElement.parentElement;
+    const regex_allowed = /[1-9\/]+/;
+    const input = row_inputs.querySelector('input');
+    console.log(e)
+    if (!regex_allowed.test(e.key)) {
+      console.log('applying regex')
+      e.preventDefault();
+    }
   }
-  function onChange(e){
-    if(e.target.classList.contains('custom-select')){
+
+  function onChange(e) {
+    if (e.target.classList.contains('custom-select')) {
       const row_inputs = e.target.parentElement.parentElement;
       disablingBoxes(row_inputs);
     }
   }
-  function disablingBoxes(row){
+
+  function disablingBoxes(row) {
     const select_tag = row.querySelector('select');
     const value_from_select = select_tag.options[select_tag.selectedIndex].value;
     const cantidad = row.querySelector('input');
     const button = row.querySelector('button');
-    switch(value_from_select){
+    switch (value_from_select) {
       case '0': //option value == 0
         console.log('disabled')
         disableAll(row)
@@ -227,35 +239,40 @@
         cantidad.value = 1;
         button.removeAttribute('disabled');
         break;
-      }
+    }
   }
-  function disableAll(row){
+
+  function disableAll(row) {
     const select_tag = row.querySelector('select');
     const value_from_select = select_tag.options[select_tag.selectedIndex].value;
     const cantidad = row.querySelector('input');
     const button = row.querySelector('button');
     select_tag.selectedIndex = '0';
     cantidad.value = 0;
-    cantidad.setAttribute('readonly',true);
-    button.setAttribute('disabled',true);
+    cantidad.setAttribute('readonly', true);
+    button.setAttribute('disabled', true);
   }
-  function agregarFila(e){
+
+  function agregarFila(e) {
     e.preventDefault();
-    if (e.target.classList.contains('btn')){ //Detect if there's any btn (bootstrap button)
+    if (e.target.classList.contains('btn')) { //Detect if there's any btn (bootstrap button)
       const row_combo_box = e.target.parentElement.parentElement;
       leerDatosComboBoxes(row_combo_box);
       disableAll(row_combo_box);
     }
   }
-  function eliminarFila(e){
-    if(e.target.classList.contains('borrar_fila')){
+
+  function eliminarFila(e) {
+    if (e.target.classList.contains('borrar_fila')) {
       const row_nombre = e.target.getAttribute('data-id');
-      articulosComanda = articulosComanda.filter(row => row.nombre !== row_nombre); //Prints everything excepts the one that is being clicked for deleting
+      articulosComanda = articulosComanda.filter(row => row.nombre !==
+      row_nombre); //Prints everything excepts the one that is being clicked for deleting
       console.log(articulosComanda);
       carrito_comanda_HTML();
     }
   }
-  function leerDatosComboBoxes(row_combo_box){
+
+  function leerDatosComboBoxes(row_combo_box) {
     const nombre_combo_box = row_combo_box.querySelector('select');
     //Getting string values
     const nombre = nombre_combo_box.options[nombre_combo_box.selectedIndex].text;
@@ -267,28 +284,32 @@
     console.log(get_data_boxes);
     //Check if any elements already exists
     const existe = articulosComanda.some(row => row.nombre === get_data_boxes.nombre);
-    if (existe){
+    if (existe) {
       //Update quantity
       const row = articulosComanda.map(row => {
-        if(row.nombre === get_data_boxes.nombre){
-          row.cantidad = parseInt(row.cantidad)+parseInt(get_data_boxes.cantidad);
+        if (row.nombre === get_data_boxes.nombre) {
+          row.cantidad = parseInt(row.cantidad) + parseInt(get_data_boxes.cantidad);
           return row;
-        }else{
+        } else {
           return row;
         }
       });
       articulosComanda = [...row];
-    }else{
-      articulosComanda = [...articulosComanda,get_data_boxes]
+    } else {
+      articulosComanda = [...articulosComanda, get_data_boxes]
     }
     carrito_comanda_HTML();
   }
-  function carrito_comanda_HTML(){
+
+  function carrito_comanda_HTML() {
     limpiar_carrito_comanda_HTML();
     articulosComanda.forEach(row => {
-      const {nombre,cantidad} = row;
+      const {
+        nombre,
+        cantidad
+      } = row;
       const row_data = document.createElement('tr');
-      row_data.setAttribute('name','row-data');
+      row_data.setAttribute('name', 'row-data');
       row_data.innerHTML = `
         <td><input name="nombre" type="text" value="${nombre}" readonly/></td>
         <td><input name="cantidad" type="text" value="${cantidad}" readonly/></td>
@@ -303,11 +324,13 @@
     //Agregar al local-storage
     //sicronizarStorage();
   }
-  function sicronizarStorage(){
-    localStorage.setItem('carrito-comanda',JSON.stringify(articulosComanda));
+
+  function sicronizarStorage() {
+    localStorage.setItem('carrito-comanda', JSON.stringify(articulosComanda));
   }
-  function limpiar_carrito_comanda_HTML(){
-    while(contenedorCarritoComanda.firstChild){
+
+  function limpiar_carrito_comanda_HTML() {
+    while (contenedorCarritoComanda.firstChild) {
       contenedorCarritoComanda.removeChild(contenedorCarritoComanda.firstChild);
     }
   }
