@@ -55,3 +55,44 @@ function closeSidebar() {
 }
 document.getElementById('btn-opensidebar').addEventListener('click', openSidebar);
 document.getElementById('btn-closesidebar').addEventListener('click', closeSidebar);
+
+$(document).ready(function() {
+  $('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
+      $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+  } );
+  $('table.table').DataTable( {
+      "language":{
+        "url":"/json/dataTable-es.json"
+      },
+      scrollY:        200,
+      scrollCollapse: true,
+      paging:         true
+  } );
+
+  // Apply a search to the second table for the demo
+  //$('#myTable2').DataTable().search( 'New York' ).draw();
+} );
+
+$(document).ready( function () {
+  $('#myTable').DataTable({
+    "language":{
+      "url":"/json/dataTable-es.json"
+    },
+    "scrollY": "200px",
+    "scrollCollapse": true,
+    "paging": true,
+    responsive: {
+      breakpoints: [
+        {name: 'bigdesktop', width: Infinity},
+        {name: 'meddesktop', width: 1480},
+        {name: 'smalldesktop', width: 1280},
+        {name: 'medium', width: 1188},
+        {name: 'tabletl', width: 1024},
+        {name: 'btwtabllandp', width: 848},
+        {name: 'tabletp', width: 768},
+        {name: 'mobilel', width: 480},
+        {name: 'mobilep', width: 320}
+      ]
+    }
+  });
+});
