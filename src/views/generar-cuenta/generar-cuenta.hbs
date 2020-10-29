@@ -1,72 +1,95 @@
 <div class="wrapper-total animate__animated animate__zoomInDown">
   <form class="form-body" action="/generar-cuenta" method="POST">
-    <div class="wrapper-content">
-      <div class="wrapper-input1">
-        <div class="input-wrapper">
-          <select name="nombre_segundo" class="custom-select" id="nombre_segundo" onchange="changedSegundo()">
-            {{#each segundo}}
-              <option value="{{cod_segundo}}">{{nombre_segundo}}</option>
-            {{/each}}
-          </select>
-          <input name="cant_segundo" class="form-control" placeholder="Cantidad" type="number" min="0" max="10" id="cant_segundo" value="0" readonly>
-        </div>
-        <div class="input-wrapper">
-          <select name="nombre_entrada" class="custom-select" id="nombre_entrada" onchange="changedEntrada()">
-            {{#each entrada}}
-              <option value="{{cod_entrada}}">{{nombre_entrada}}</option>
-            {{/each}}
-          </select>
-          <input name="cant_entrada" class="form-control" placeholder="Cantidad" type="number" min="0" max="10" id="cant_entrada" value="0" readonly>
-        </div>
-        <div class="input-wrapper">
-          <select name="nombre_producto" class="custom-select" id="nombre_producto" onchange="changedProducto()">
-            {{#each producto}}
-            <option value="{{cod_prod}}">{{nombre_producto}}</option>
-            {{/each}}
-          </select>
-          <input name="cant_producto" class="form-control" placeholder="Cantidad" type="number" min="0" max="10" id="cant_producto" value="0" readonly>
-        </div>
-      </div>
-
-      <div class="wrapper-input2">
-        <input class="dato_user form-control" type="text" name="caja" value="{{user.nombres}} {{user.apellidos}}" readonly>
-
-        <select name="cod_tipo_pago" class="custom-select">
-          {{#each tipo_pago}}
-          <option value={{cod_tipo_pago}}>{{nombre}}</option>
-          {{/each}}
-        </select>
-        
-        <input id="date" type="text" class="fecha_actual form-control" readonly>
-        
+    <div class="container d-flex">
+      <div class="col-6 p-0">
         <div class="form-row">
-          <label>Tipo Comprobante</label>
-          <select name="cod_tipo_pago" class="custom-select m-0">
-            {{#each tipo_comprobante}}
-            <option value={{cod_tipo_comprobante}}>{{nombre}}</option>
-            {{/each}}
-          </select>
+          <div class="col-md-5 mb-3">
+            <label>Cajero</label>
+            <input class="dato_user form-control" type="text" name="caja" value="{{user.nombres}} {{user.apellidos}}" readonly>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label>Num.Mesa</label>
+            <input name="num_mesa" type="number" class="form-control" maxlength="2" min="1" required readonly>
+          </div>
+          <div class="col-md-2 m-0 d-flex justify-content mb-3">
+            <button class="btn btn-outline-success btn-lg">
+              <i class="fas fa-plus-circle"></i>
+            </button>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-5 mb-3">
+            <label>Fecha</label>
+            <input name="fecha" type="number" class="form-control" maxlength="2" min="1" id="date" readonly>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label>Subtotal</label>
+            <input name="subtotal" type="number" class="form-control" maxlength="2" min="1" readonly>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-5 mb-3">
+            <label>Tipo de Pago</label>
+            <select name="tipo_pago" class="custom-select">
+              {{#each tipo_pago}}
+                <option value="{{cod_tipo_pago}}">{{nombre}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label>Total</label>
+            <input name="total" type="number" class="form-control" maxlength="2" min="1" readonly>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="form-group btnRegistrar">
-      <button class="btn btn-success btn-block" type="submit">Registrar Venta</button>
+
+      <div class="col-6 p-0">
+        <div class="form-row">
+          <div class="col-md-5 mb-3">
+            <label>Tipo de Comprobante</label>
+            <select name="tipo_comprobante" class="custom-select" id="tipo_comprobante">
+              {{#each tipo_comprobante}}
+                <option value="{{cod_tipo_comprobante}}">{{nombre}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="col-md-7 mb-3">
+            <label>Razon Social</label>
+            <input name="razon_social" type="text" class="form-control" id="razon_social" readonly>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-5 mb-3">
+            <label>Numero Ruc</label>
+            <input name="razon_social" type="text" class="form-control" id="num_ruc" readonly>
+          </div>
+          <div class="col-md-7 mb-3">
+            <label>Direccion</label>
+            <input name="direccion" type="text" class="form-control" id="direccion" readonly>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-12">
+            <button class="btn btn-success btn-block" type="submit">Registrar Venta</button>
+          </div>
+        </div>
+      </div>
     </div>
   </form>
-  <div class="row mx-auto mt-2 table-fixed table-fixed-2">
-    <table class="table table-sm">
-      <thead class="thead-dark">
+  <div class="container">
+    <table class="display compact" id="myTable" style="width:100%">
+      <thead>
         <tr>
-          <th scope="col">Num.Ticket</th>
-          <th scope="col">Fecha</th>
-          <th scope="col">Tipo Pago</th>
-          <th scope="col">Estado Pago</th>
-          <th scope="col">Valor</th>
-          <th scope="col">Monto Total</th>
-          <th scope="col">Actions</th>
+          <th>Num.Ticket</th>
+          <th>Fecha</th>
+          <th>Tipo Pago</th>
+          <th>Estado Pago</th>
+          <th>Valor</th>
+          <th>Monto Total</th>
+          <th>Actions</th>
         </tr>
       </thead>
-      <tbody id="table">
+      <tbody>
         {{#each venta}}
         <tr>
           <td scope="row">{{cod_ven}}</td>
@@ -88,7 +111,6 @@
             </a>
           </td>
         </tr>
-        </tr>
         {{/each}}
       </tbody>
     </table>
@@ -96,12 +118,16 @@
 </div>
 <script>
   const date_input = document.querySelector('#date');
+  const cbo_tipo_comprobante = document.getElementById('tipo_comprobante');
+
   cargarEventListeners();
   function cargarEventListeners(){
     window.addEventListener('load',()=>{
       setInterval(clock,1000);
     });
+    cbo_tipo_comprobante.addEventListener('change',onChangeTipoComprobante);
   }
+
   function clock(){
     var date = new Date();
     var day = date.getDate();
@@ -119,5 +145,23 @@
     var month = (month.length===1) ? `0${month+1}` : `${month+1}`;
     const time = document.getElementById('date').placeholder = `${day}/${month}/${year} ${hour}:${min}:${sec}`
     return time;
+  }
+  function onChangeTipoComprobante(){
+    const value = cbo_tipo_comprobante.options[cbo_tipo_comprobante.selectedIndex].value;
+    const razon_social_input = document.getElementById('razon_social');
+    const num_ruc_input = document.getElementById('num_ruc');
+    const direccion_input = document.getElementById('direccion');
+    switch(value){
+      case '1':
+        razon_social_input.setAttribute('readonly',true);
+        num_ruc_input.setAttribute('readonly',true);
+        direccion_input.setAttribute('readonly',true);
+        break
+      case '2': //*** Value(2) Factura
+        razon_social_input.removeAttribute('readonly');
+        num_ruc_input.removeAttribute('readonly');
+        direccion_input.removeAttribute('readonly');
+        break
+    }
   }
 </script>
