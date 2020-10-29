@@ -1,0 +1,23 @@
+{
+  "sEmptyTable": "Tabla vacia",
+  "sInfo": "Mostrando _START_ de _END_ filas de _TOTAL_",
+  "sInfoEmpty": "0 de 0 filas",
+  "sInfoFiltered": "(Filtrado de _MAX_ filas)",
+  "sInfoPostFix": "",
+  "sInfoThousands": ".",
+  "sLengthMenu": "Mostrar _MENU_ filas",
+  "sLoadingRecords": "Cargando datos...",
+  "sProcessing": "Procesando...",
+  "sSearch": "Buscar",
+  "sZeroRecords": "No se encuentra ningun dato.",
+  "oPaginate": {
+    "sFirst": "Primero",
+    "sPrevious": "Previo",
+    "sNext": "Siguiente",
+    "sLast": "Ultimo"
+  },
+  "oAria": {
+    "sSortAscending": ": aktivieren, um Spalte aufsteigend zu sortieren",
+    "sSortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+  }
+}
