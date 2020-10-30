@@ -13,8 +13,10 @@
             <input autocomplete="off" class="form-control" placeholder="Empleado" type="text" id="empleado" readonly>
             <input autocomplete="off" name="dni" class="form-control" placeholder="DNI" type="text" id="dni" readonly>
             <input autocomplete="off" name="rol" class="form-control" placeholder="Rol" type="text" id="rol" readonly>
-            <input autocomplete="off" name="usuario" class="form-control" placeholder="Usuario" type="text" id="usuario" readonly>
-            <input autocomplete="off" name="password" type="password" class="form-control" placeholder="Password" id="password" readonly>
+            <input autocomplete="off" name="usuario" class="form-control" placeholder="Usuario" type="text" id="usuario"
+              readonly>
+            <input autocomplete="off" name="password" type="password" class="form-control" placeholder="Password"
+              id="password" readonly>
           </div>
         </div>
         <div class="button-wrapper">
@@ -31,7 +33,6 @@
   </div>
 
   {{!-- Buscar Producto --}}
-
   <div class="popup-add-producto">
     <div class="buscar-popup animate__animated animate__bounceInUp">
       <div class="form-body">
@@ -49,9 +50,10 @@
             </tr>
           </table>
         </div>
-        <div class="row mx-auto mt-2 table-fixed table-fixed-popup-buscar">
-          <table class="table table-sm">
-            <thead class="thead-dark">
+        <div class="row mx-auto mt-2 table-fixed table-fixed-popup-buscar"
+          style="background-color: #D3CCB8; color: #000;">
+          <table class="table-sm" style="width: 100%;">
+            <thead class="thead-dark" style="color: white;">
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Empleado</th>
@@ -76,45 +78,23 @@
               </tr>
               {{/each}}
             </tbody>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<script>
-  const searchbar = document.getElementById('search-input');
-  searchbar.addEventListener('keyup', () => {
-    const term = searchbar.value.toLowerCase();
-    const table = document.getElementById('table');
-    const rows = table.getElementsByTagName('tr');
-    Array.from(rows).forEach((rows) => {
-      const name = rows.children[1].textContent;
-      if (name.toLowerCase().indexOf(term) != -1) {
-        rows.style.display = 'table-row';
-      } else {
-        rows.style.display = 'none';
-      }
-    });
-  })
-
-
-  //Set worker-add user
-    try {
-      //Looking for button check
-        $(".popup-add-producto button").click(function () {
-            var row = $(this).closest("tr");
-            document.getElementById('empleado').value = row.find("td:eq(1)").text();
-            document.getElementById('dni').value = row.find("td:eq(2)").text();
-            document.getElementById('rol').value = row.find("td:eq(3)").text();
-            
-            document.getElementById('usuario').removeAttribute('readonly');
-            document.getElementById('usuario').setAttribute('required',true);
-            document.getElementById('password').removeAttribute('readonly');
-            document.getElementById('password').setAttribute('required',true);
-            
-            document.getElementById('btnAgregarUsuario').removeAttribute('disabled');
-
-            document.querySelector(".mantener-productos .popup-add-producto").style.display = "none";
-        });
-    } catch (error) {
-    }
-</script>
+  <script>
+    const searchbar = document.getElementById('search-input');
+    searchbar.addEventListener('keyup', () => {
+      const term = searchbar.value.toLowerCase();
+      const table = document.getElementById('table');
+      const rows = table.getElementsByTagName('tr');
+      Array.from(rows).forEach((rows) => {
+        const name = rows.children[1].textContent;
+        if (name.toLowerCase().indexOf(term) != -1) {
+          rows.style.display = 'table-row';
+        } else {
+          rows.style.display = 'none';
+        }
+      });
+    })
+  </script>
