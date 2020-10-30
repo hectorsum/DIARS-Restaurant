@@ -121,8 +121,7 @@ pre {
 
 .input-search-container {
   position: relative;
-  width: 30%;
-  height: 100%;
+  width: 80%;
   min-width: 15%;
   border-radius: 50px;
   border: 2px solid #000;
@@ -1066,29 +1065,6 @@ nav ul li:hover .nav-op {
       width: 50px;
       font-size: 25px;
       border-radius: 360px; }
-  .mantener-productos .popup-add-producto {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: none; }
-    .mantener-productos .popup-add-producto .content-mantener-producto {
-      height: 40vh;
-      width: 40vw;
-      border-radius: 15px;
-      background-color: #E4DCC7; }
-      .mantener-productos .popup-add-producto .content-mantener-producto .wrapper-content .inputs {
-        display: flex;
-        flex-direction: column;
-        width: 100%; }
-        .mantener-productos .popup-add-producto .content-mantener-producto .wrapper-content .inputs * {
-          margin: 5px 0px; }
-      .mantener-productos .popup-add-producto .content-mantener-producto .inputs-1 {
-        margin: 0px 5px 0px 0px; }
   .mantener-productos .popup-mantener {
     height: 100vh;
     width: 100%;
@@ -1150,6 +1126,29 @@ nav ul li:hover .nav-op {
     font-size: 25px;
     left: 95.5%;
     bottom: 90%; }
+
+.popup-add-producto {
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none; }
+  .popup-add-producto .content-mantener-producto {
+    height: 40vh;
+    width: 40vw;
+    border-radius: 15px;
+    background-color: #E4DCC7; }
+    .popup-add-producto .content-mantener-producto .wrapper-content .inputs {
+      display: flex;
+      flex-direction: column;
+      width: 100%; }
+      .popup-add-producto .content-mantener-producto .wrapper-content .inputs * {
+        margin: 5px 0px; }
+    .popup-add-producto .content-mantener-producto .inputs-1 {
+      margin: 0px 5px 0px 0px; }
 
 a {
   text-decoration: none; }
