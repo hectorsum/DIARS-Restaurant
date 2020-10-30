@@ -43,36 +43,34 @@ router.post('/',isnotlogedin,async(req,res)=>{
   // //*Getting timestamp
   const current_timestamp = await pool.query('SELECT CURRENT_TIMESTAMP');
   const fecha_venta = helpers.formatdatetodb(current_timestamp[0].CURRENT_TIMESTAMP);
-  console.log('parsed:',fecha_venta)
+  console.log('parsed:',fecha_venta);
+  const igv = await pool.query("SELECT igv FROM configuracion");
+  var subtotal = 0;
+  var total = 0;
+  for (let i = 0; i < array_nombres[0].length; i++) {
+    console.log(array_nombres[0][i])
+    const price = await pool.query("SELECT precio FROM carta WHERE nombre=?",[array_nombres[0][i]]);
+    subtotal += price[0].precio;
+  }
+  total = subtotal - (subtotal*igv[0].igv);
   
-
   //* Inserting data (validate if exists or not num_mesa state=1)
   try{
-    await pool.query("call validate_num_mesa_insertion(?,?)",[num_mesa,fecha_venta]);
+    console.log(subtotal,total)
+    await pool.query("call validate_num_mesa_insertion(?,?,?,?)",[num_mesa,fecha_venta,subtotal,total]);
   }catch(e){
     req.flash('failure', 'Elija una mesa diferente');
     res.redirect('/registrar-comanda')
   }
   const last_cod_ven = await pool.query("SELECT max(cod_ven) FROM venta;");
-  const prices = [];
   try{
     array_nombres[0].forEach(async(val,index)=>{
-      const price = await pool.query("SELECT precio FROM carta WHERE nombre=?",[val]);
-      console.log(price);
-      prices.push(price[0]);
-      await pool.query("call insert_carrito_system(?,?)",[last_cod_ven[0]['max(cod_ven)'],val],(err,resp)=>{
-        if (err){
-          console.log(err);
-        }else{
-          console.log(resp);
-        }
-      });
+      await pool.query("call insert_carrito_system(?,?)",[last_cod_ven[0]['max(cod_ven)'],val]);
     });
   }catch(e){
     req.flash('failure', 'Ingrese datos');
     res.redirect('/registrar-comanda')
   }
-  console.log('prices',prices);
   req.flash('success', 'Registrado Satisfactoriamente');
   res.redirect('/registrar-comanda')
 })
@@ -118,11 +116,17 @@ router.post('/edit/:cod_ven',async(req,res)=>{
     console.log('cadena: ',cadena_nombre);
   }
 
-  //* Getting timestamp
-  const current_timestamp = await pool.query('SELECT CURRENT_TIMESTAMP');
-  const fecha_venta = helpers.formatdatetodb(current_timestamp[0].CURRENT_TIMESTAMP);
-  console.log('parsed:',fecha_venta)
-  
+  const igv = await pool.query("SELECT igv FROM configuracion");
+  var subtotal = 0;
+  var total = 0;
+  for (let i = 0; i < array_nombres[0].length; i++) {
+    console.log(array_nombres[0][i])
+    const price = await pool.query("SELECT precio FROM carta WHERE nombre=?",[array_nombres[0][i]]);
+    subtotal += price[0].precio;
+  }
+  total = subtotal - (subtotal*igv[0].igv);
+
+  await pool.query("UPDATE venta SET subtotal=?,total=? WHERE cod_ven=?",[subtotal,total,cod_ven]);
 
   //* Inserting data
   array_nombres[0].forEach(async(val,index)=>{
