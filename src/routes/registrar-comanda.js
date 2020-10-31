@@ -47,12 +47,17 @@ router.post('/',isnotlogedin,async(req,res)=>{
   const igv = await pool.query("SELECT igv FROM configuracion");
   var subtotal = 0;
   var total = 0;
-  for (let i = 0; i < array_nombres[0].length; i++) {
-    console.log(array_nombres[0][i])
-    const price = await pool.query("SELECT precio FROM carta WHERE nombre=?",[array_nombres[0][i]]);
-    subtotal += price[0].precio;
+  try{
+    for (let i = 0; i < array_nombres[0].length; i++) {
+      console.log(array_nombres[0][i])
+      const price = await pool.query("SELECT precio FROM carta WHERE nombre=?",[array_nombres[0][i]]);
+      subtotal += price[0].precio;
+    }
+    total = subtotal - (subtotal*igv[0].igv);
+  }catch(e){
+    req.flash('failure', 'Ingrese datos');
+    res.redirect('/registrar-comanda')
   }
-  total = subtotal - (subtotal*igv[0].igv);
   
   //* Inserting data (validate if exists or not num_mesa state=1)
   try{
