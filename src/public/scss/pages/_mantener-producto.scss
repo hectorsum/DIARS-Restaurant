@@ -7,41 +7,6 @@
   background-color: $system-background;
   height: 100vh;
   text-align: center;
-  & .mantener-header{
-    display: flex;
-    flex-direction: row;
-    width: 80%;
-    justify-content: space-between;
-    & *{
-      align-self: flex-end;
-    }
-  }
-  & .title {
-    color: black;
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    &-label{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-      & i{
-        align-self: center;
-      }
-    }
-
-    & a button {
-      margin: 0px 10px;
-      height: 50px;
-      width: 50px;
-      font-size: 25px;
-      border-radius: 360px;
-    }
-  }
 
   & .popup-mantener {
     height: 100vh;
@@ -148,5 +113,42 @@
     & .inputs-1{
       margin: 0px 5px 0px 0px;
     }
+  }
+}
+
+.wrapper-total{
+  & .mantener-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  & *{
+    align-self: flex-end;
+  }
+}
+& .title {
+  color: black;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  &-label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    & i{
+      align-self: center;
+    }
+  }
+
+  & a button {
+    margin: 0px 10px;
+    height: 50px;
+    width: 50px;
+    font-size: 25px;
+    border-radius: 360px;
+  }
   }
 }
