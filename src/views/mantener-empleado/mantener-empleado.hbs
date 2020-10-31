@@ -1,4 +1,4 @@
-<div class="mantener-productos animate__animated animate__zoomInDown">
+<div class="wrapper-total animate__animated animate__zoomInDown">
   <div class="mantener-header form-inline">
     <div class="title m-0 form-inline">
       <div class="title-label form-inline">
@@ -11,22 +11,10 @@
         </button>
       </a>
     </div>
-    <div class="input-search-container">
-      <table class="input-search-container-elements">
-        <tr>
-          <td>
-            <input autocomplete="off" type="text" placeholder="Filtrar por DNI" id="search-input">
-          </td>
-          <td>
-            <i class="fas fa-search"></i>
-          </td>
-        </tr>
-      </table>
-    </div>
   </div>
-  <div class="row mx-auto mt-2 table-fixed table-fixed-2">
-    <table class="table table-sm">
-      <thead class="thead-dark">
+  <div class="container">
+    <table class="display compact" id="myTable" style="width:100%; text-align: center;">
+      <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">Nombres</th>
@@ -54,7 +42,7 @@
                 <i class="fas fa-edit"></i>
               </button>
             </a>
-            <a href="/mantener-empleado/delete/{{cod_emp}}">
+            <a href="/mantener-empleado/delete/{{cod_emp}}" onclick="return confirm('¿Esta seguro que desea eliminar este elemento?');">
               <button type="button" class="btn btn-danger btn-sm">
                 <i class="fas fa-trash-alt"></i>
               </button>
@@ -67,19 +55,3 @@
     </table>
   </div>
 </div>
-<script>
-  const searchbar = document.getElementById('search-input');
-  searchbar.addEventListener('keyup', () => {
-    const term = searchbar.value.toLowerCase();
-    const table = document.getElementById('table');
-    const rows = table.getElementsByTagName('tr');
-    Array.from(rows).forEach((rows) => {
-      const name = rows.children[3].textContent;
-      if (name.toLowerCase().indexOf(term) != -1) {
-        rows.style.display = 'table-row';
-      } else {
-        rows.style.display = 'none';
-      }
-    });
-  })
-</script>
