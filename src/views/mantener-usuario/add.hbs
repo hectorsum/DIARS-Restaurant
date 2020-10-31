@@ -84,7 +84,34 @@
   </div>
   <script>
     const searchbar = document.getElementById('search-input');
-    searchbar.addEventListener('keyup', () => {
+    const btn_add_from_row = document.querySelectorAll('.popup-add-producto button');
+
+    cargarEventListeners();
+    function cargarEventListeners(){
+      searchbar.addEventListener('keyup',searchBar)
+      btn_add_from_row.forEach((val,index)=>{
+        val.addEventListener('click',onClickAddRow);
+      });
+    }
+    function onClickAddRow(evt){
+      var row = evt.target.closest('tr');
+      document.getElementById('empleado').value = row.children[1].innerText;
+      document.getElementById('dni').value = row.children[2].innerText;
+      document.getElementById('rol').value = row.children[3].innerText;
+      onClickRemoveReadOnly()
+      onClickPopupClose();
+    }
+    function onClickRemoveReadOnly(){
+      document.getElementById('usuario').removeAttribute('readonly');
+      document.getElementById('usuario').setAttribute('required',true);
+      document.getElementById('password').removeAttribute('readonly');
+      document.getElementById('password').setAttribute('required',true);
+      document.getElementById('btnAgregarUsuario').removeAttribute('disabled');
+    }
+    function onClickPopupClose(){
+      document.querySelector(".mantener-productos .popup-add-producto").style.display = "none";
+    }
+    function searchBar(){
       const term = searchbar.value.toLowerCase();
       const table = document.getElementById('table');
       const rows = table.getElementsByTagName('tr');
@@ -96,5 +123,8 @@
           rows.style.display = 'none';
         }
       });
-    })
+    }
+
+
+
   </script>
