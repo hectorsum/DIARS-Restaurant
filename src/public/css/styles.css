@@ -1037,34 +1037,6 @@ nav ul li:hover .nav-op {
   background-color: #E4DCC7;
   height: 100vh;
   text-align: center; }
-  .mantener-productos .mantener-header {
-    display: flex;
-    flex-direction: row;
-    width: 80%;
-    justify-content: space-between; }
-    .mantener-productos .mantener-header * {
-      align-self: flex-end; }
-  .mantener-productos .title {
-    color: black;
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    position: relative; }
-    .mantener-productos .title-label {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0; }
-      .mantener-productos .title-label i {
-        align-self: center; }
-    .mantener-productos .title a button {
-      margin: 0px 10px;
-      height: 50px;
-      width: 50px;
-      font-size: 25px;
-      border-radius: 360px; }
   .mantener-productos .popup-mantener {
     height: 100vh;
     width: 100%;
@@ -1149,6 +1121,35 @@ nav ul li:hover .nav-op {
         margin: 5px 0px; }
     .popup-add-producto .content-mantener-producto .inputs-1 {
       margin: 0px 5px 0px 0px; }
+
+.wrapper-total .mantener-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+  .wrapper-total .mantener-header * {
+    align-self: flex-end; }
+
+.wrapper-total .title {
+  color: black;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  position: relative; }
+  .wrapper-total .title-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0; }
+    .wrapper-total .title-label i {
+      align-self: center; }
+  .wrapper-total .title a button {
+    margin: 0px 10px;
+    height: 50px;
+    width: 50px;
+    font-size: 25px;
+    border-radius: 360px; }
 
 a {
   text-decoration: none; }
