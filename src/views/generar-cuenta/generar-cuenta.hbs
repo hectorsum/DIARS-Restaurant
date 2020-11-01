@@ -24,7 +24,7 @@
           </div>
           <div class="col-md-4 mb-3">
             <label>Subtotal</label>
-            <input name="subtotal" type="number" class="form-control" maxlength="2" min="1" id="subtotal" readonly>
+            <input name="subtotal" type="number" class="form-control" id="subtotal" readonly>
           </div>
         </div>
         <div class="form-row">
@@ -38,7 +38,7 @@
           </div>
           <div class="col-md-4 mb-3">
             <label>Total</label>
-            <input name="total" type="number" class="form-control" maxlength="2" min="1" id="total" readonly>
+            <input name="total" type="number" class="form-control" id="total" readonly>
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@
         <div class="form-row">
           <div class="col-md-5 mb-3">
             <label>Numero Ruc</label>
-            <input name="razon_social" type="text" class="form-control" id="num_ruc" readonly>
+            <input name="num_ruc" type="text" class="form-control" id="num_ruc" readonly>
           </div>
           <div class="col-md-7 mb-3">
             <label>Direccion</label>
@@ -94,10 +94,10 @@
         <tr>
           <td scope="row">{{cod_ven}}</td>
           <td>{{formatdaytime fecha_venta}}</td>
-          <td>{{nombre}}</td>
+          <td>{{nombre_tipo_pago}}</td>
           <td>{{estado_pago}}</td>
-          <td>{{money valor}}</td>
-          <td>{{money monto_total}}</td>
+          <td>{{toFixed subtotal}}</td>
+          <td>{{toFixed total}}</td>
           <td>
             <a href="/generar-cuenta/edit/{{cod_ven}}">
               <button type="button" class="btn btn-primary btn-sm">
@@ -154,8 +154,8 @@
                 <td scope="row">{{index @index}}</td>
                 <td>{{formatdaytime fecha_venta}}</td>
                 <td>{{num_mesa}}</td>
-                <td>{{money subtotal}}</td>
-                <td>{{money total}}</td>
+                <td>{{toFixed subtotal}}</td>
+                <td>{{toFixed total}}</td>
                 <td id="action-buttons">
                   <button type="button" class="btn btn-success btn-sm">
                     <i class="fas fa-check"></i>
@@ -189,9 +189,9 @@
   }
   function onClickAddRow(evt){
     var row = evt.target.closest('tr');
-    document.getElementById('num_mesa').placeholder = row.children[2].innerText;
-    document.getElementById('subtotal').placeholder = row.children[3].innerText;
-    document.getElementById('total').placeholder = row.children[4].innerText;
+    document.getElementById('num_mesa').value = row.children[2].innerText;
+    document.getElementById('subtotal').value = row.children[3].innerText;
+    document.getElementById('total').value = row.children[4].innerText;
     onClickPopupClose();
   }
   function onClickPopupOpen(){
