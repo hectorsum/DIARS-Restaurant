@@ -60,6 +60,7 @@ app.use('/mantener-segundo',require('./routes/mantener-segundo'));
 app.use('/mantener-empleado',require('./routes/mantener-empleado'));
 app.use('/mantener-usuario',require('./routes/mantener-usuario'));
 app.use('/registrar-comanda',require('./routes/registrar-comanda'));
+app.use(require('./routes/consultar-venta'));
 app.use(require('./routes/consultar-cliente'));
 app.use(require('./routes/configuracion'));
 app.use(require('./routes/index'));
