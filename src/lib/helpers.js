@@ -15,6 +15,10 @@ helpers.select = ('select', function(selected, options) {
       '$& selected="selected"');
 });
 
+helpers.toFixed = (elem)=>{
+  return elem.toFixed(2);
+}
+
 helpers.formatdaytime = (time)=>{
   return moment(time).format('DD/MM/YYYY HH:mm:ss')
 }
