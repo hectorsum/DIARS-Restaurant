@@ -66,6 +66,7 @@ app.use(require('./routes/configuracion'));
 app.use(require('./routes/index'));
 app.use(require('./routes/auth'));
 app.use(require('./routes/home'));
+app.use(require('./routes/nosotros'));
 
 //Public
 app.use(express.static(path.join(__dirname,'public')));

@@ -1,18 +1,37 @@
-<nav class="main-nav">
-    <div class="container--flex">
-      <!-- <span class="icon-menu" id="btnmenu"></span> -->
-      <ul class="menu" id="menu">
-        <li class="menu__item"><a href="/" class="menu__link menu__link--select">Inicio</a></li>
-        <li class="menu__item"><a href="nosotros.html" class="menu__link">Nosotros</a></li>
-        <li class="menu__item"><a href="carta.html" class="menu__link">Carta</a></li>
-        <li class="menu__item"><a href="delivery.html" class="menu__link">Delivery</a></li>
-        <li class="menu__item"><a href="contacto.html" class="menu__link">Contactanos</a></li>
-        <li class="menu__item"><a href="/signin" class="menu__link">Sign In</a></li>
-      </ul>
-      <div class="social-icon">
-        <a href="" class="social-icon__link"><i class="fab fa-facebook-f"></i></span></a>
-        <a href="" class="social-icon__link"><i class="fab fa-instagram"></i></span></a>
-        <a href="" class="social-icon__link"><i class="fas fa-envelope"></i></a>
-      </div>
-    </div>
-  </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a href="/" class="navbar-brand navbar-logo">
+    {{!-- <img src="img/logo.svg" alt="Imagen Logo" class="d-inline-block align-top" width="150px" height="100px"> --}}
+    Manos Nortenas
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">  
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!-- <span class="icon-menu" id="btnmenu"></span> -->
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+      <li class="nav-item"><a class="nav-link" href="/nosotros">Nosotros</a></li>
+      <li class="nav-item"><a class="nav-link" href="/delivery">Delivery</a></li>
+      <li class="nav-item"><a class="nav-link" href="/contacto">Contacto</a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Carta
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Menu</a>
+          <a class="dropdown-item" href="#">Productos</a>
+          <a class="dropdown-item" href="#">Entradas</a>
+        </div>
+      </li>
+      <li class="nav-item"><a class="nav-link" href="/signin">Sign In</a></li>
+    </ul>
+  </div>
+  <div class="social-icon">
+    <a href="" class="social-icon__link"><i class="fab fa-facebook-f"></i></a>
+    <a href="" class="social-icon__link"><i class="fab fa-instagram"></i></a>
+    <a href="" class="social-icon__link"><i class="fas fa-envelope"></i></a>
+  </div>
+</nav>
+
+
+
