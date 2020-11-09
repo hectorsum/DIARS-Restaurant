@@ -700,6 +700,8 @@ table.dataTable td {
   background-color: rgba(0, 0, 0, 0.4);
   flex-direction: column;
   width: 100%; }
+  .dropdown-container ul li a {
+    color: black; }
   .dropdown-container ul li a i {
     margin-right: 8px; }
   .dropdown-container ul li .child-dropdown {
@@ -798,6 +800,8 @@ nav ul li:hover .nav-op {
 .active-child-dropdown {
   background-color: rgba(0, 0, 0, 0.8);
   color: white; }
+  .active-child-dropdown * {
+    color: white; }
 
 .dropdown-container ul li .child-dropdown:hover {
   transition: all 0.5s ease;

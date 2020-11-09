@@ -1,149 +1,159 @@
-#btn-opensidebar{
-  // display: block;
-  position: absolute;
-  z-index: 2; //Put above anything
-  font-size: 40px;
-  margin: 20px 40px;
-  color: #000;
-  text-decoration: none;
+#btn-opensidebar {
+    // display: block;
+    position: absolute;
+    z-index: 2; //Put above anything
+    font-size: 40px;
+    margin: 20px 40px;
+    color: #000;
+    text-decoration: none;
 }
 
-#btn-closesidebar{
-  position: absolute;
-  z-index: 2;
-  left: 0;
-  margin: 20px 30px;
-  font-size: 40px;
-  color: #000;
-  text-decoration: none;
+#btn-closesidebar {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    margin: 20px 30px;
+    font-size: 40px;
+    color: #000;
+    text-decoration: none;
 }
-
 
 .dropdown-container {
-  display: none;
-  background-color: rgba(0, 0, 0, 0.4);
-  flex-direction: column;
-  width: 100%;
-  & ul li a i{
-    margin-right: 8px;
-  }
-  & ul li .child-dropdown{
+    display: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    flex-direction: column;
+    width: 100%;
+    & ul li a {
+        color: black;
+    }
+    & ul li a i {
+        margin-right: 8px;
+    }
+    & ul li .child-dropdown {
+        display: block;
+        padding-left: 70px;
+        font-size: 16px;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        line-height: 35px;
+        text-decoration: none;
+        & * {
+            cursor: pointer;
+            margin: 0;
+        }
+    }
+}
+
+.fa-caret-down {
+    float: right;
+    padding-right: 5px;
+}
+
+.sidebar {
+    background: $sidebar-background;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    width: $width-sidebar;
+    & .logo {
+        display: flex;
+        align-self: center;
+    }
+    & nav {
+        & ul {
+            padding: 0px;
+        }
+    }
+    & ul {
+        list-style: none;
+    }
+}
+
+nav ul li .nav-op {
     display: block;
-    padding-left: 70px;
-    font-size: 16px;
     width: 100%;
     height: 100%;
+    padding-left: 40px;
+    color: black;
     box-sizing: border-box;
-    line-height: 35px;
+    font-size: 20px;
+    line-height: 45px;
     text-decoration: none;
+    border-bottom: 1px solid #000;
+    & .icon-content {
+        display: flex;
+        align-items: center;
+        & #arrow {
+            margin-left: 60px;
+        }
+    }
+    & i {
+        margin-right: 5px;
+    }
     & * {
-      cursor: pointer;
-      margin: 0;
+        margin: 0px;
     }
-  }
-}
-.fa-caret-down {
-  float: right;
-  padding-right: 5px;
 }
 
-.sidebar{
-  background: $sidebar-background;
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
-  width: $width-sidebar;
-  & .logo{
-    display: flex;
-    align-self: center;
-  }
-  & nav{
-    & ul {
-      padding: 0px;
-    }
-  }
-  & ul{
-    list-style: none;
-  }
-}
-
-nav ul li .nav-op{
-  display: block;
-  width: 100%;
-  height: 100%;
-  padding-left: 40px;
-  color: black;
-  box-sizing: border-box;
-  font-size: 20px;
-  line-height: 45px;
-  text-decoration: none;
-  border-bottom: 1px solid #000;
-  & .icon-content{
-    display: flex;
-    align-items: center;
-    & #arrow{
-      margin-left: 60px;
-    }
-  }
-  & i{
-    margin-right: 5px;
-  }
-  & *{
-    margin: 0px;
-  }
-}
-nav ul li:hover .nav-op{
-  background: rgba(0,0,0,0.8);
-  color: white;
-  transition: all 0.3s ease;
-  padding-left: 50px;
-  & *{
-    cursor: pointer;
-  }
-}
-
-.btnSalir{
-  text-align: center;
-  padding: 10px;
-  font-size: $sidebar-fontsize;
-  background-color: #C82333;
-  color: white;
-  width: 100%;
-}
-.btnSalir:hover{
-  background-color: #a81a28;
-  transition: all 0.5s ease;
-}
-
-.active-sidebar{
-  background-color: rgba(0,0,0,0.8);
-  border-right: 6px solid $system-background;
-  font-weight: 500;
-  transition: all 1s ease;
-  color: white;
-  & *{
+nav ul li:hover .nav-op {
+    background: rgba(0, 0, 0, 0.8);
     color: white;
-    margin: 0px;
-  }
+    transition: all 0.3s ease;
+    padding-left: 50px;
+    & * {
+        cursor: pointer;
+    }
 }
 
-.active-dropdown{
-  background-color: rgba(0,0,0,0.8);
-  border-right: 12px solid $system-background;
-  font-weight: 500;
-  transition: all 0.5s ease;
-  color: white;
-  & *{
+.btnSalir {
+    text-align: center;
+    padding: 10px;
+    font-size: $sidebar-fontsize;
+    background-color: #C82333;
     color: white;
-    margin: 0px;
-  }
+    width: 100%;
 }
-.active-child-dropdown{
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
+
+.btnSalir:hover {
+    background-color: #a81a28;
+    transition: all 0.5s ease;
 }
-.dropdown-container ul li .child-dropdown:hover{
-  transition: all 0.5s ease;
-  color: #ffffff;
+
+.active-sidebar {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-right: 6px solid $system-background;
+    font-weight: 500;
+    transition: all 1s ease;
+    color: white;
+    & * {
+        color: white;
+        margin: 0px;
+    }
+}
+
+.active-dropdown {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-right: 12px solid $system-background;
+    font-weight: 500;
+    transition: all 0.5s ease;
+    color: white;
+    & * {
+        color: white;
+        margin: 0px;
+    }
+}
+
+.active-child-dropdown {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    & * {
+        color: white;
+    }
+}
+
+.dropdown-container ul li .child-dropdown:hover {
+    transition: all 0.5s ease;
+    color: #ffffff;
 }
