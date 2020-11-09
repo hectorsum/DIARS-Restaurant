@@ -9,7 +9,7 @@
           </div>
           <div class="col-md-4 mb-3">
             <label>Num.Mesa</label>
-            <input name="num_mesa" type="number" class="form-control" maxlength="2" min="1" required>
+            <input class="form-control"  name="num_mesa" type="number" maxlength="2" min="1" required>
           </div>
         </div>
         <div class="form-row">
@@ -198,21 +198,28 @@
   }
 
   function onInput(e) {
-    const row_inputs = e.target.parentElement.parentElement;
+    const row_inputs = e.target.parentElement;
     const input = row_inputs.querySelector('input');
+    console.log(input)
     if (input.value.length > input.maxLength) {
       input.value = input.value.slice(0, input.maxLength); //limit from 0 to max.length
     }
     if (input.value > 20) {
-      console.log('greater than 20')
-      input.value = 1
-      e.preventDefault();
+      input.value = 20
+      console.log(input.value)
     }
+    else{
+      if(input.value<1){
+      input.value=''
+      console.log(input.value)
+    }
+    }
+    
   }
 
   function onTyping(e) {
     const row_inputs = e.target.parentElement.parentElement;
-    const regex_allowed = /[1-9\/]+/;
+    const regex_allowed = /[0-9\/]+/;
     const input = row_inputs.querySelector('input');
     console.log(e)
     if (!regex_allowed.test(e.key)) {
