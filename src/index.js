@@ -67,6 +67,10 @@ app.use(require('./routes/index'));
 app.use(require('./routes/auth'));
 app.use(require('./routes/home'));
 app.use(require('./routes/nosotros'));
+app.use(require('./routes/contactanos'));
+app.use(require('./routes/delivery'));
+app.use(require('./routes/carta'));
+
 
 //Public
 app.use(express.static(path.join(__dirname,'public')));
