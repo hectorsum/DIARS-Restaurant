@@ -32,7 +32,7 @@
             <label>Tipo de Pago</label>
             <select name="tipo_pago" class="custom-select">
               {{#each tipo_pago}}
-                <option value="{{cod_tipo_pago}}">{{nombre}}</option>
+                <option value="{{cod_tipo_pago}}">{{nombre_tipo_pago}}</option>
               {{/each}}
             </select>
           </div>
@@ -49,7 +49,7 @@
             <label>Tipo de Comprobante</label>
             <select name="tipo_comprobante" class="custom-select" id="tipo_comprobante">
               {{#each tipo_comprobante}}
-                <option value="{{cod_tipo_comprobante}}">{{nombre}}</option>
+                <option value="{{cod_tipo_comprobante}}">{{nombre_comprobante}}</option>
               {{/each}}
             </select>
           </div>
