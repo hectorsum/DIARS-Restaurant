@@ -23,6 +23,7 @@
           <th scope="col">Telefono</th>
           <th scope="col">Email</th>
           <th scope="col">Puesto</th>
+          <th scope="col">Foto</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
@@ -36,6 +37,7 @@
           <td>{{telefono}}</td>
           <td>{{email}}</td>
           <td>{{rol_nombre}}</td>
+          <td><img src="{{photo}}" alt="{{nombres}}"></td>
           <td id="action-buttons">
             <a href="/mantener-empleado/edit/{{cod_emp}}">
               <button id="edit_button" type="button" class="btn btn-primary btn-sm">
