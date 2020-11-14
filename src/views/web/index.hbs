@@ -1,38 +1,203 @@
-
-  <div class="container-welcome">
-    <h2>Bienvenido a su restaurante</h2>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo vero tempore, velit
-      blanditiis ab maxime aliquid suscipit modi quas veritatis deleniti omnis enim nam nostrum. Non ut voluptatibus
-      illo eveniet.</p>
+<!-- bannersito  -->
+<section class="home" id="home">
+  <div class="max-width">
+    <div class="home-content">
+      <div class="text-1">Bienvenidos a</div>
+      <div class="text-2">MANOS NORTEÑAS</div>
+      <div class="text-3">prueba de nuestra sazon <span class="typing"></span></div>
+      <a href="#">Ingresar</a>
+    </div>
   </div>
+</section>
 
-  <section class="group main__about_description">
-    <div class="container container--flex">
-      <div class="column column--50">
-        <h3 class="column_title">Expertise In Industrial Solucion</h3>
-        <p class="column__txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium placeat iusto vitae
-          quod neque explicabo exercitationem minima deleniti autem pariatur veritatis at, repellat iste dolores,
-          cupiditate, suscipit sunt voluptatum eos?</p>
-        <a href="" class="btn btn--contact">Contact</a>
+
+<!-- Servicios-->
+<section class="services" id="services">
+  <div class="max-width">
+    <h2 class="title">Mis Servicios</h2>
+    <div class="serv-content">
+      <div class="card">
+        <div class="box">
+          <i class="fas fa-paint-brush"></i>
+          <div class="text">Cultura</div>
+          <p>Nosotros nos adaptamos para cualquier servicio internacional para que el cliente se sienta como en casa,
+            esto es de mucho agrado de los clientes</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="box">
+          <i class="fas fa-chart-line"></i>
+          <div class="text">Beneficiencia</div>
+          <p>Nuestro acto benefico para ayudar a nuestros hermanos en la pandemia, esto motiva a nuestros clientes a
+            seguir comprando y ser felices juntos </p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="box">
+          <i class="fas fa-code"></i>
+          <div class="text">Talleres</div>
+          <p>Por ultimo, nosotros invertimos en la educacion y parte de la ganancia recaudada anual se van para
+            talleres de robotica, electronica y programacion</p>
+        </div>
       </div>
     </div>
-  </section>
-  <div class="carta-title">
-    <h1>Especial de Hoy</h1>
   </div>
-  <section class="grid-group form-inline">
-    {{#each carta}}
-      <div class="card grid-elem">
-        <img src="uploads/{{pathname}}" alt="Imagen Carta" class="card-img-top today-special__img">
-        <div class="card-body text-center">
-          <h2 class="card-text">Especial del dia 1</h2>
-          <span class="card-text">S/ 10.00</span>
+
+
+</section>
+
+<!-- Nuestros platillos -->
+<section class="skills" id="skills">
+  <div class="max-width">
+    <h2 class="title">Nuestro Top Platillos</h2>
+    <div class="skills-content">
+      <div class="column left">
+        <div class="text">Los mas pedidos de la semana.</div>
+        <p>Te has preguntado, ¿por qué la comida peruana es una de las mejores del mundo? Simple, es el reflejo de
+          nuestra historia, cultura, identidad y nuestras regiones. Su infinidad de platos, en distintas
+          presentaciones y sabores, provocan en cada uno de los peruanos y de quién lo haya probado muchas sensaciones
+          que dejan el paladar fascinado.</p>
+        <a href="#">Ingresa aqui</a>
+      </div>
+      <div class="column right">
+        <div class="bars">
+          <div class="info">
+            <span>Ceviche de conchas negras</span>
+            <span>68%</span>
+          </div>
+          <div class="line html"></div>
         </div>
-        <div class="card-body text-center">
-          <button type="button" class="btn btn-warning">Enviar al Carrito
-            <i class="fas fa-cart-plus"></i>
-          </button>
+        <div class="bars">
+          <div class="info">
+            <span>Ceviche Norteño</span>
+            <span>21%</span>
+          </div>
+          <div class="line css"></div>
+        </div>
+        <div class="bars">
+          <div class="info">
+            <span>Seco de cabrito</span>
+            <span>9%</span>
+          </div>
+          <div class="line js"></div>
+        </div>
+        <div class="bars">
+          <div class="info">
+            <span>Tallarines Rojos</span>
+            <span>0%</span>
+          </div>
+          <div class="line php"></div>
+        </div>
+        <div class="bars">
+          <div class="info">
+            <span>Otros</span>
+            <span>2%</span>
+          </div>
+          <div class="line mysql"></div>
         </div>
       </div>
-    {{/each}}
-  </section>
+    </div>
+  </div>
+</section>
+
+<!-- Nuestro Equipo -->
+<section class="teams" id="teams">
+  <div class="max-width">
+    <h2 class="title">Nuestro Equipo</h2>
+    <div class="carousel owl-carousel">
+      <div class="card">
+        <div class="box">
+          <img src="/img/Teresaizquierdo.jpg" alt="">
+          <div class="text">Teresa Izquierdo</div>
+          <p>Conocida cocinera peruana especialidad en la mejor comida criolla que se pueda existir.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="box">
+          <img src="/img/Toshiro Konishi.jpg" alt="">
+          <div class="text">Toshiro Komishi</div>
+          <p>Uno de los grandes Chefs Japoneces que llevo la cultura del ceviche a Japon.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="box">
+          <img src="/img/Nikky Ramos.jpg" alt="">
+          <div class="text">Nikky Ramos</div>
+          <p>Embajador de la comida en Rusia y que hizo una gran tendencia con el Pisco Peruano.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="box">
+          <img src="/img/Marisa Guilfo Zender.jpg" alt="">
+          <div class="text">Marisa Guilfo</div>
+          <p>Comenzó a preparar platos peruanos para otras personas durante su estadía en Estados Unidos.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="box">
+          <img src="/img/TeresaOcampo.jpg" alt="">
+          <div class="text">Teresa Ocampo</div>
+          <p>la pionera de los programas de cocina en nuestra televisión.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contactanos -->
+<section class="contact" id="contact">
+  <div class="max-width">
+    <h2 class="title">Contáctanos</h2>
+    <div class="contact-content">
+      <div class="column left">
+        <div class="text">Informacion de Contacto</div>
+        <p>Hola!!! En esta parte te podemos ayudar con cualquier duda o reserva que tengas de nuestro restaurant</p>
+        <div class="icons">
+          <div class="row">
+            <i class="fas fa-user"></i>
+            <div class="info">
+              <div class="head">Nombre del restaurant</div>
+              <div class="sub-title">Manos Norteñas</div>
+            </div>
+          </div>
+          <div class="row">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="info">
+              <div class="head">Direccion</div>
+              <div class="sub-title"> Av. Villaverde 278 a la altura de la Crd.6 San German, Lima-Peru</div>
+            </div>
+          </div>
+          <div class="row">
+            <i class="fas fa-envelope"></i>
+            <div class="info">
+              <div class="head">Email</div>
+              <div class="sub-title">ContactanosURSS@gmail.com</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column right">
+        <div class="text">Escríbenos</div>
+        <form action="#">
+          <div class="fields">
+            <div class="field name">
+              <input type="text" placeholder="Nombre *" required>
+            </div>
+            <div class="field email">
+              <input type="email" placeholder="Email *" required>
+            </div>
+          </div>
+          <div class="field">
+            <input type="text" placeholder="Asunto *" required>
+          </div>
+          <div class="field textarea">
+            <textarea cols="30" rows="10" placeholder="Mensaje *" required></textarea>
+          </div>
+          <div class="button">
+            <button type="submit">ENVIAR</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
