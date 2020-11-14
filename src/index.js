@@ -69,6 +69,9 @@ app.use(require('./routes/home'));
 app.use(require('./routes/nosotros'));
 app.use(require('./routes/contactanos'));
 app.use(require('./routes/delivery'));
+app.use(require('./routes/servicios'));
+app.use(require('./routes/contacto'));
+app.use(require('./routes/equipo'));
 app.use(require('./routes/carta'));
 
 
