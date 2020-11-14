@@ -1,0 +1,46 @@
+/* home nosotros*/
+.homenoo{
+  display: flex;
+  background: url("/img/ceviche-de-conchas-negras.jpg") no-repeat center;
+  height: 100vh;
+  color: #fff;
+  min-height: 500px;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Ubuntu', sans-serif;
+}
+.homenoo .max-width{
+  margin: auto 0 auto 30px;
+}
+.homenoo .homenoo-content .text-1{
+  font-size: 27px;
+}
+.homenoo .homenoo-content .text-2{
+  font-size: 75px;
+  font-weight: 600;
+  margin-left: -3px;
+}
+.homenoo .homenoo-content .text-3{
+  font-size: 40px;
+  margin: 5px 0;
+}
+.homenoo .homenoo-content .text-3 span{
+  color: crimson;
+  font-weight: 500;
+}
+.homenoo .homenoo-content a{
+  display: inline-block;
+  background: crimson;
+  color: #fff;
+  font-size: 25px;
+  padding: 12px 36px;
+  margin-top: 20px;
+  font-weight: 400;
+  border-radius: 6px;
+  border: 2px solid crimson;
+  transition: all 0.3s ease;
+}
+.homenoo .homenoo-content a:hover{
+  color: crimson;
+  background: none;
+}

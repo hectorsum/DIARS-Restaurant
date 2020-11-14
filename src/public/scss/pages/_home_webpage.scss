@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@600&display=swap');
+.landing-page{
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  & img{
+    height: 100vh;
+    width: 100%;
+  }
+  .container-message{
+    border-radius: 8px;
+    position: absolute;
+    top: 40%;
+    left: 15%;
+    width: 45%;
+    height: auto;
+    padding: 25px;
+    background-color: rgba(0, 0, 0, 0.5);
+    & h1{
+      font-family: 'Source Code Pro', monospace;
+      font-size: 44px;
+    }
+    & p{
+      line-height: 28px;
+    }
+    .btn-solicitar-delivery{
+      border: none;
+      padding: 8px;
+      margin-top: 3px;
+      border-radius: 5px;
+      background-color: orange;
+      color: #fff;
+      font-size: 18px;
+      width: 200px;
+      height: 50px;
+    }
+    .btn-solicitar-delivery:hover{
+      border: none;
+      padding: 8px;
+      margin-top: 3px;
+      border-radius: 5px;
+      background-color: orangered;
+    }
+  }
+}
