@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@600&display=swap");
 html {
   font-family: 'Roboto', sans-serif; }
 
@@ -1158,9 +1159,6 @@ nav ul li:hover .nav-op {
 a {
   text-decoration: none; }
 
-pre {
-  display: none; }
-
 .header-section {
   background-color: rgba(0, 0, 0, 0.85);
   height: 100vh;
@@ -1220,13 +1218,6 @@ h1, h2, h3, h4, h5, h6 {
   right: 5px; }
 
 /*---- estilos menu----*/
-.navbar-brand {
-  font-family: 'Pacifico', cursive;
-  color: white;
-  font-size: 1.8em;
-  font-weight: 100;
-  padding: 10px; }
-
 .icon-menu {
   display: block;
   color: white;
@@ -1522,3 +1513,165 @@ h1, h2, h3, h4, h5, h6 {
   .grid-group {
     display: flex;
     flex-direction: column; } }
+
+.landing-page {
+  height: 100vh;
+  width: 100%;
+  position: relative; }
+  .landing-page img {
+    height: 100vh;
+    width: 100%; }
+  .landing-page .container-message {
+    border-radius: 8px;
+    position: absolute;
+    top: 40%;
+    left: 15%;
+    width: 45%;
+    height: auto;
+    padding: 25px;
+    background-color: rgba(0, 0, 0, 0.5); }
+    .landing-page .container-message h1 {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 44px; }
+    .landing-page .container-message p {
+      line-height: 28px; }
+    .landing-page .container-message .btn-solicitar-delivery {
+      border: none;
+      padding: 8px;
+      margin-top: 3px;
+      border-radius: 5px;
+      background-color: orange;
+      color: #fff;
+      font-size: 18px;
+      width: 200px;
+      height: 50px; }
+    .landing-page .container-message .btn-solicitar-delivery:hover {
+      border: none;
+      padding: 8px;
+      margin-top: 3px;
+      border-radius: 5px;
+      background-color: orangered; }
+
+/* home nosotros*/
+.homenoo {
+  display: flex;
+  background: url("/img/ceviche-de-conchas-negras.jpg") no-repeat center;
+  height: 100vh;
+  color: #fff;
+  min-height: 500px;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Ubuntu', sans-serif; }
+
+.homenoo .max-width {
+  margin: auto 0 auto 30px; }
+
+.homenoo .homenoo-content .text-1 {
+  font-size: 27px; }
+
+.homenoo .homenoo-content .text-2 {
+  font-size: 75px;
+  font-weight: 600;
+  margin-left: -3px; }
+
+.homenoo .homenoo-content .text-3 {
+  font-size: 40px;
+  margin: 5px 0; }
+
+.homenoo .homenoo-content .text-3 span {
+  color: crimson;
+  font-weight: 500; }
+
+.homenoo .homenoo-content a {
+  display: inline-block;
+  background: crimson;
+  color: #fff;
+  font-size: 25px;
+  padding: 12px 36px;
+  margin-top: 20px;
+  font-weight: 400;
+  border-radius: 6px;
+  border: 2px solid crimson;
+  transition: all 0.3s ease; }
+
+.homenoo .homenoo-content a:hover {
+  color: crimson;
+  background: none; }
+
+.navbar-webpage {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 15px;
+  position: absolute;
+  width: 100%;
+  height: auto;
+  align-items: center; }
+  .navbar-webpage .navbar-brand {
+    font-family: 'Pacifico', cursive;
+    color: white;
+    font-size: 1.8em;
+    font-weight: 100;
+    padding: 25px; }
+  .navbar-webpage .navbar-links {
+    display: flex;
+    flex-direction: row;
+    margin: 0px; }
+    .navbar-webpage .navbar-links li {
+      list-style-type: none;
+      padding: 20px; }
+      .navbar-webpage .navbar-links li a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 18px; }
+      .navbar-webpage .navbar-links li a:hover {
+        transition: all 0.2s ease;
+        text-decoration: line-through;
+        color: orange;
+        font-weight: bold;
+        text-shadow: 2px 2px 12px #000; }
+
+li .active-navbar {
+  transition: all 0.2s ease;
+  text-decoration: line-through !important;
+  color: orange !important;
+  font-weight: bold;
+  text-shadow: 2px 2px 12px #000; }
+
+#menu-btn {
+  color: #fff;
+  font-size: 23px;
+  cursor: pointer;
+  display: none; }
+
+@media (max-width: 947px) {
+  #menu-btn {
+    display: block;
+    z-index: 999; }
+  #menu-btn i.active:before {
+    content: "\f00d"; }
+  .navbar-links {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    left: -100%;
+    top: 0;
+    background: #111;
+    text-align: center;
+    padding-top: 80px;
+    transition: all 0.3s ease; }
+    .navbar-links li {
+      display: block; }
+      .navbar-links li a {
+        margin: 20px 0;
+        font-size: 25px; }
+  .navbar-links.active {
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    position: absolute; }
+  .navbar-links li {
+    display: block; }
+  .navbar-links li a {
+    display: inline-block;
+    margin: 20px 0;
+    font-size: 25px; } }
