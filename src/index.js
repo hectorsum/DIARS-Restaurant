@@ -72,7 +72,8 @@ app.use(require('./routes/delivery'));
 app.use(require('./routes/servicios'));
 app.use(require('./routes/contacto'));
 app.use(require('./routes/equipo'));
-app.use(require('./routes/carta'));
+app.use('/carta',require('./routes/carta'));
+app.use('/carrito',require('./routes/carrito'));
 
 
 //Public
