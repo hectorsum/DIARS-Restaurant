@@ -1,0 +1,63 @@
+<!-- bannersito  -->
+
+  <section class="home" id="home">
+    <div class="max-width">
+      <div class="home-content">
+        <div class="text-1">Bienvenidos a</div>
+        <div class="text-2">MANOS NORTEÑAS</div>
+        <div class="text-3">prueba de nuestra sazon <span class="typing"></span></div>
+        <a href="#">Ingresar</a>
+      </div>
+    </div>
+  </section>
+  <div class="platos-section">
+    <h2 class="title">Platos</h2>
+    <div class="container card-group grid-group">
+      {{#each segundo}}
+      <div class="card grid-elem" style="width: 18rem; height: auto;">
+        <img src="uploads/{{pathname}}" class="card-img-top" style="width: 286px;height: 160px;object-fit: cover;"
+          alt="{{nombre}}">
+        <div class="card-body text-left">
+          <h5 class="card-title">{{nombre}}</h5>
+          <p class="card-text">{{descripcion}}</p>
+          <h3 class="cart-text price">{{money precio}}</h3>
+          <a href="/carta/detalle-item/{{cod_carta}}" type="submit" class="btn btn-warning btn-block">Agregar al Carrito <i class="fas fa-cart-plus"></i></a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="platos-section mt-3">
+    <h2 class="title">Entradas</h2>
+    <div class="container grid-group">
+      {{#each entrada}}
+      <div class="card grid-elem" style="width: 18rem; height: auto;">
+        <img src="uploads/{{pathname}}" class="card-img-top" style="width: 286px;height: 160px;object-fit: cover;"
+          alt="{{nombre}}">
+        <div class="card-body text-left">
+          <h5 class="card-title">{{nombre}}</h5>
+          <p class="card-text">{{descripcion}}</p>
+          <h3 class="cart-text price">{{money precio}}</h3>
+          <a href="/carta/detalle-item/{{cod_carta}}" type="submit" class="btn btn-warning btn-block">Agregar al Carrito <i class="fas fa-cart-plus"></i></a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="platos-section mt-3">
+    <h2 class="title">Bebidas</h2>
+    <div class="container grid-group">
+      {{#each producto}}
+      <div class="card grid-elem" style="width: 288px; height: auto;">
+        <img src="uploads/{{pathname}}" class="card-img-top" style="width: 286px;height: 160px;object-fit: cover;"
+          alt="{{nombre}}">
+        <div class="card-body text-left">
+          <h5 class="card-title">{{nombre}}</h5>
+          <p class="card-text">{{descripcion}}</p>
+          <h3 class="cart-text price">{{money precio}}</h3>
+          <a href="/carta/detalle-item/{{cod_carta}}" type="submit" class="btn btn-warning btn-block">Agregar al Carrito <i class="fas fa-cart-plus"></i></a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
