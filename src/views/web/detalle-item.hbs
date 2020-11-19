@@ -2,12 +2,12 @@
   {{>login-navbar}}
   <div class="login-wrapper">
     <div class="detalle-item">
+      <input type="text" value="{{carta.cod_carta}}" id="id-item" hidden>
       <img src="/uploads/{{carta.pathname}}" alt="{{carta.nombre}}">
       <div class="item-description">
         <div class="detalle-head">
           <span class="name">{{carta.nombre}}</span>
           <input type="number" id="precio_shown" value="{{carta.precio}}" readonly>
-          {{!-- <input type="number" id="precio" value="{{carta.precio}}" hidden> --}}
         </div>
         <div class="detalle-descripcion">
           <p>{{carta.descripcion}}</p>
@@ -16,38 +16,33 @@
           <div class="adicionales-box-head">
             <span class="adicionales">Adicionales</span>
           </div>
-          <div class="row w-100 mt-3">
+          <div class="row mt-3 w-100">
             <div class="col-lg-6 col-md-6 p-0">
+              <h3>Bebidas</h3>
               <div class="adicionales-box-content">
-                <h3>Postres</h3>
+                {{#each adicionales}}
                 <p class="form-check">
+                  <input type="text" id="item-precio" value="{{precio}}" hidden>
                   <input type="checkbox" id="ckeckbox-1" class="form-check-input" name="adicional">
-                  <label for="checkbox-1" class="form-check-label">Arroz con Leche</label>
+                  <label for="checkbox-1" class="form-check-label">{{nombre}}</label>
                 </p>
-                <p class="form-check">
-                  <input type="checkbox" id="ckeckbox-1" class="form-check-input" name="adicional">
-                  <label for="checkbox-1" class="form-check-label">Arroz con Leche</label>
-                </p>
-                <p class="form-check">
-                  <input type="checkbox" id="ckeckbox-2" class="form-check-input" name="adicional">
-                  <label for="checkbox-2" class="form-check-label">Arroz con Leche</label>
-                </p>
+                {{/each}}
               </div>
             </div>
             {{#if carta.lleva_pollo}}
             <div class="col-lg-6 col-md-6 pl-3">
+              <h3>Parte Pollo</h3>
               <div class="adicionales-box-content">
-                <h3>Parte Pollo</h3>
                 <p class="form-check">
-                  <input type="radio" id="ckeckbox-1" class="form-check-input" name="adicional">
+                  <input type="radio" class="form-check-input" name="adicional" checked>
                   <label for="checkbox-1" class="form-check-label">Pierna</label>
                 </p>
                 <p class="form-check">
-                  <input type="radio" id="ckeckbox-1" class="form-check-input" name="adicional">
+                  <input type="radio" class="form-check-input" name="adicional">
                   <label for="checkbox-1" class="form-check-label">Pecho</label>
                 </p>
                 <p class="form-check">
-                  <input type="radio" id="ckeckbox-2" class="form-check-input" name="adicional">
+                  <input type="radio" class="form-check-input" name="adicional">
                   <label for="checkbox-2" class="form-check-label">Encuentro</label>
                 </p>
               </div>
@@ -59,12 +54,12 @@
           <div class="input-cantidad">
             <div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value"><i
                 class="fa fa-minus"></i></div>
-            <input type="number" id="number" value="1" />
+            <input type="number" id="number" min="1" value="1" />
             <div class="value-button" id="increase" onclick="increaseValue()" value="Increase Value"><i
                 class="fa fa-plus"></i></div>
           </div>
           <div class="button-add-to-car">
-            <button type="button" class="btn btn-warning btn-block btn-bg">
+            <button type="button" class="btn btn-warning btn-block btn-bg" id="add_carrito">
               Agregar al carrito <i class="fas fa-cart-plus"></i>
             </button>
           </div>
@@ -74,30 +69,97 @@
   </div>
 </form>
 <script>
-  //const value_price = document.getElementById('price');
-  var array = []
+  var value_precio = document.getElementById('precio_shown').value;
+  var array = [];
+  array.push(value_precio);
+  const checkbox = document.querySelector(".adicionales-box-content");
+  const add_carrito = document.getElementById('add_carrito');
+  let articulos_carrito = [];
+  cargarEventListeners()
+
+  function cargarEventListeners() {
+    checkbox.addEventListener('change', addCheckboxPrice)
+    checkbox.addEventListener('change', removeCheckboxPrice)
+    add_carrito.addEventListener('click', addCarrito)
+  }
+
+  function addCarrito() {
+    const get_checkboxes = document.querySelectorAll('input[type=checkbox]');
+    const get_parte_pollo = document.querySelectorAll('input[type=radio]');
+    let array_adicional = [];
+    let parte_pollo = "";
+    get_checkboxes.forEach((check,index)=>{
+      if (check.checked){
+        array_adicional.push(check.parentElement.querySelector('label').textContent);
+      }
+    })
+    get_parte_pollo.forEach((radio,index)=>{
+      if (radio.checked){
+        parte_pollo = radio.parentElement.querySelector('label').textContent;
+      }
+    })
+    const data = {
+      id: articulos_carrito.length+1,
+      precio:array[0],
+      nombre: document.querySelector('.detalle-head span').textContent,
+      image: document.querySelector('img').src.split('/')[4],
+      cantidad: document.getElementById('number').value,
+      parte_pollo:parte_pollo,
+      descripcion: array_adicional,
+    }
+    articulos_carrito = [...articulos_carrito,data];
+    
+    console.log(articulos_carrito);
+    sincronizarStorage();
+  }
+  function sincronizarStorage(){
+    localStorage.setItem('carrito_web', JSON.stringify(articulos_carrito));
+  }
+  function addCheckboxPrice(e) {
+    if (e.target.classList.contains('form-check-input') && e.target.checked) {
+      const parent = e.target.parentElement;
+      const precio = parseFloat(parent.querySelector('#item-precio').value);
+      value_precio = parseFloat(value_precio) + parseFloat(precio);
+      document.getElementById('precio_shown').value = value_precio.toFixed(2);
+    }
+  }
+
+  function removeCheckboxPrice(e) {
+    if (e.target.classList.contains('form-check-input') && !e.target.checked) {
+      console.log('not checked')
+      const parent = e.target.parentElement;
+      const precio = parseFloat(parent.querySelector('#item-precio').value);
+      value_precio = parseFloat(value_precio) - parseFloat(precio);
+      document.getElementById('precio_shown').value = value_precio.toFixed(2);
+    }
+  }
+
   function increaseValue() {
     var value = parseInt(document.getElementById('number').value, 10);
-    var value_precio = document.getElementById('precio_shown').value;
-    //var original_value = value_precio;
     value = isNaN(value) ? 0 : value;
     value++;
     document.getElementById('number').value = value;
     array.push(value_precio)
-    //localStorage.setItem('prices',JSON.stringify(array));
-    value_precio = array[0] * value;
-    document.getElementById('precio_shown').value = value_precio;
-    console.log(value_precio)
-    
+    //value_precio = array[0] * value;
+    console.log(array[0])
+    value_precio = parseFloat(value_precio) + parseFloat(array[0]);
+    document.getElementById('precio_shown').value = value_precio.toFixed(2);
   }
 
   function decreaseValue() {
-    var value = parseInt(document.getElementById('number').value, 10);
+    var value = parseInt(document.getElementById('number').value);
+    let shown_value = document.getElementById('precio_shown').value;
     value = isNaN(value) ? 0 : value;
     value < 1 ? value = 1 : '';
     value--;
-    parseFloat(document.getElementById('price').value) *= value;
-    console.log(document.getElementById("precio").value);
+    if (value < 1) {
+      value = 1;
+      console.log('value: ', value)
+    } else {
+      document.getElementById('number').value = value;
+      console.log(array[0]);
+      value_precio = shown_value - array[0];
+      document.getElementById('precio_shown').value = value_precio.toFixed(2);
+    }
   }
-
 </script>
