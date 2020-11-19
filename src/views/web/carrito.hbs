@@ -1,0 +1,219 @@
+<form class="form-body" action="/carrito" method="POST" enctype="multipart/form-data">
+  {{>login-navbar}}
+  <div class="login-wrapper" id="carrito-data">
+    <div class="row w-100">
+      <div class="col-lg-7 w-100 pr-0" id="carrito-comanda">
+        <table class="table-active table-sm table-hover" style="table-layout: fixed; width: 100%;">
+          <thead style="text-align: center;">
+            <th style="width: 5%; text-align: center;"></th>
+            <th style="width: 20%; text-align: center;"></th>
+            <th style="width: 25%; text-align: center;">Producto</th>
+            <th style="width: 20%; text-align: center;">Precio</th>
+            <th style="width: 20%; text-align: center;">Cantidad</th>
+            <th style="width: 10%; text-align: center;">Total</th>
+          </thead>
+          <tbody id="tbody-carrito" style="text-align: center;">
+          </tbody>
+        </table>
+      </div>
+      <div class="col-lg-4 border bg-white detail-payment-box">
+        <h4>Total Carrito</h4>
+        <hr>
+        <div class="d-flex justify-content-between">
+          <span>Subtotal</span>
+          <span>15.00</span>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span>Total</span>
+          <span>15.00</span>
+        </div>
+        <button id="btnSiguiente" type="button" class="btn btn-success btn-block mt-3">Siguiente</button>
+      </div>
+    </div>
+  </div>
+  <div class="login-wrapper flex-column" id="user-data">
+    <h2 class="title-cliente-form">Datos de Cliente</h2>
+    <div class="row w-auto p-5 login-inputs">
+      <div class="row w-100">
+        <div class="col-lg-4">
+          <div class="input-data">
+            <input type="text" name="nombre" autocomplete="off" required>
+            <div class="underline"></div>
+            <label>Nombres</label>
+          </div>
+          <div class="input-data">
+            <input type="text" name="apellido" autocomplete="off" required>
+            <div class="underline"></div>
+            <label>Apellidos</label>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="input-data">
+            <input type="text" name="dni" autocomplete="off" required>
+            <div class="underline"></div>
+            <label>DNI</label>
+          </div>
+          <div class="input-data">
+            <input type="text" name="telf" autocomplete="off" required>
+            <div class="underline"></div>
+            <label>Telefono</label>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="input-data">
+            <input type="text" name="email" autocomplete="off" required>
+            <div class="underline"></div>
+            <label>Email</label>
+          </div>
+          <div class="input-data">
+            <select name="distrito" class="custom-select">
+              <option value="0" selected>Escoger Distrito</option>
+              <option value="Carabayllo">Carabayllo</option>
+              <option value="Comas">Comas</option>
+              <option value="Independencia">Independencia</option>
+              <option value="San Martin de Porres">San Martin de Porres</option>
+              <option value="Los Olivos">Los Olivos</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row w-100">
+        <div class="col-lg-12">
+          <div class="input-data">
+            <input type="text" name="usuario" autocomplete="off" required>
+            <div class="underline"></div>
+            <label>Direccion</label>
+          </div>
+        </div>
+      </div>
+      <div class="row w-100">
+        <div class="col-lg-12 d-flex justify-content-center">
+          <button type="button" class="btn btn-secondary mr-2" id="btnVolver">Volver</button>
+          <button type="submit" class="btn btn-success">Proceder a Pagar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<script>
+  const carrito_comanda = document.querySelector('#carrito-comanda table tbody');
+  const contenedorBody = document.getElementById('tbody-carrito');
+  const btnSiguiente = document.getElementById('btnSiguiente');
+  const btnVolver = document.getElementById('btnVolver');
+  let data_carrito = []
+  let array = [];
+  cargarEventListeners();
+  function cargarEventListeners() {
+    btnSiguiente.addEventListener('click', cargarFormSiguiente);
+    btnVolver.addEventListener('click',cargarFormVolver);
+    carrito_comanda.addEventListener('click',eliminarFila);
+    document.addEventListener('DOMContentLoaded', () =>{
+      data_carrito = JSON.parse(localStorage.getItem('carrito_web')) || [];
+      cargarDataCarrito();
+    });
+  }
+  function increaseValue() {
+    var value = parseInt(document.getElementById('number').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('number').value = value;
+    let total = parseFloat(document.getElementById('number').parentElement.parentElement.parentElement.children[5].textContent);
+    console.log(total);
+    //array.push(value_precio)
+    //value_precio = array[0] * value;
+    //console.log(array[0])
+    total.innerHTML = total + parseFloat(array[0]);
+    //document.getElementById('precio_shown').value = value_precio.toFixed(2);
+  }
+
+  function decreaseValue() {
+    var value = parseInt(document.getElementById('number').value);
+    //let shown_value = document.getElementById('precio_shown').value;
+    value = isNaN(value) ? 0 : value;
+    value < 1 ? value = 1 : '';
+    value--;
+    document.getElementById('number').value = value;
+    //if (value < 1) {
+      //value = 1;
+      //console.log('value: ', value)
+    //} else {
+      //document.getElementById('number').value = value;
+      //console.log(array[0]);
+      //value_precio = shown_value - array[0];
+      //document.getElementById('precio_shown').value = value_precio.toFixed(2);
+    //}
+  }
+  function cargarFormVolver() {
+    document.querySelector('#carrito-data').style.display = 'flex';
+    document.querySelector('#user-data').style.display = 'none';
+  }
+  function cargarFormSiguiente() {
+    document.querySelector('#carrito-data').style.display = 'none';
+    document.querySelector('#user-data').style.display = 'flex';
+  }
+  function eliminarFila(e) {
+    //console.log(e.target)
+    if (e.target.classList.contains('borrar_fila')) {
+      const id = e.target.getAttribute('data-id');
+      console.log('data before',data_carrito.length);
+      data_carrito = data_carrito.filter(row => {
+        return row.id != id
+      }); //Prints everything excepts the one that is being clicked for deleting
+      console.log('data after',data_carrito.length);
+      cargarDataCarrito();
+    }
+  }
+  function cargarDataCarrito() {
+    limpiar_carrito_comanda_HTML();
+    data_carrito.forEach((item, index) => {
+      console.log(item);
+      const {
+        id,
+        precio,
+        nombre,
+        image,
+        cantidad,
+        parte_pollo,
+        descripcion
+      } = item;
+      const row = document.createElement('tr');
+      //<td>
+      //  <button type="button" class="close borrar_fila" aria-label="Close" data-id="${id}">
+      //    <span aria-hidden="true">&times;</span>
+      //  </button>
+      //</td>
+      row.innerHTML = `
+        <td>
+          <button type="button" class="btn btn-danger borrar_fila" aria-label="Close" data-id="${id}">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </td>
+        <td>
+          <img src="/uploads/${image}" width="100px" height="80px">
+        </td>
+        <td><input name="nombre" type="text" value="${nombre}" readonly/></td>
+        <td><input name="nombre" type="number" value="${precio}" readonly/></td>
+        <td>
+          <div class="input-cantidad">
+            <div class="value-button" id="decrease" onclick="decreaseValue()"><i
+                class="fa fa-minus"></i></div>
+            <input name="cantidad" type="number" id="number" min="1" value="${cantidad}" />
+            <div class="value-button" id="increase" onclick="increaseValue()"><i
+                class="fa fa-plus"></i></div>
+          </div>
+        </td>
+        <td>${(parseFloat(precio)*parseFloat(cantidad)).toFixed(2)}</td>
+      `;
+      contenedorBody.appendChild(row);
+    });
+    sicronizarStorage();
+  }
+  function sicronizarStorage() {
+    localStorage.setItem('carrito_web', JSON.stringify(data_carrito));
+  }
+  function limpiar_carrito_comanda_HTML() {
+    while(contenedorBody.firstChild){
+      contenedorBody.removeChild(contenedorBody.firstChild);
+    }
+  }
+</script>
