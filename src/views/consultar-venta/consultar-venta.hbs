@@ -19,6 +19,7 @@
               <th>Tipo Comprobante</th>
               <th>Subtotal</th>
               <th>Total</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -30,6 +31,13 @@
               <td>{{nombre_comprobante}}</td>
               <td>{{toFixed subtotal}}</td>
               <td>{{toFixed total}}</td>
+              <td>
+                <a target="_blank" href="/generar-cuenta/print/{{cod_ven}}">
+                  <button type="button" class="btn btn-secondary btn-sm">
+                    <i class="fas fa-print"></i>
+                  </button>
+                </a>
+              </td>
             </tr>
           {{/each}}
         </tbody>
@@ -40,18 +48,28 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Numero RUC</th>
-              <th>Razon Social</th>
-              <th>Direccion</th>
+              <th>Fecha</th>
+              <th>Tipo Pago</th>
+              <th>Subtotal</th>
+              <th>Total</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-          {{#each contribuyente}}
+          {{#each venta_delivery}}
             <tr>
-              <td scope="row">{{cod_carta}}</td>
-              <td>{{num_ruc}}</td>
-              <td>{{razon_social}}</td>
-              <td>{{direccion}}</td>
+              <td scope="row">{{index @index}}</td>
+              <td>{{formatdaytime fecha_venta}}</td>
+              <td>{{nombre_tipo_pago}}</td>
+              <td>{{money subtotal}}</td>
+              <td>{{money total}}</td>
+              <td>
+                <a target="_blank" href="/generar-cuenta/print/{{cod_ven}}">
+                  <button type="button" class="btn btn-secondary btn-sm">
+                    <i class="fas fa-print"></i>
+                  </button>
+                </a>
+              </td>
             </tr>
           {{/each}}
           </tbody>
