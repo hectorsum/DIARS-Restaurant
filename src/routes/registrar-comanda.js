@@ -8,7 +8,7 @@ router.get('/',isnotlogedin,async(req,res)=>{
   const entrada = await pool.query("SELECT * FROM carta WHERE categoria LIKE 'entrada' and estado=1");
   const segundo = await pool.query("SELECT * FROM carta WHERE categoria LIKE 'segundo' and estado=1");
   const producto = await pool.query("SELECT * FROM carta WHERE categoria LIKE 'producto' and estado=1");
-  const comanda = await pool.query("SELECT * FROM venta WHERE estado=1 ORDER BY cod_ven DESC");
+  const comanda = await pool.query("SELECT * FROM venta WHERE estado=1 and tipo_venta='local' ORDER BY cod_ven DESC");
   res.render('registrar-comanda/registrar-comanda',{entrada,segundo,producto,comanda});
 })
 
