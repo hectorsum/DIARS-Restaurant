@@ -34,6 +34,10 @@ helpers.ifEquals = Handlebars.registerHelper('ifEquals', function(arg1,arg2, opt
   return (arg1==arg2) ? options.fn(this) : options.inverse(this);
 });
 
+helpers.ifNotProducto = Handlebars.registerHelper('ifNotProducto',function(arg1){
+  return (arg1!='producto');
+})
+
 helpers.money= (number) =>{
   var number = numeral(number);
   const money ='S/ '+number.format('0,0.00')
