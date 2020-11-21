@@ -13,14 +13,16 @@
             <input autocomplete="off" name="dni" class="form-control" placeholder="DNI" type="text" required>
             <input autocomplete="off" name="telefono" class="form-control" placeholder="Telefono" type="text" required>
             <input autocomplete="off" name="email" class="form-control" placeholder="E-mail" type="email" required>
-
             <select class="form-control" name="cod_rol" id="location_select" required>
               <option value="" selected>Seleccionar Rol</option>
               {{#each rol}}
               <option value="{{cod_rol}}">{{rol_nombre}}</option>
               {{/each}}
             </select>
-
+            <div class="form-group">
+              <label class="m-0">Descripcion</label>
+              <textarea name="descripcion" class="form-control" rows="3" style="resize: none;"></textarea>
+            </div>
           </div>
         </div>
         <div class="button-wrapper">
