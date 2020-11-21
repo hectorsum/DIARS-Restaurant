@@ -131,7 +131,7 @@
               <td>
                 Restaurant Cevicheria Manos Nortenas<br>
                 manosnorteñas@gmail.com<br>
-                <strong>Cajera: </strong>{{venta.caja}}<br>
+                <strong>Caja: </strong>{{venta.caja}}<br>
               </td>
             </tr>
           </table>
@@ -163,59 +163,24 @@
           Precio
         </td>
       </tr>
-      {{#ifEquals venta.cod_entrada 0}}
-        <tr class="item">
-            
-        </tr>
-      {{else}}
+      {{#each carta}}
         <tr class="item">
           <td>
-            {{entrada.nombre_entrada}} ({{venta.cant_entrada}})
+            {{nombre}} ({{cantidad}})
           </td>
 
           <td>
-            {{entrada.precio}}
+            {{total}}
           </td>
         </tr>
-      {{/ifEquals}}
-      {{#ifEquals venta.cod_segundo 0}}
-          <tr class="item">
-            
-          </tr>
-      {{!-- In case you're using if statement from some help, is not necessary to use # --}}
-      {{else}} 
-          <tr class="item">
-            <td>
-              {{segundo.nombre_segundo}} ({{venta.cant_segundo}})
-            </td>
-            <td>
-              {{segundo.precio}}
-            </td>
-          </tr>
-      {{/ifEquals}}
-      {{#ifEquals venta.cod_prod 0}}
-        <tr class="item last">
-          
-        </tr>
-      {{else}}
-        <tr class="item last">
-          <td>
-            {{producto.nombre_producto}} ({{venta.cant_producto}})
-          </td>
-
-          <td>
-            {{producto.precio}}
-          </td>
-        </tr>
-      {{/ifEquals}}
-    
+      {{/each}}
       <tr class="total">
         <td>
           
         </td>
 
         <td>
-          Subtotal: {{venta.valor}}
+          Subtotal: {{venta.subtotal}}
         </td>
       </tr>
       
@@ -225,7 +190,7 @@
         </td>
 
         <td>
-          Total: {{venta.monto_total}}
+          Total: {{venta.total}}
         </td>
       </tr>
     </table>
