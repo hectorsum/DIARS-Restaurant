@@ -1,3 +1,12 @@
+//todo: Removing overlay message effect
+try {
+  const close = document.getElementById('close-1');
+  close.addEventListener('click', () => {
+      document.getElementById("overlay").remove();
+  })
+} catch (e) {
+  
+}
 $(document).ready(function(){
     $(window).scroll(function(){
         // sticky navbar on scroll script
