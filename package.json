@@ -37,11 +37,13 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "mysql": "^2.18.1",
+    "node-localstorage": "^2.1.6",
     "numeral": "^2.0.6",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "puppeteer": "^5.2.1",
+    "stripe": "^8.124.0",
     "sweetalert2": "^10.3.5",
     "uuid": "^8.3.1"
   },
