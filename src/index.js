@@ -62,6 +62,7 @@ app.use('/mantener-usuario',require('./routes/mantener-usuario'));
 app.use('/registrar-comanda',require('./routes/registrar-comanda'));
 app.use(require('./routes/consultar-venta'));
 app.use(require('./routes/consultar-cliente'));
+app.use(require('./routes/consultar-pedido'));
 app.use(require('./routes/configuracion'));
 app.use(require('./routes/index'));
 app.use(require('./routes/auth'));
@@ -72,8 +73,8 @@ app.use(require('./routes/delivery'));
 app.use(require('./routes/servicios'));
 app.use(require('./routes/contacto'));
 app.use(require('./routes/equipo'));
+app.use(require('./routes/carrito'));
 app.use('/carta',require('./routes/carta'));
-app.use('/carrito',require('./routes/carrito'));
 
 
 //Public
