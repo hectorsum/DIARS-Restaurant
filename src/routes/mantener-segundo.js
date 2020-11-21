@@ -19,10 +19,12 @@ router.post('/add',isnotlogedin,async(req,res)=>{
       req.flash('failure','No se pudo agregar Error: '+err);
       res.redirect('/mantener-segundo');
     }else{
-      const {nombre,precio,stock} = req.body;
+      let {nombre,precio,stock,lleva_pollo,descripcion} = req.body;
       const pathname = req.file.filename;
+      lleva_pollo = (lleva_pollo) ? 1 : 0;
+      console.log(lleva_pollo)
       console.log(req.file.filename);
-      await pool.query('call add_mantener(?,?,?,?,?)',[nombre,precio,'segundo',stock,pathname],async(err,resp)=>{
+      await pool.query('call add_mantener(?,?,?,?,?,?,?)',[nombre,precio,'segundo',stock,pathname,lleva_pollo,descripcion],async(err,resp)=>{
         if (err) {
           req.flash('failure', "No se pudo agregar" + err);
           res.redirect('/mantener-segundo');
@@ -51,12 +53,15 @@ router.post('/edit/:cod_carta',async(req,res)=>{
     }
     else {
         const { cod_carta } = req.params;
-        const {nombre,precio,stock} = req.body;
+        let {nombre,precio,stock,lleva_pollo,descripcion} = req.body;
+        lleva_pollo = (lleva_pollo) ? 1 : 0;
         console.log(req.file);
         var new_segundo = {
           nombre,
           precio,
-          stock
+          stock,
+          lleva_pollo,
+          descripcion
         };
         if (req.file != undefined) {
             const pathname = req.file.filename;
@@ -64,6 +69,8 @@ router.post('/edit/:cod_carta',async(req,res)=>{
                 nombre,
                 precio,
                 stock,
+                lleva_pollo,
+                descripcion,
                 pathname
             };
         }
