@@ -18,7 +18,7 @@
           </div>
           <div class="row mt-3 w-100">
             <div class="col-lg-6 col-md-6 p-0">
-              <h3>Bebidas</h3>
+              <h3>Cremas</h3>
               <div class="adicionales-box-content">
                 {{#each adicionales}}
                 <p class="form-check">
@@ -75,14 +75,17 @@
   const checkbox = document.querySelector(".adicionales-box-content");
   const add_carrito = document.getElementById('add_carrito');
   let articulos_carrito = [];
+  let total_precio = 0;
   cargarEventListeners()
-
   function cargarEventListeners() {
     checkbox.addEventListener('change', addCheckboxPrice)
     checkbox.addEventListener('change', removeCheckboxPrice)
     add_carrito.addEventListener('click', addCarrito)
+    document.addEventListener('DOMContentLoaded', () =>{
+      articulos_carrito = JSON.parse(localStorage.getItem('carrito_web')) || [];
+    });    
   }
-
+  
   function addCarrito() {
     const get_checkboxes = document.querySelectorAll('input[type=checkbox]');
     const get_parte_pollo = document.querySelectorAll('input[type=radio]');
@@ -106,11 +109,30 @@
       cantidad: document.getElementById('number').value,
       parte_pollo:parte_pollo,
       descripcion: array_adicional,
+      total: array[0]*parseInt(document.getElementById('number').value)
     }
+    console.log(data.total.toFixed(2));
+    subtotalCost(data.total.toFixed(2));
     articulos_carrito = [...articulos_carrito,data];
     
     console.log(articulos_carrito);
     sincronizarStorage();
+  }
+  function subtotalCost(producto_precio){
+    let cartCost = localStorage.getItem('subtotal');
+    let subtotal = 0;
+    let total = 0;
+    if (cartCost!=null){
+      cartCost = parseFloat(cartCost);
+      subtotal = cartCost + parseFloat(producto_precio);
+      total = subtotal - (subtotal*0.18);
+      localStorage.setItem('subtotal',subtotal.toFixed(2));
+      localStorage.setItem('total',total.toFixed(2));
+    }else{
+      total = producto_precio - (producto_precio*0.18)
+      localStorage.setItem('subtotal',producto_precio);
+      localStorage.setItem('total',total);
+    }
   }
   function sincronizarStorage(){
     localStorage.setItem('carrito_web', JSON.stringify(articulos_carrito));
