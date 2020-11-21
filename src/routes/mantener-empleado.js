@@ -26,8 +26,8 @@ router.get('/add', isnotlogedin, async(req, res) => {
 })
 
 router.post('/add', isnotlogedin, async(req, res) => {
-    const { nombres, apellidos, dni, telefono, email, cod_rol } = req.body;
-    await pool.query('INSERT INTO EMPLEADO(nombres,apellidos,dni,telefono,email,cod_rol) VALUES (?,?,?,?,?,?)', [nombres, apellidos, dni, telefono, email, cod_rol], async(err, resp, fields) => {
+    const { nombres, apellidos, dni, telefono, email, cod_rol,descripcion} = req.body;
+    await pool.query('INSERT INTO empleado(nombres,apellidos,dni,telefono,email,cod_rol,descripcion) VALUES (?,?,?,?,?,?,?)', [nombres, apellidos, dni, telefono, email, cod_rol,descripcion], async(err, resp, fields) => {
         if (err) {
             req.flash('failure', "No se pudo agregar el empleado" + err);
             res.redirect('/mantener-empleado');
@@ -59,7 +59,7 @@ router.post('/edit/:cod_emp', async(req, res) => {
                 res.redirect('/mantener-empleado');
             } else {
                 const { cod_emp } = req.params;
-                const { nombres, apellidos, dni, telefono, email, cod_rol } = req.body;
+                const { nombres, apellidos, dni, telefono, email, cod_rol, descripcion} = req.body;
                 empleado = {
                     nombres,
                     apellidos,
@@ -67,6 +67,7 @@ router.post('/edit/:cod_emp', async(req, res) => {
                     telefono,
                     email,
                     cod_rol,
+                    descripcion
                 }
                 if (req.file != undefined) {
                     const photo = req.file.filename;
@@ -77,7 +78,8 @@ router.post('/edit/:cod_emp', async(req, res) => {
                         telefono,
                         email,
                         cod_rol,
-                        photo
+                        photo,
+                        descripcion
                     }
                 }
                 await pool.query('UPDATE empleado SET ? WHERE cod_emp=?', [empleado, cod_emp], async(err) => {
