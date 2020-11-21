@@ -18,6 +18,6 @@ router.get('/detalle-item/:cod_carta',async(req,res)=>{
 });
 router.post('/detalle-item/:cod_carta',async(req,res)=>{
   const cod_carta = req.params;
-  //res.redirect('/carta');
+  res.redirect('/carta');
 });
 module.exports = router;
