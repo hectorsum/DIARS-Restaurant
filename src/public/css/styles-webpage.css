@@ -1204,3 +1204,25 @@ td a{
   top: 0;
   left: 0;
 }
+
+.table-fixed{
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+.table-fixed-2{
+  max-height: 300px;
+}
+.table-fixed thead th{
+  position: sticky;
+  top: -1px;
+  z-index: 1;
+  background-color: #303030;
+}
+.table-fixed tbody td{
+  z-index: 0;
+}
+.table-fixed tbody{
+  margin-top: 20px;
+}
