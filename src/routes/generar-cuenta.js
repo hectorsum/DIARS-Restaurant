@@ -8,7 +8,7 @@ const pdf = require('../lib/puppeteer');
 router.get('/', isnotlogedin, async(req, res) => {
 
     //*Querying tables
-    const venta = await pool.query("SELECT venta.*, tipo_pago.*, tipo_comprobante.nombre_comprobante FROM venta LEFT JOIN tipo_pago ON venta.cod_tipo_pago = tipo_pago.cod_tipo_pago LEFT JOIN tipo_comprobante ON venta.cod_tipo_comprobante = tipo_comprobante.cod_tipo_comprobante WHERE DATE(fecha_venta) LIKE CURDATE() and estado_pago='cancelado' and tipo_venta='local'");
+    const venta = await pool.query("SELECT venta.*, tipo_pago.*, tipo_comprobante.nombre_comprobante FROM venta LEFT JOIN tipo_pago ON venta.cod_tipo_pago = tipo_pago.cod_tipo_pago LEFT JOIN tipo_comprobante ON venta.cod_tipo_comprobante = tipo_comprobante.cod_tipo_comprobante WHERE DATE(fecha_venta) LIKE CURDATE() and tipo_venta='local'");
     /* const entrada = await pool.query('SELECT * FROM entrada') */
     /* const segundo = await pool.query('SELECT * FROM segundo') */
     /* const producto = await pool.query('SELECT * FROM producto') */
@@ -35,11 +35,25 @@ router.post('/', isnotlogedin, async(req, res) => {
 });
 
 router.get('/edit/:cod_ven', isnotlogedin, async(req, res) => {
-
+  const {cod_ven} = req.params;
+  const venta = await pool.query("SELECT venta.*, tipo_pago.*, tipo_comprobante.nombre_comprobante FROM venta LEFT JOIN tipo_pago ON venta.cod_tipo_pago = tipo_pago.cod_tipo_pago LEFT JOIN tipo_comprobante ON venta.cod_tipo_comprobante = tipo_comprobante.cod_tipo_comprobante WHERE DATE(fecha_venta) LIKE CURDATE() and tipo_venta='local' and cod_ven=?",[cod_ven]);
+  console.log(venta[0]);
+  res.render('generar-cuenta/edit',{venta:venta[0]});
 })
 
 router.post('/edit/:cod_ven', isnotlogedin, async(req, res) => {
-
+  const {cod_ven} = req.params;
+  const {estado_pago} = req.body;
+  console.log(req.body);
+  await pool.query('UPDATE venta SET estado_pago=? WHERE cod_ven=?',[estado_pago,cod_ven],async(err)=>{
+    if(err){
+      req.flash('failure', 'No se pudo editar ' + err)
+      res.redirect('/generar-cuenta')
+    }else{
+      req.flash('success', 'Editado Satisfactoriamente')
+      res.redirect('/generar-cuenta')
+    }
+  })
 })
 
 //pdf
