@@ -1,4 +1,4 @@
-<form class="form-body" action="/carrito" method="POST" enctype="multipart/form-data">
+<form class="form-body" action="/carrito" method="POST">
   {{>login-navbar}}
   <div class="login-wrapper" id="carrito-data">
     <div class="row w-100">
@@ -19,13 +19,13 @@
       <div class="col-lg-4 border bg-white detail-payment-box">
         <h4>Total Carrito</h4>
         <hr>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between align-items-center">
           <span>Subtotal</span>
-          <span>15.00</span>
+          <input type="text" value="15.00" id="subtotal" name="subtotal" readonly>
         </div>
         <div class="d-flex justify-content-between">
           <span>Total</span>
-          <span>15.00</span>
+          <input type="text" value="15.00" id="total" name="total" readonly>
         </div>
         <button id="btnSiguiente" type="button" class="btn btn-success btn-block mt-3">Siguiente</button>
       </div>
@@ -37,36 +37,36 @@
       <div class="row w-100">
         <div class="col-lg-4">
           <div class="input-data">
-            <input type="text" name="nombre" autocomplete="off" required>
+            <input type="text" name="nombre_cliente" autocomplete="off" required>
             <div class="underline"></div>
             <label>Nombres</label>
           </div>
           <div class="input-data">
-            <input type="text" name="apellido" autocomplete="off" required>
+            <input type="text" name="apellido_cliente" autocomplete="off" required>
             <div class="underline"></div>
             <label>Apellidos</label>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="input-data">
-            <input type="text" name="dni" autocomplete="off" required>
+            <input type="number" name="dni" autocomplete="off" required>
             <div class="underline"></div>
             <label>DNI</label>
           </div>
           <div class="input-data">
-            <input type="text" name="telf" autocomplete="off" required>
+            <input type="number" name="telf" autocomplete="off" required>
             <div class="underline"></div>
             <label>Telefono</label>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="input-data">
-            <input type="text" name="email" autocomplete="off" required>
+            <input type="email" name="email" id="email" autocomplete="off" value="" required>
             <div class="underline"></div>
             <label>Email</label>
           </div>
           <div class="input-data">
-            <select name="distrito" class="custom-select">
+            <select name="distrito" class="custom-select" required>
               <option value="0" selected>Escoger Distrito</option>
               <option value="Carabayllo">Carabayllo</option>
               <option value="Comas">Comas</option>
@@ -80,7 +80,7 @@
       <div class="row w-100">
         <div class="col-lg-12">
           <div class="input-data">
-            <input type="text" name="usuario" autocomplete="off" required>
+            <input type="text" name="direccion" autocomplete="off" required>
             <div class="underline"></div>
             <label>Direccion</label>
           </div>
@@ -89,19 +89,32 @@
       <div class="row w-100">
         <div class="col-lg-12 d-flex justify-content-center">
           <button type="button" class="btn btn-secondary mr-2" id="btnVolver">Volver</button>
-          <button type="submit" class="btn btn-success">Proceder a Pagar</button>
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_51HiuUwCqIAsKxkBkMgohrRRN8duqUsx3AbHZR6tBNrXyY2tJQoglO8fNuG00f8o80iDHtwhkLbp5EGKty8LV7uRg00In32FIJq" 
+          data-name="Manos Nortenas" 
+          data-image="/img/logo.svg"
+          data-currency="pen"
+          data-locale="es"
+          data-amount=""
+          data-description="Gracias por elegir Manos Nortenas"
+          data-email="."
+          >
+          </script>
+          <button type="submit" class="btn btn-success" id="submit_data">Proceder a Pagar <i class="fas fa-shopping-cart"></i></button>
         </div>
       </div>
     </div>
   </div>
 </form>
 <script>
+  document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
   const carrito_comanda = document.querySelector('#carrito-comanda table tbody');
   const contenedorBody = document.getElementById('tbody-carrito');
   const btnSiguiente = document.getElementById('btnSiguiente');
   const btnVolver = document.getElementById('btnVolver');
   let data_carrito = []
   let array = [];
+  let subtotal = 0;
+  let total = 0;
   cargarEventListeners();
   function cargarEventListeners() {
     btnSiguiente.addEventListener('click', cargarFormSiguiente);
@@ -111,37 +124,59 @@
       data_carrito = JSON.parse(localStorage.getItem('carrito_web')) || [];
       cargarDataCarrito();
     });
+    document.addEventListener('DOMContentLoaded',()=>{
+      subtotal = JSON.parse(localStorage.getItem('subtotal')) || [];
+      document.getElementById('subtotal').value = 'S/.'+subtotal;
+    })
+    document.addEventListener('DOMContentLoaded',()=>{
+      total = JSON.parse(localStorage.getItem('total')) || [];
+      document.getElementById('total').value = `S/.`+total;
+    })
   }
-  function increaseValue() {
-    var value = parseInt(document.getElementById('number').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    document.getElementById('number').value = value;
-    let total = parseFloat(document.getElementById('number').parentElement.parentElement.parentElement.children[5].textContent);
-    console.log(total);
-    //array.push(value_precio)
-    //value_precio = array[0] * value;
-    //console.log(array[0])
-    total.innerHTML = total + parseFloat(array[0]);
-    //document.getElementById('precio_shown').value = value_precio.toFixed(2);
+  function updateSubtotal(producto){
+    let cartCost = localStorage.getItem('subtotal');
+    let subtotal = 0;
+    let total = 0;
+    
+    if (cartCost!=null){
+      data_carrito.forEach((val,index)=>{
+        subtotal = subtotal + val.precio*val.cantidad;
+      })
+      total = subtotal - (subtotal*0.18);
+      console.log('subtotal: ',subtotal.toFixed(2));
+      console.log('total: ',total.toFixed(2));
+      document.getElementById('subtotal').value = `S/.`+subtotal.toFixed(2);
+      document.getElementById('total').value = `S/.`+total.toFixed(2);
+      localStorage.setItem('subtotal',subtotal.toFixed(2));
+      localStorage.setItem('total',total.toFixed(2));
+    }else{
+      total = producto - (producto*0.18)
+      localStorage.setItem('subtotal',producto);
+      localStorage.setItem('total',total);
+    }
   }
-
-  function decreaseValue() {
-    var value = parseInt(document.getElementById('number').value);
-    //let shown_value = document.getElementById('precio_shown').value;
-    value = isNaN(value) ? 0 : value;
-    value < 1 ? value = 1 : '';
-    value--;
-    document.getElementById('number').value = value;
-    //if (value < 1) {
-      //value = 1;
-      //console.log('value: ', value)
-    //} else {
-      //document.getElementById('number').value = value;
-      //console.log(array[0]);
-      //value_precio = shown_value - array[0];
-      //document.getElementById('precio_shown').value = value_precio.toFixed(2);
-    //}
+  function increaseValue(id) {
+    for(let i=0;i<data_carrito.length;i++){
+      if(data_carrito[i].id == id){
+        if(data_carrito[i].cantidad>0){
+          data_carrito[i].cantidad = parseInt(data_carrito[i].cantidad)+1;
+          cargarDataCarrito();
+        }
+      }
+    }
+  }
+  function decreaseValue(id) {
+    for(let i=0;i<data_carrito.length;i++){
+      if(data_carrito[i].id == id){
+        if(data_carrito[i].cantidad>0){
+          data_carrito[i].cantidad = parseInt(data_carrito[i].cantidad)-1;
+          if (data_carrito[i].cantidad<1){
+            data_carrito[i].cantidad=1
+          }
+          cargarDataCarrito();
+        }
+      }
+    }
   }
   function cargarFormVolver() {
     document.querySelector('#carrito-data').style.display = 'flex';
@@ -166,7 +201,6 @@
   function cargarDataCarrito() {
     limpiar_carrito_comanda_HTML();
     data_carrito.forEach((item, index) => {
-      console.log(item);
       const {
         id,
         precio,
@@ -176,34 +210,34 @@
         parte_pollo,
         descripcion
       } = item;
+      var {total} = item;
       const row = document.createElement('tr');
-      //<td>
-      //  <button type="button" class="close borrar_fila" aria-label="Close" data-id="${id}">
-      //    <span aria-hidden="true">&times;</span>
-      //  </button>
-      //</td>
+      //let total = 0;
+      total = (parseFloat(precio)*parseFloat(cantidad)).toFixed(2);
+      row.setAttribute('class','row-item')
       row.innerHTML = `
         <td>
-          <button type="button" class="btn btn-danger borrar_fila" aria-label="Close" data-id="${id}">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <a href="javascript:void(0)">
+            <i class="fas fa-trash-alt borrar_fila" data-id="${id}"></i>
+          </a>
         </td>
         <td>
           <img src="/uploads/${image}" width="100px" height="80px">
         </td>
         <td><input name="nombre" type="text" value="${nombre}" readonly/></td>
-        <td><input name="nombre" type="number" value="${precio}" readonly/></td>
+        <td><input name="precio" type="text" value="${precio}" readonly/></td>
         <td>
           <div class="input-cantidad">
-            <div class="value-button" id="decrease" onclick="decreaseValue()"><i
+            <div class="value-button" id="decrease" onclick="decreaseValue(${id})"><i
                 class="fa fa-minus"></i></div>
-            <input name="cantidad" type="number" id="number" min="1" value="${cantidad}" />
-            <div class="value-button" id="increase" onclick="increaseValue()"><i
+            <input name="cantidad" type="number" id="number" min="1" value="${cantidad}" readonly/>
+            <div class="value-button" id="increase" onclick="increaseValue(${id})"><i
                 class="fa fa-plus"></i></div>
           </div>
         </td>
-        <td>${(parseFloat(precio)*parseFloat(cantidad)).toFixed(2)}</td>
+        <td class="total-row">${total}</td>
       `;
+      updateSubtotal(parseFloat(total));
       contenedorBody.appendChild(row);
     });
     sicronizarStorage();
