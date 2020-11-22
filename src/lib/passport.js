@@ -27,6 +27,6 @@ passport.serializeUser((user,done)=>{
 })
 //* Allows us to use empleados columns with user.<nombres>
 passport.deserializeUser(async(id,done)=>{
-  const rows = await pool.query("SELECT `usuario_emp`.*, `empleado`.*, `rol`.`rol_nombre` FROM `usuario_emp` LEFT JOIN `empleado` ON `usuario_emp`.`cod_emp` = `empleado`.`cod_emp` LEFT JOIN `rol` ON `empleado`.`cod_rol` = `rol`.`cod_rol` WHERE `usuario_emp`.`cod_usuario_emp` = ?",[id]);
+  const rows = await pool.query("SELECT `usuario_emp`.*, `empleado`.*, `rol`.`*` FROM `usuario_emp` LEFT JOIN `empleado` ON `usuario_emp`.`cod_emp` = `empleado`.`cod_emp` LEFT JOIN `rol` ON `empleado`.`cod_rol` = `rol`.`cod_rol` WHERE `usuario_emp`.`cod_usuario_emp` = ?",[id]);
   done(null,rows[0]);
 })
