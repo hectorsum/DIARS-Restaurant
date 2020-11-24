@@ -31,8 +31,7 @@ router.post('/add',isnotlogedin,async(req,res)=>{
 
 router.get('/edit/:cod_usuario_emp',isnotlogedin,async(req,res)=>{
   const {cod_usuario_emp} = req.params;
-  const usuario_emp = await pool.query('SELECT `usuario_emp`.*, `empleado`.*, `rol`.`rol_nombre` FROM `usuario_emp` LEFT JOIN `empleado` ON `usuario_emp`.`cod_emp` = `empleado`.`cod_emp` LEFT JOIN `rol` ON `empleado`.`cod_rol` = `rol`.`cod_rol` WHERE `usuario_emp`.`cod_usuario_emp` LIKE ?',[cod_usuario_emp]);
-  console.log(usuario_emp);
+  const usuario_emp = await pool.query('SELECT * FROM usuarios WHERE cod_usuario_emp=?',[cod_usuario_emp]);
   res.render('mantener-usuario/edit',{usuario_emp:usuario_emp[0]});
 });
 
