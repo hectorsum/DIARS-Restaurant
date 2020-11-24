@@ -2,7 +2,7 @@
   <form action="/home" method="POST">
   <header class="profile-header c-card w-100 d-flex justify-content-center">
     <div>
-      <img src="/img/doge.png" alt="Foto Perfil" width="100" height="100">
+      <img src="{{user.photo}}" alt="Foto Perfil" width="100" height="100" style="object-fit: cover;">
       <h2>{{user.nombres}} {{user.apellidos}}</h2>
       <input name="dni" id="user_dni" type="text" value="{{user.dni}}">
       <h4>{{user.rol_nombre}}</h4>

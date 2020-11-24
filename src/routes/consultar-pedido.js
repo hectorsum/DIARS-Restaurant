@@ -5,7 +5,7 @@ const {isnotlogedin} = require('../lib/out');
 const helpers = require('../lib/helpers');
 
 router.get('/',isnotlogedin ,async(req,res)=>{
-  const venta_delivery = await pool.query("SELECT DISTINCT (venta.fecha_venta),`venta`.cod_ven,`venta`.total, `cliente`.`nombre`,`cliente`.`apellido`,cliente.dni,`cliente`.`direccion`,`cliente`.`distrito`,`cliente`.`dni` FROM `venta` LEFT JOIN `detalle_carta` ON `detalle_carta`.`cod_ven` = `venta`.`cod_ven` LEFT JOIN `cliente` ON `venta`.`cod_cli` = `cliente`.`cod_cli` WHERE venta.tipo_venta='delivery' and venta.estado=1 ORDER BY venta.fecha_venta DESC");
+  const venta_delivery = await pool.query("SELECT * FROM venta_pedidos");
   res.render('consultar-pedido/consultar-pedido',{venta_delivery})
 })
 
