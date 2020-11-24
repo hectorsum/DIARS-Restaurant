@@ -4,12 +4,12 @@ const {isnotlogedin} = require('../lib/out');
 const router = express.Router();
 
 router.get('/',isnotlogedin,async(req,res)=>{
-  const usuario_emp = await pool.query('SELECT `usuario_emp`.*, `empleado`.*, `rol`.`rol_nombre` FROM `usuario_emp` LEFT JOIN `empleado` ON `usuario_emp`.`cod_emp` = `empleado`.`cod_emp` LEFT JOIN `rol` ON `empleado`.`cod_rol` = `rol`.`cod_rol` WHERE estado_cuenta=0')
+  const usuario_emp = await pool.query('SELECT * FROM usuarios WHERE estado_cuenta=0')
   res.render('mantener-usuario/mantener-usuario',{usuario_emp});
 })
 
 router.get('/add',isnotlogedin,async(req,res)=>{
-  const empleado = await pool.query('SELECT `empleado`.*, `rol`.`rol_nombre`, `rol`.`rol_nombre` FROM `empleado` LEFT JOIN `rol` ON `empleado`.`cod_rol` = `rol`.`cod_rol` WHERE estado_cuenta=1');
+  const empleado = await pool.query('SELECT * FROM empleados WHERE estado_cuenta=1');
   res.render('mantener-usuario/add',{empleado});
 })
 
