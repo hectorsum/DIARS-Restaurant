@@ -32,11 +32,13 @@ passport.deserializeUser(async(id,done)=>{
   for (i = 0; i < rows.length; i++) {
     if (!rows[i].photo) {
         const url = gravatar.url(rows[i].email, { s: '100', r: 'x', d: 'mp' }, false);
+        //size, rating, img
+        //https://es.gravatar.com/site/implement/images/
         rows[i].photo = url
     } else {
       rows[i].photo = 'uploads/' + rows[i].photo
     }
   }
-  console.log(rows);
+  //console.log(rows);
   done(null,rows[0]);
 })
