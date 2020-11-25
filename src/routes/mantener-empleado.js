@@ -7,7 +7,7 @@ const uploadImage = require('../lib/multer');
 const { isnotlogedin, islogedin } = require('../lib/out');
 
 router.get('/', isnotlogedin, async(req, res) => {
-    const empleado = await pool.query('SELECT `empleado`.*, `rol`.`rol_nombre`, `rol`.`rol_nombre` FROM `empleado` LEFT JOIN `rol` ON `empleado`.`cod_rol` = `rol`.`cod_rol`');
+    const empleado = await pool.query('SELECT * FROM empleados WHERE estado_cuenta!=3');
     for (i = 0; i < empleado.length; i++) {
         if (!empleado[i].photo) {
             const url = gravatar.url(empleado[i].email, { s: '100', r: 'x', d: 'mp' }, false);
@@ -40,7 +40,7 @@ router.post('/add', isnotlogedin, async(req, res) => {
 
 router.get('/edit/:cod_emp', isnotlogedin, async(req, res) => {
     const { cod_emp } = req.params;
-    const empleado = await pool.query('SELECT `empleado`.*, `rol`.`rol_nombre`, `rol`.`rol_nombre` FROM `empleado` LEFT JOIN `rol` ON `empleado`.`cod_rol` = `rol`.`cod_rol` WHERE cod_emp=?', [cod_emp]);
+    const empleado = await pool.query('SELECT * FROM empleados WHERE cod_emp=?', [cod_emp]);
 
     if (!empleado[0].photo) {
         const url = gravatar.url(empleado[0].email, { s: '100', r: 'x', d: 'mp' }, false);
@@ -93,39 +93,35 @@ router.post('/edit/:cod_emp', async(req, res) => {
                 })
             }
         })
-        /* const { cod_emp } = req.params;
-        const { nombres, apellidos, dni, telefono, email, cod_rol } = req.body;
-        empleado = {
-            nombres,
-            apellidos,
-            dni,
-            telefono,
-            email,
-            cod_rol
-        }
-        await pool.query('UPDATE empleado SET ? WHERE cod_emp=?', [empleado, cod_emp], async(err, resp, fields) => {
-            if (err) {
-                req.flash('failure', "No se pudo agregar el producto" + err);
-                res.redirect('/mantener-empleado');
-                console.log(err)
-            } else {
-                req.flash('success', 'Modificado Satisfactoriamente');
-                res.redirect('/mantener-empleado');
-            }
-        }); */
 })
 
 router.get('/delete/:cod_emp', isnotlogedin, async(req, res) => {
     const { cod_emp } = req.params;
-    await pool.query(`DELETE FROM empleado WHERE cod_emp=${cod_emp}`, (err, resp, fields) => {
-        if (err) {
+    const has_account = await pool.query('SELECT estado_cuenta FROM empleados WHERE cod_emp=?',[cod_emp])
+    if (has_account===0){ //* 0 == has account, 1 == don't have account, 3 == deleted
+      let result = confirm('Este empleado tiene un usuario creado, ¿Esta seguro que desea eliminarlo?')
+      if(result){
+        await pool.query(`call delete_empleado(?)`,cod_emp, (err, resp, fields) => {
+          if (err) {
             req.flash('failure', "No se pudo eliminar");
             res.redirect('/mantener-empleado');
-        } else {
+          } else {
             req.flash('success', 'Eliminado Satisfactoriamente');
             res.redirect('/mantener-empleado');
+          }
+        });
+      }
+    }else{
+      await pool.query('UPDATE empleado SET estado_cuenta=3 WHERE cod_emp=?',[cod_emp],(err)=>{
+        if (err) {
+          req.flash('failure', "No se pudo eliminar");
+          res.redirect('/mantener-empleado');
+        } else {
+          req.flash('success', 'Eliminado Satisfactoriamente');
+          res.redirect('/mantener-empleado');
         }
-    });
+      })
+    }
 })
 
 module.exports = router;

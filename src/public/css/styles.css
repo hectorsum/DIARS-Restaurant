@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@600&display=swap");
 html {
   font-family: 'Roboto', sans-serif; }
@@ -153,6 +154,19 @@ td input {
   border: none;
   text-align: center;
   outline: none; }
+
+.title-table {
+  color: black;
+  font-family: 'Roboto Mono',monospace !important;
+  font-weight: bold;
+  text-shadow: rgba(0, 0, 0, 0.5) 1px 0px 10px;
+  font-size: 30px;
+  margin-bottom: 2px; }
+
+@media only screen and (max-width: 600px) {
+  .title-table {
+    font-size: 20px;
+    text-shadow: rgba(0, 0, 0, 0.4) 2px 4px; } }
 
 #btnSolicitarDelivery {
   font-size: 16px;
@@ -1500,9 +1514,9 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     height: 100%; }
     .grid-group .grid-elem img {
-      object-fit: cover; 
-      object-position: center center;
-    }
+      min-width: 50%;
+      min-height: 50%; }
+
 @media screen and (max-width: 720px) {
   .grid-group {
     display: grid;
@@ -1513,9 +1527,7 @@ h1, h2, h3, h4, h5, h6 {
   .grid-group {
     display: flex;
     flex-direction: column; } }
-  .card .card-body{
-    padding-bottom: 0px;
-  }
+
 .landing-page {
   height: 100vh;
   width: 100%;

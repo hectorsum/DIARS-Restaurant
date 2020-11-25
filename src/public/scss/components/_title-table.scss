@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+.title-table{
+  color: black;
+  font-family: 'Roboto Mono',monospace !important;
+  font-weight: bold;
+  text-shadow: rgba(0,0,0,0.5) 1px 0px 10px;
+  font-size: 30px;
+  margin-bottom: 2px;
+}
+@media only screen and (max-width:600px){
+  .title-table{
+    font-size: 20px;
+    text-shadow: rgba(0,0,0,0.4) 2px 4px;
+  }
+}
