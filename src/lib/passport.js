@@ -12,7 +12,8 @@ passport.use('local.signin', new localstrategy({
   const rows = await pool.query("SELECT `usuario_emp`.*, `empleado`.`nombres`, `empleado`.`apellidos` FROM `usuario_emp` LEFT JOIN `empleado` ON `usuario_emp`.`cod_emp` = `empleado`.`cod_emp` WHERE `usuario_emp`.`usuario` = ?",[username]);
   if(rows.length > 0){
     const user = rows[0];
-    if(user.password === password){
+    const validPassword = await helpers.matchpassword(password,user.password)
+    if(validPassword){
       return done(null,user,req.flash('success',`Welcome ${user.nombres} ${user.apellidos}`));
     }else{
       return done(null,false,req.flash('failure','Incorrect password'));
