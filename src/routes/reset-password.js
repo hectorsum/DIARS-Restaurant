@@ -13,8 +13,13 @@ router.get('/reset-password', async(req, res) => {
 })
 
 router.post('/reset-password', async(req, res) => {
-    const { email } = req.body;
-    const empleado = await pool.query("SELECT `usuario_emp`.`cod_emp`, `empleado`.`email` FROM `usuario_emp` LEFT JOIN `empleado` ON `usuario_emp`.`cod_emp` = `empleado`.`cod_emp` WHERE `empleado`.`email` = ? ", [email]);
+  const { email } = req.body;
+  const empleado = await pool.query("SELECT `usuario_emp`.`cod_emp`, `empleado`.`email` FROM `usuario_emp` LEFT JOIN `empleado` ON `usuario_emp`.`cod_emp` = `empleado`.`cod_emp` WHERE `empleado`.`email` = ? ", [email]);
+  console.log(empleado);
+  if (empleado.length === 0){
+    req.flash('success','Se envio un codigo de verificacion al correo electronico')
+    res.redirect('/');
+  }else{
     const empleado_id = empleado[0].cod_emp
     let url = req.protocol + '://' + req.get('host') + req.originalUrl + '/';
     let cod_recuperacion = uuid.v5.URL.substring(0, 13) + empleado_id
@@ -34,6 +39,7 @@ router.post('/reset-password', async(req, res) => {
                     pass: process.env.PASSWORD,
                 }
             });
+            //Alias 2nd option
             var mailOptions = {
                 from: 'ManosNorteñas@gmail.com',
                 to: email,
@@ -45,12 +51,14 @@ router.post('/reset-password', async(req, res) => {
                 if (error) {
                     res.redirect('/');
                 } else {
-                    res.redirect('/');
+                  console.log('success')
+                  req.flash('success','Se envio un codigo de verificacion al correo electronico')
+                  res.redirect('/');
                 }
             });
         }
     });
-
+  }
 })
 
 router.get('/reset-password/:code', async(req, res) => {
