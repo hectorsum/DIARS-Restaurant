@@ -47,9 +47,10 @@
             <label>Apellidos</label>
           </div>
         </div>
-        <div class="col-lg-4 d-flex flex-column">
-          <label for="dni">
-            <div class="input-data">
+        <div class="col-lg-4">
+          <div>
+            <label for="dni" class="w-100">
+            <div class="input-data w-100">
               <input type="number" name="dni" autocomplete="off" minlength="8" maxlength="8" required>
               <ul class="input-requirements">
                 <li>Al menos 8 digitos</li>
@@ -58,20 +59,25 @@
               <label>DNI</label>
             </div>
           </label>
-          <label for="telf">
-            <div class="input-data">
+          </div>
+          <div>
+            <label for="telf" class="w-100">
+            <div class="input-data w-100">
               <input type="number" name="telf" autocomplete="off" minlength="9" maxlength="9" required>
               <ul class="input-requirements">
                 <li>Al menos 9 digitos</li>
+                <li>Debe empezar con numero 9</li>
               </ul>
               <div class="underline"></div>
               <label>Telefono</label>
             </div>
           </label>
+          </div>
         </div>
-        <div class="col-lg-4 d-flex flex-column">
-          <label for="email">
-            <div class="input-data">
+        <div class="col-lg-4">
+          <div>
+            <label for="email" class="w-100">
+            <div class="input-data w-100">
               <input type="email" name="email" autocomplete="off" value="" required>
               <ul class="input-requirements">
                 <li>Al menos un @ y finalizar correctamente el email</li>
@@ -80,6 +86,7 @@
               <label>Email</label>
             </div>
           </label>
+          </div>
           <div class="input-data">
             <select name="distrito" class="custom-select" required>
               <option value="0" selected>Escoger Distrito</option>
