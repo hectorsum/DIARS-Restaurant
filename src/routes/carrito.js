@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../database');
 const helpers = require('../lib/helpers');
-const stripe = require('stripe')
-    ('sk_test_51HiuUwCqIAsKxkBkkhmWdfYf0wlPpWYePY5b6tMbH8Yinqt7kEBKiB49FMIHIqhzxS2iXmDQPwwpydX6A7G9foLE00vCHgPxFV');
+const stripe = require('stripe')(process.env.SK_STRIPE);
 
 
 router.get('/carrito', (req, res) => {
