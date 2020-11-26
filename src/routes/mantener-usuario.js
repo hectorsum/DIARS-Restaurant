@@ -2,6 +2,7 @@ const pool = require('../database');
 const express = require('express');
 const {isnotlogedin} = require('../lib/out');
 const router = express.Router();
+const {encryptpassword,decryptpassword} = require('../lib/helpers');
 
 router.get('/',isnotlogedin,async(req,res)=>{
   const usuario_emp = await pool.query('SELECT * FROM usuarios WHERE estado_cuenta=0')
@@ -15,7 +16,9 @@ router.get('/add',isnotlogedin,async(req,res)=>{
 
 router.post('/add',isnotlogedin,async(req,res)=>{
   const {dni,usuario,password} = req.body;
-  await pool.query('call insert_user(?,?,?)',[dni,usuario,password],async(err,resp,fields)=>{
+  const new_password = await encryptpassword(password);
+  console.log(new_password);
+  await pool.query('call insert_user(?,?,?)',[dni,usuario,new_password],async(err,resp,fields)=>{
     if (err) {
       req.flash('failure', "No se pudo agregar" + err);
       console.log(err);
