@@ -94,7 +94,15 @@ var telfValidation = [
 		},
 		invalidityMessage: 'Necesita al menos 9 digitos',
 		element: document.querySelector('label[for="telf"] .input-requirements li:nth-child(1)')
-  }
+  },
+  {
+		isInvalid: function(input) {
+			var illegalCharacters = !input.value.match(/^9/g);
+			return illegalCharacters ? true : false;
+		},
+		invalidityMessage: 'Numero celular debe empezar con 9',
+		element: document.querySelector('label[for="telf"] .input-requirements li:nth-child(2)')
+	}
 ];
 
 var emailValidation = [
