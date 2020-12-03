@@ -69,14 +69,16 @@ app.use(require('./routes/auth'));
 app.use(require('./routes/reset-password'));
 app.use(require('./routes/home'));
 app.use(require('./routes/nosotros'));
-app.use(require('./routes/contactanos'));
 app.use(require('./routes/delivery'));
 app.use(require('./routes/servicios'));
 app.use(require('./routes/contacto'));
 app.use(require('./routes/equipo'));
 app.use(require('./routes/carrito'));
 app.use('/carta', require('./routes/carta'));
-
+app.use(express.static(__dirname + '/public'),function(req, res, next) {
+  res.status(404);
+  res.render('not-found/404',{layout:null});
+});
 
 //Public
 app.use(express.static(path.join(__dirname, 'public')));
