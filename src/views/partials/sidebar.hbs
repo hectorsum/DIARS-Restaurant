@@ -6,7 +6,7 @@
     <a href="javascript:void(0)" id="btn-closesidebar" onclick="closeSidebar()"><i class="fas fa-bars"></i></a>
   <nav class="nav-main">
     <ul class="nav-nav">
-    {{#if user.permiso includeZero=false}}
+    {{#if user.permiso}}
       <li>
         <a href="/home" class="nav-op">
           <i class="fas fa-house-user"></i>
@@ -91,7 +91,28 @@
           <label>Configuracion</label>
         </a>
       </li>
-      {{else}}
+    {{/if}}
+    {{#if user.permiso_mantener}}
+      <li> <a href="javascript:void(0)" class="dropdown-btn nav-op">
+          <div class="icon-content">
+            <i class="fas fa-hammer"></i>
+            <label>Mantenimiento</label>
+            <i class="fa fa-caret-down" id="arrow"></i>
+          </div>
+        </a>
+        <div class="dropdown-container">
+          <ul>
+            <li>
+              <a href="/mantener-producto" class="child-dropdown">
+                <i class="fas fa-wine-bottle"></i>
+                <label>Mantener producto</label>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    {{/if}}
+    {{#if user.permiso_ventas}}
       <li>
         <a href="/registrar-comanda" class="nav-op">
           <i class="fas fa-scroll"></i>
