@@ -23,7 +23,7 @@ router.post('/add', isnotlogedin, async(req, res) => {
             const pathname = req.file.filename;
 
             console.log(req.file.filename);
-            await pool.query('call add_mantener(?,?,?,?,?,?)', [nombre, precio, 'producto', stock, pathname, 0], async(err, resp) => {
+            await pool.query('call add_mantener(?,?,?,?,?,?,?)', [nombre, precio, 'producto', stock, pathname, 0,""], async(err, resp) => {
                 if (err) {
                     req.flash('failure', "No se pudo agregar" + err);
                     res.redirect('/mantener-producto');
