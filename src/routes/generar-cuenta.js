@@ -8,10 +8,7 @@ const pdf = require('../lib/puppeteer');
 router.get('/', isnotlogedin, async(req, res) => {
 
     //*Querying tables
-    const venta = await pool.query("SELECT venta.*, tipo_pago.*, tipo_comprobante.nombre_comprobante FROM venta LEFT JOIN tipo_pago ON venta.cod_tipo_pago = tipo_pago.cod_tipo_pago LEFT JOIN tipo_comprobante ON venta.cod_tipo_comprobante = tipo_comprobante.cod_tipo_comprobante WHERE DATE(fecha_venta) LIKE CURDATE() and tipo_venta='local'");
-    /* const entrada = await pool.query('SELECT * FROM entrada') */
-    /* const segundo = await pool.query('SELECT * FROM segundo') */
-    /* const producto = await pool.query('SELECT * FROM producto') */
+    const venta = await pool.query("SELECT venta.*, tipo_pago.*, tipo_comprobante.nombre_comprobante FROM venta LEFT JOIN tipo_pago ON venta.cod_tipo_pago = tipo_pago.cod_tipo_pago LEFT JOIN tipo_comprobante ON venta.cod_tipo_comprobante = tipo_comprobante.cod_tipo_comprobante WHERE DATE(fecha_venta) LIKE CURDATE() and tipo_venta='local' and estado_pago!='Truncado'");
     const tipo_pago = await pool.query('SELECT * FROM tipo_pago')
     const tipo_comprobante = await pool.query('SELECT * FROM tipo_comprobante')
     const usuario_emp = await pool.query("SELECT `usuario_emp`.`cod_emp`, `empleado`.`nombres`, `empleado`.`apellidos` FROM `usuario_emp` LEFT JOIN `empleado` ON `usuario_emp`.`cod_emp` = `empleado`.`cod_emp`")
@@ -20,7 +17,6 @@ router.get('/', isnotlogedin, async(req, res) => {
 })
 
 router.post('/', isnotlogedin, async(req, res) => {
-    console.log(req.body);
     const { caja, num_mesa, tipo_pago, tipo_comprobante, razon_social, num_ruc, direccion } = req.body;
     const current_timestamp = await pool.query('SELECT CURRENT_TIMESTAMP');
     const fecha_venta = helpers.formatdatetodb(current_timestamp[0].CURRENT_TIMESTAMP);
@@ -45,15 +41,27 @@ router.post('/edit/:cod_ven', isnotlogedin, async(req, res) => {
   const {cod_ven} = req.params;
   const {estado_pago} = req.body;
   console.log(req.body);
-  await pool.query('UPDATE venta SET estado_pago=? WHERE cod_ven=?',[estado_pago,cod_ven],async(err)=>{
-    if(err){
-      req.flash('failure', 'No se pudo editar ' + err)
-      res.redirect('/generar-cuenta')
-    }else{
-      req.flash('success', 'Editado Satisfactoriamente')
-      res.redirect('/generar-cuenta')
-    }
-  })
+  if (estado_pago === 'Truncado'){
+    await pool.query('UPDATE venta SET estado=0 WHERE cod_ven=?',[estado_pago,cod_ven],async(err)=>{
+      if(err){
+        req.flash('failure', 'No se pudo editar ' + err)
+        res.redirect('/generar-cuenta')
+      }else{
+        req.flash('success', 'Editado Satisfactoriamente')
+        res.redirect('/generar-cuenta')
+      }
+    })
+  }else{
+    await pool.query('UPDATE venta SET estado_pago=? WHERE cod_ven=?',[estado_pago,cod_ven],async(err)=>{
+      if(err){
+        req.flash('failure', 'No se pudo editar ' + err)
+        res.redirect('/generar-cuenta')
+      }else{
+        req.flash('success', 'Editado Satisfactoriamente')
+        res.redirect('/generar-cuenta')
+      }
+    })
+  }
 })
 
 //pdf
