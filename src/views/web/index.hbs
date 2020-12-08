@@ -5,7 +5,7 @@
       <div class="text-1">Bienvenidos a</div>
       <div class="text-2">MANOS NORTEÑAS</div>
       <div class="text-3">prueba de nuestra sazon <span class="typing"></span></div>
-      <a href="#">Ingresar</a>
+      <a href="/signin">Ingresar</a>
     </div>
   </div>
 </section>
@@ -105,41 +105,15 @@
   <div class="max-width">
     <h2 class="title">Nuestro Equipo</h2>
     <div class="carousel owl-carousel">
+      {{#each equipo}}
       <div class="card">
         <div class="box">
-          <img src="/img/Teresaizquierdo.jpg" alt="">
-          <div class="text">Teresa Izquierdo</div>
-          <p>Conocida cocinera peruana especialidad en la mejor comida criolla que se pueda existir.</p>
+          <img src="/uploads/{{photo}}" alt="{{nombres}}">
+          <div class="text">{{nombres}} {{apellidos}}</div>
+          <p>{{descripcion}}</p>
         </div>
       </div>
-      <div class="card">
-        <div class="box">
-          <img src="/img/Toshiro Konishi.jpg" alt="">
-          <div class="text">Toshiro Komishi</div>
-          <p>Uno de los grandes Chefs Japoneces que llevo la cultura del ceviche a Japon.</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="box">
-          <img src="/img/Nikky Ramos.jpg" alt="">
-          <div class="text">Nikky Ramos</div>
-          <p>Embajador de la comida en Rusia y que hizo una gran tendencia con el Pisco Peruano.</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="box">
-          <img src="/img/Marisa Guilfo Zender.jpg" alt="">
-          <div class="text">Marisa Guilfo</div>
-          <p>Comenzó a preparar platos peruanos para otras personas durante su estadía en Estados Unidos.</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="box">
-          <img src="/img/TeresaOcampo.jpg" alt="">
-          <div class="text">Teresa Ocampo</div>
-          <p>la pionera de los programas de cocina en nuestra televisión.</p>
-        </div>
-      </div>
+      {{/each}}
     </div>
   </div>
 </section>
