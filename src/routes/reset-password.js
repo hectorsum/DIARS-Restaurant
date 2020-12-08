@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const DOMAIN = "";
 const nodemailer = require('nodemailer')
 const uuid = require('uuid')
+const {encryptpassword,decryptpassword} = require('../lib/helpers');
 require('dotenv').config()
 
 router.get('/reset-password', async(req, res) => {
@@ -74,7 +75,8 @@ router.get('/reset-password/:code', async(req, res) => {
 router.post('/reset-password/:code', async(req, res) => {
     const { code } = req.params
     const { password, confirm_password } = req.body
-    await pool.query('UPDATE usuario_emp SET password=?, cod_recuperacion=null WHERE cod_recuperacion=?', [password, code], (err, resp, fields) => {
+    const new_password = await encryptpassword(password);
+    await pool.query('UPDATE usuario_emp SET password=?, cod_recuperacion=null WHERE cod_recuperacion=?', [new_password, code], (err, resp, fields) => {
         if (err) {
             console.log(err)
             res.redirect('/');
