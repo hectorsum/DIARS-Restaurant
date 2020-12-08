@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../database');
+const controller = require('../controllers/nosotros');
 
-router.get('/nosotros',(req,res)=>{
-  res.render('web/nosotros',{layout:'index'})
-})
+router.get('/nosotros',controller.get_nosotros);
 
 module.exports = router;

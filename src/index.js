@@ -69,7 +69,6 @@ app.use(require('./routes/auth'));
 app.use(require('./routes/reset-password'));
 app.use(require('./routes/home'));
 app.use(require('./routes/nosotros'));
-app.use(require('./routes/delivery'));
 app.use(require('./routes/servicios'));
 app.use(require('./routes/contacto'));
 app.use(require('./routes/equipo'));

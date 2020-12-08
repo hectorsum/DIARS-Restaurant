@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../database');
+const controller = require('../controllers/contacto');
 
-router.get('/contacto',(req,res)=>{
-  res.render('web/contacto',{layout:'index'})
-})
+router.get('/contacto',controller.get_contacto);
 
 module.exports = router;
