@@ -35,8 +35,10 @@ controller.get_edit_venta = async(req,res)=>{
 controller.post_edit_venta = async(req,res)=>{
   const {cod_ven} = req.params;
   const {estado_pago} = req.body;
-  if (estado_pago === 'Truncado'){
-    await pool.query('UPDATE venta SET estado=0 WHERE cod_ven=?',[estado_pago,cod_ven],async(err)=>{
+  console.log(typeof(estado_pago));
+  console.log(estado_pago)
+  if (estado_pago == 'Truncado'){
+    await pool.query('UPDATE venta SET estado_pago=?,estado=0 WHERE cod_ven=?',[estado_pago,cod_ven],async(err)=>{
       if(err){
         req.flash('failure', 'No se pudo editar ' + err)
         res.redirect('/generar-cuenta')
